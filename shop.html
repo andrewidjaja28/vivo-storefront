@@ -35,7 +35,7 @@
 
     --maxw:1600px;
     --gutter:clamp(18px, 4.5vw, 80px);
-    --bar-h:0px;
+    --bar-h:34px;
   }
 
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
@@ -81,9 +81,9 @@
   .btn-ghost{ background:transparent; color:var(--white); border-color:rgba(250,248,244,.45); }
   .btn-ghost:hover{ border-color:var(--white); background:rgba(250,248,244,.08); }
   .btn-dark{ background:var(--black); color:var(--white); }
-  .btn-dark:hover{ background:#000; }
+  .btn-dark:hover{ background:var(--sage-deep); }
   .btn-light{ background:var(--white); color:var(--ink); }
-  .btn-light:hover{ background:#fff; }
+  .btn-light:hover{ background:var(--sage-tint); }
   .btn .arrow{ transition:transform 200ms var(--ease-out); }
   .btn:hover .arrow{ transform:translateX(3px); }
 
@@ -98,12 +98,7 @@
   /* ============================================================
      ANNOUNCEMENT BAR
      ============================================================ */
-  .announce{
-    height:var(--bar-h); background:var(--black); color:rgba(250,248,244,.92);
-    display:flex; align-items:center; justify-content:center; overflow:hidden;
-    font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; font-weight:600;
-    position:relative; z-index:60;
-  }
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
   .announce .track{ display:flex; gap:42px; align-items:center; white-space:nowrap; animation:marq 26s linear infinite; }
   .announce .track span{ display:inline-flex; align-items:center; gap:42px; }
   .announce .track i{ width:4px; height:4px; border-radius:50%; background:var(--amber); display:inline-block; }
@@ -125,7 +120,7 @@
     color:var(--ink); padding-block:10px;
     box-shadow:0 1px 0 var(--line);
   }
-  body.bar-hidden header.nav{ top:0; }
+  body.bar-hidden header.nav{ top:var(--bar-h); }
   .nav .brand{ display:inline-flex; align-items:center; height:20px; }
   .nav .brand img{ height:100%; width:auto; }
   .nav .brand .logo-white{ display:block; }
@@ -420,6 +415,48 @@
 </style>
 </head>
 <body>
+<div class="announce" role="note">For Research Use Only · Not for Human or Animal Consumption</div>
+<!-- ===================== AGE GATE (21+) ===================== -->
+<div id="ageGate" class="agegate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" hidden>
+  <div class="agegate-card">
+    <img src="logo_black.png" alt="Vivo" class="agegate-logo">
+    <h2 id="ageGateTitle">Research use only</h2>
+    <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
+    <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
+    <div class="agegate-actions">
+      <button type="button" id="ageYes" class="agegate-yes">I am 21 or older — Enter</button>
+      <button type="button" id="ageNo" class="agegate-no">Exit</button>
+    </div>
+    <p class="agegate-fine">By entering, you confirm you are acquiring these materials for laboratory research purposes only.</p>
+  </div>
+</div>
+<style>
+  .agegate{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(20,15,11,.88); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
+  .agegate[hidden]{ display:none; }
+  .agegate-card{ background:var(--white,#FAF8F4); max-width:440px; width:100%; border-radius:20px; padding:40px 34px; text-align:center; box-shadow:0 30px 80px -20px rgba(0,0,0,.6); }
+  .agegate-logo{ height:22px; width:auto; margin:0 auto 22px; opacity:.9; }
+  .agegate-card h2{ font-family:var(--display,"Forum",serif); font-weight:400; font-size:1.7rem; letter-spacing:-.5px; color:var(--ink,#2e2c28); margin-bottom:14px; }
+  .agegate-card p{ font-size:.92rem; line-height:1.6; color:var(--muted,#6b6760); margin-bottom:14px; }
+  .agegate-card .agegate-q{ color:var(--ink,#2e2c28); font-weight:600; margin-top:2px; }
+  .agegate-actions{ display:flex; flex-direction:column; gap:10px; margin:22px 0 18px; }
+  .agegate-yes{ background:var(--black,#1C1A17); color:var(--white,#FAF8F4); border:0; border-radius:14px; padding:1em 1.4em; font-weight:600; font-size:.9rem; }
+  .agegate-no{ background:transparent; color:var(--muted,#6b6760); border:1px solid var(--line,rgba(28,26,23,.18)); border-radius:14px; padding:.9em 1.4em; font-weight:600; font-size:.85rem; }
+  .agegate-fine{ font-size:.72rem; color:var(--muted,#6b6760); opacity:.8; margin-bottom:0; }
+</style>
+<script>
+(function(){
+  var KEY='vivo_age_ok';
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+  var g=document.getElementById('ageGate'); if(!g) return;
+  g.hidden=false; document.documentElement.style.overflow='hidden'; document.body.style.overflow='hidden';
+  document.getElementById('ageYes').addEventListener('click',function(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    g.hidden=true; document.documentElement.style.overflow=''; document.body.style.overflow='';
+  });
+  document.getElementById('ageNo').addEventListener('click',function(){ window.location.href='https://www.google.com'; });
+})();
+</script>
+
 
 <!-- ===================== NAV ===================== -->
 <header class="nav scrolled" id="nav">
@@ -481,9 +518,6 @@
       <div>
         <h4>Shop</h4>
         <a class="fl" href="shop.html">All products</a>
-        <a class="fl" href="shop.html">By benefit</a>
-        <a class="fl" href="index.html#feature">Bestsellers</a>
-        <a class="fl" href="#">Gift cards</a>
       </div>
       <div>
         <h4>Support</h4>
@@ -494,14 +528,12 @@
       </div>
       <div>
         <h4>Company</h4>
-        <a class="fl" href="vivo_landing.html">Our story</a>
         <a class="fl" href="#">The science</a>
-        <a class="fl" href="#">Journal</a>
         <a class="fl" href="#">Wholesale</a>
       </div>
     </div>
     <div class="bottom">
-      <div class="disclaimer">Research Use Only. Vivo products are sold for laboratory and research purposes and are not intended to diagnose, treat, cure or prevent any disease, nor for human or veterinary use. © 2026 Vivo. Made in California.</div>
+      <div class="disclaimer">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
       <div class="pay"><span>Visa</span><span>MC</span><span>Amex</span><span>Pay</span></div>
     </div>
   </div>

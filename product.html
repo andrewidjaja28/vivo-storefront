@@ -13,9 +13,10 @@
     --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
     --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
     --display:"Forum","Cormorant Garamond",Georgia,serif;
+    --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
     --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
     --ease-drawer:cubic-bezier(0.32, 0.72, 0, 1);
-    --maxw:1600px; --gutter:clamp(18px, 4.5vw, 80px);
+    --bar-h:34px; --maxw:1600px; --gutter:clamp(18px, 4.5vw, 80px);
   }
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
@@ -38,17 +39,18 @@
     transition:transform 150ms var(--ease-out), background-color 200ms ease, color 200ms ease, border-color 200ms ease; }
   .btn:active{ transform:scale(0.97); }
   .btn-dark{ background:var(--black); color:var(--white); }
-  .btn-dark:hover{ background:#000; }
+  .btn-dark:hover{ background:var(--sage-deep); }
   .btn-light{ background:var(--white); color:var(--ink); border-color:var(--line); }
-  .btn-light:hover{ border-color:var(--ink); }
+  .btn-light:hover{ background:var(--sage-tint); border-color:var(--sage-deep); }
   .btn .arrow{ transition:transform 200ms var(--ease-out); }
   .btn:hover .arrow{ transform:translateX(3px); }
   .icon-btn{ display:inline-grid; place-items:center; width:40px; height:40px; border-radius:50%; background:transparent; border:0; color:inherit; position:relative; transition:transform 150ms var(--ease-out); }
   .icon-btn:active{ transform:scale(0.92); }
   .icon-btn svg{ width:20px; height:20px; }
 
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
   /* NAV */
-  header.nav{ position:fixed; inset:0 0 auto 0; z-index:55; display:flex; align-items:center; justify-content:space-between;
+  header.nav{ position:fixed; top:var(--bar-h); left:0; right:0; z-index:55; display:flex; align-items:center; justify-content:space-between;
     padding:14px var(--gutter); color:var(--ink);
     transition:background-color 320ms ease, backdrop-filter 320ms ease, padding 320ms ease, box-shadow 320ms ease; }
   header.nav.scrolled{ background:rgba(250,248,244,.86); backdrop-filter:saturate(150%) blur(16px); -webkit-backdrop-filter:saturate(150%) blur(16px); padding-block:10px; box-shadow:0 1px 0 var(--line); }
@@ -83,7 +85,7 @@
   .pdp .bk{ display:flex; align-items:center; gap:9px; margin-bottom:18px; }
   .pdp .bk .dot{ width:12px; height:12px; border-radius:50%; background:var(--cc,var(--sage-deep)); }
   .pdp .bk .bn{ font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--cc,var(--sage-deep)); }
-  .pdp h1{ font-size:clamp(3rem,7vw,5rem); color:var(--ink); }
+  .pdp h1{ font-size:clamp(2.5rem,5.6vw,4rem); color:var(--ink); }
   .pdp .tagline{ font-family:var(--serif); font-style:italic; font-size:clamp(1.3rem,2.4vw,1.7rem); color:#4a443a; margin-top:14px; line-height:1.4; }
   .pdp .overview{ margin-top:20px; font-size:1.02rem; color:var(--ink); max-width:48ch; line-height:1.7; }
   .pdp .points{ list-style:none; margin-top:24px; display:grid; gap:11px; }
@@ -98,8 +100,10 @@
   .pdp .size{ flex:1; min-width:96px; display:flex; flex-direction:column; align-items:flex-start; gap:3px; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:.7em .9em; cursor:pointer; transition:border-color 180ms ease, background-color 180ms ease; }
   .pdp .size:hover{ border-color:var(--ink); }
   .pdp .size.active{ border-color:var(--sage-deep); background:var(--sage-tint); }
-  .pdp .size .sz{ font-weight:600; font-size:.92rem; color:var(--ink); }
-  .pdp .size .sp{ font-size:.8rem; color:var(--muted); }
+  .pdp .size .sz{ font-family:var(--mono); font-weight:600; font-size:.86rem; letter-spacing:-.02em; color:var(--ink); }
+  .pdp .size .sp{ font-family:var(--mono); font-size:.78rem; letter-spacing:-.02em; color:var(--ink); }
+  .pdp .size .sp .anchor{ color:var(--muted); text-decoration:line-through; text-decoration-thickness:1px; margin-right:5px; opacity:.85; }
+  .pdp .size .ss{ font-size:.64rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#9a6a1c; margin-top:3px; }
   .pdp .buyrow{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:22px; }
   .pdp .qtybox{ display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:16px; overflow:hidden; }
   .pdp .qtybox .qb{ width:44px; height:50px; background:none; border:0; font-size:1.2rem; color:var(--ink); display:grid; place-items:center; cursor:pointer; transition:background-color 150ms ease; }
@@ -231,6 +235,48 @@
 </style>
 </head>
 <body>
+<div class="announce" role="note">For Research Use Only · Not for Human or Animal Consumption</div>
+<!-- ===================== AGE GATE (21+) ===================== -->
+<div id="ageGate" class="agegate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" hidden>
+  <div class="agegate-card">
+    <img src="logo_black.png" alt="Vivo" class="agegate-logo">
+    <h2 id="ageGateTitle">Research use only</h2>
+    <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
+    <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
+    <div class="agegate-actions">
+      <button type="button" id="ageYes" class="agegate-yes">I am 21 or older — Enter</button>
+      <button type="button" id="ageNo" class="agegate-no">Exit</button>
+    </div>
+    <p class="agegate-fine">By entering, you confirm you are acquiring these materials for laboratory research purposes only.</p>
+  </div>
+</div>
+<style>
+  .agegate{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(20,15,11,.88); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
+  .agegate[hidden]{ display:none; }
+  .agegate-card{ background:var(--white,#FAF8F4); max-width:440px; width:100%; border-radius:20px; padding:40px 34px; text-align:center; box-shadow:0 30px 80px -20px rgba(0,0,0,.6); }
+  .agegate-logo{ height:22px; width:auto; margin:0 auto 22px; opacity:.9; }
+  .agegate-card h2{ font-family:var(--display,"Forum",serif); font-weight:400; font-size:1.7rem; letter-spacing:-.5px; color:var(--ink,#2e2c28); margin-bottom:14px; }
+  .agegate-card p{ font-size:.92rem; line-height:1.6; color:var(--muted,#6b6760); margin-bottom:14px; }
+  .agegate-card .agegate-q{ color:var(--ink,#2e2c28); font-weight:600; margin-top:2px; }
+  .agegate-actions{ display:flex; flex-direction:column; gap:10px; margin:22px 0 18px; }
+  .agegate-yes{ background:var(--black,#1C1A17); color:var(--white,#FAF8F4); border:0; border-radius:14px; padding:1em 1.4em; font-weight:600; font-size:.9rem; }
+  .agegate-no{ background:transparent; color:var(--muted,#6b6760); border:1px solid var(--line,rgba(28,26,23,.18)); border-radius:14px; padding:.9em 1.4em; font-weight:600; font-size:.85rem; }
+  .agegate-fine{ font-size:.72rem; color:var(--muted,#6b6760); opacity:.8; margin-bottom:0; }
+</style>
+<script>
+(function(){
+  var KEY='vivo_age_ok';
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+  var g=document.getElementById('ageGate'); if(!g) return;
+  g.hidden=false; document.documentElement.style.overflow='hidden'; document.body.style.overflow='hidden';
+  document.getElementById('ageYes').addEventListener('click',function(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    g.hidden=true; document.documentElement.style.overflow=''; document.body.style.overflow='';
+  });
+  document.getElementById('ageNo').addEventListener('click',function(){ window.location.href='https://www.google.com'; });
+})();
+</script>
+
 
 <!-- NAV -->
 <header class="nav" id="nav">
@@ -274,8 +320,6 @@
       <div>
         <h4>Shop</h4>
         <a class="fl" href="index.html#shop">All products</a>
-        <a class="fl" href="index.html#shop">By benefit</a>
-        <a class="fl" href="index.html#feature">Bestsellers</a>
       </div>
       <div>
         <h4>Support</h4>
@@ -285,13 +329,12 @@
       </div>
       <div>
         <h4>Company</h4>
-        <a class="fl" href="vivo_landing.html">Our story</a>
         <a class="fl" href="#">The science</a>
         <a class="fl" href="contact.html">Contact</a>
       </div>
     </div>
     <div class="bottom">
-      <div class="disclaimer">Research Use Only. Vivo products are sold for laboratory and research purposes and are not intended to diagnose, treat, cure or prevent any disease, nor for human or veterinary use. © 2026 Vivo. Made in California.</div>
+      <div class="disclaimer">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
       <div class="pay"><span>Visa</span><span>MC</span><span>Amex</span><span>Pay</span></div>
     </div>
   </div>
@@ -407,6 +450,16 @@
     { dose: (baseN*2) + ' ' + unit, price: round5(product.price*1.8) },
     { dose: (baseN*3) + ' ' + unit, price: round5(product.price*2.5) }
   ];
+  // anchored savings: what the same mg would cost at the base size's per-unit rate
+  const basePerUnit = product.price / baseN;
+  sizes.forEach((s, i) => {
+    const mg = parseFloat(s.dose) || baseN;
+    const anchor = Math.round(basePerUnit * mg);   // base-rate equivalent price
+    const saveAmt = anchor - s.price;
+    const show = i > 0 && saveAmt > 0;
+    s.priceHtml = show ? `<span class="anchor">${money(anchor)}</span>${money(s.price)}` : money(s.price);
+    s.saveHtml = show ? `<span class="ss">Save ${money(saveAmt)}</span>` : '';
+  });
 
   document.getElementById('pdp').innerHTML = `
     <section class="pdp">
@@ -434,7 +487,7 @@
             <div class="pprice reveal" id="pprice">${money(sizes[0].price)}</div>
             <div class="sizelabel reveal">Dosage size</div>
             <div class="sizes reveal" id="sizeSel">
-              ${sizes.map((s,i)=>`<button type="button" class="size${i===0?' active':''}" data-i="${i}"><span class="sz">${esc(s.dose)}</span><span class="sp">${money(s.price)}</span></button>`).join('')}
+              ${sizes.map((s,i)=>`<button type="button" class="size${i===0?' active':''}" data-i="${i}"><span class="sz">${esc(s.dose)}</span><span class="sp">${s.priceHtml}</span>${s.saveHtml}</button>`).join('')}
             </div>
             <div class="buyrow reveal">
               <div class="qtybox"><button type="button" class="qb" data-q="-1" aria-label="Decrease quantity">−</button><span class="qv" id="pdpQty">1</span><button type="button" class="qb" data-q="1" aria-label="Increase quantity">+</button></div>

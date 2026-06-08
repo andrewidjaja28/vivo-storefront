@@ -35,7 +35,7 @@
 
     --maxw:1600px;
     --gutter:clamp(18px, 4.5vw, 80px);
-    --bar-h:0px;
+    --bar-h:34px;
   }
 
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
@@ -81,9 +81,9 @@
   .btn-ghost{ background:transparent; color:var(--white); border-color:rgba(250,248,244,.45); }
   .btn-ghost:hover{ border-color:var(--white); background:rgba(250,248,244,.08); }
   .btn-dark{ background:var(--black); color:var(--white); }
-  .btn-dark:hover{ background:#000; }
+  .btn-dark:hover{ background:var(--sage-deep); }
   .btn-light{ background:var(--white); color:var(--ink); }
-  .btn-light:hover{ background:#fff; }
+  .btn-light:hover{ background:var(--sage-tint); }
   .btn .arrow{ transition:transform 200ms var(--ease-out); }
   .btn:hover .arrow{ transform:translateX(3px); }
 
@@ -98,12 +98,7 @@
   /* ============================================================
      ANNOUNCEMENT BAR
      ============================================================ */
-  .announce{
-    height:var(--bar-h); background:var(--black); color:rgba(250,248,244,.92);
-    display:flex; align-items:center; justify-content:center; overflow:hidden;
-    font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; font-weight:600;
-    position:relative; z-index:60;
-  }
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
   .announce .track{ display:flex; gap:42px; align-items:center; white-space:nowrap; animation:marq 26s linear infinite; }
   .announce .track span{ display:inline-flex; align-items:center; gap:42px; }
   .announce .track i{ width:4px; height:4px; border-radius:50%; background:var(--amber); display:inline-block; }
@@ -125,7 +120,7 @@
     color:var(--ink); padding-block:10px;
     box-shadow:0 1px 0 var(--line);
   }
-  body.bar-hidden header.nav{ top:0; }
+  body.bar-hidden header.nav{ top:var(--bar-h); }
   .nav .brand{ display:inline-flex; align-items:center; height:20px; }
   .nav .brand img{ height:100%; width:auto; }
   .nav .brand .logo-white{ display:block; }
@@ -428,6 +423,21 @@
   .co-place{ width:100%; margin-top:18px; background:var(--sage-deep); color:#fff; border:0; border-radius:16px; padding:1.1em; font-weight:600; font-size:.95rem; cursor:pointer; transition:transform 150ms var(--ease-out); }
   .co-place:hover{ transform:translateY(-1px); }
   .co-secure{ margin-top:12px; font-size:.74rem; color:var(--muted); text-align:center; }
+  .co-note{ font-size:.82rem; color:var(--muted); margin:-4px 0 14px; line-height:1.5; }
+  .co-fine{ font-size:.74rem; color:var(--muted); opacity:.85; margin-top:6px; line-height:1.5; }
+  .field select{ font-family:var(--sans); font-size:.95rem; color:var(--ink); background:var(--white); border:1px solid var(--line); border-radius:12px; padding:.8em 1em; width:100%; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236b6760' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1em center; }
+  .field select:focus{ outline:none; border-color:var(--sage-deep); }
+  .co-check{ display:flex; gap:11px; align-items:flex-start; font-size:.85rem; color:var(--ink); line-height:1.5; margin-bottom:14px; cursor:pointer; }
+  .co-check input{ margin-top:2px; width:17px; height:17px; flex-shrink:0; accent-color:var(--sage-deep); }
+  .co-check a{ color:var(--sage-deep); text-decoration:underline; }
+  .tmodal{ position:fixed; inset:0; z-index:9998; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(20,15,11,.7); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+  .tmodal.open{ display:flex; }
+  .tmodal-card{ background:var(--white); max-width:560px; width:100%; max-height:82vh; overflow:auto; border-radius:18px; padding:34px 32px; box-shadow:0 30px 80px -20px rgba(0,0,0,.5); }
+  .tmodal-card h3{ font-family:var(--display); font-weight:400; font-size:1.5rem; letter-spacing:-.5px; color:var(--ink); margin-bottom:16px; }
+  .tmodal-card h4{ font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:18px 0 6px; }
+  .tmodal-card p{ font-size:.86rem; color:var(--ink); line-height:1.6; margin-bottom:10px; }
+  .tmodal-card .tnote{ font-size:.74rem; color:var(--muted); margin-top:14px; }
+  .tmodal-close{ margin-top:20px; width:100%; background:var(--black); color:var(--white); border:0; border-radius:14px; padding:.95em; font-weight:600; font-size:.9rem; }
   .co-empty{ text-align:center; padding:50px 0 70px; }
   .co-empty h2{ font-size:2rem; color:var(--ink); }
   .co-empty p{ color:var(--muted); margin:12px 0 26px; }
@@ -440,6 +450,48 @@
 </style>
 </head>
 <body>
+<div class="announce" role="note">For Research Use Only · Not for Human or Animal Consumption</div>
+<!-- ===================== AGE GATE (21+) ===================== -->
+<div id="ageGate" class="agegate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" hidden>
+  <div class="agegate-card">
+    <img src="logo_black.png" alt="Vivo" class="agegate-logo">
+    <h2 id="ageGateTitle">Research use only</h2>
+    <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
+    <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
+    <div class="agegate-actions">
+      <button type="button" id="ageYes" class="agegate-yes">I am 21 or older — Enter</button>
+      <button type="button" id="ageNo" class="agegate-no">Exit</button>
+    </div>
+    <p class="agegate-fine">By entering, you confirm you are acquiring these materials for laboratory research purposes only.</p>
+  </div>
+</div>
+<style>
+  .agegate{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(20,15,11,.88); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
+  .agegate[hidden]{ display:none; }
+  .agegate-card{ background:var(--white,#FAF8F4); max-width:440px; width:100%; border-radius:20px; padding:40px 34px; text-align:center; box-shadow:0 30px 80px -20px rgba(0,0,0,.6); }
+  .agegate-logo{ height:22px; width:auto; margin:0 auto 22px; opacity:.9; }
+  .agegate-card h2{ font-family:var(--display,"Forum",serif); font-weight:400; font-size:1.7rem; letter-spacing:-.5px; color:var(--ink,#2e2c28); margin-bottom:14px; }
+  .agegate-card p{ font-size:.92rem; line-height:1.6; color:var(--muted,#6b6760); margin-bottom:14px; }
+  .agegate-card .agegate-q{ color:var(--ink,#2e2c28); font-weight:600; margin-top:2px; }
+  .agegate-actions{ display:flex; flex-direction:column; gap:10px; margin:22px 0 18px; }
+  .agegate-yes{ background:var(--black,#1C1A17); color:var(--white,#FAF8F4); border:0; border-radius:14px; padding:1em 1.4em; font-weight:600; font-size:.9rem; }
+  .agegate-no{ background:transparent; color:var(--muted,#6b6760); border:1px solid var(--line,rgba(28,26,23,.18)); border-radius:14px; padding:.9em 1.4em; font-weight:600; font-size:.85rem; }
+  .agegate-fine{ font-size:.72rem; color:var(--muted,#6b6760); opacity:.8; margin-bottom:0; }
+</style>
+<script>
+(function(){
+  var KEY='vivo_age_ok';
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+  var g=document.getElementById('ageGate'); if(!g) return;
+  g.hidden=false; document.documentElement.style.overflow='hidden'; document.body.style.overflow='hidden';
+  document.getElementById('ageYes').addEventListener('click',function(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    g.hidden=true; document.documentElement.style.overflow=''; document.body.style.overflow='';
+  });
+  document.getElementById('ageNo').addEventListener('click',function(){ window.location.href='https://www.google.com'; });
+})();
+</script>
+
 
 <!-- ===================== NAV ===================== -->
 <header class="nav scrolled" id="nav">
@@ -474,8 +526,14 @@
       <div class="cogrid">
         <form class="coform reveal" id="coForm" novalidate>
           <div class="cosection">
-            <h3>Contact</h3>
+            <h3>Account</h3>
+            <p class="co-note">An account is required to purchase — guest checkout is not available.</p>
             <div class="field"><label for="co-email">Email</label><input id="co-email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+            <div class="co-row2">
+              <div class="field"><label for="co-pw">Create password</label><input id="co-pw" type="password" autocomplete="new-password" minlength="8" required></div>
+              <div class="field"><label for="co-pw2">Confirm password</label><input id="co-pw2" type="password" autocomplete="new-password" minlength="8" required></div>
+            </div>
+            <p class="co-fine">A verification email will be sent to confirm your account before any order ships.</p>
           </div>
           <div class="cosection">
             <h3>Shipping address</h3>
@@ -489,6 +547,23 @@
               <div class="field"><label for="co-state">State</label><input id="co-state" autocomplete="address-level1" required></div>
               <div class="field"><label for="co-zip">ZIP</label><input id="co-zip" inputmode="numeric" autocomplete="postal-code" required></div>
             </div>
+            <p class="co-note">We ship to physical U.S. addresses only — P.O. boxes cannot be accepted.</p>
+          </div>
+          <div class="cosection">
+            <h3>Research details</h3>
+            <div class="field">
+              <label for="co-field">Research field</label>
+              <select id="co-field" required>
+                <option value="" disabled selected>Select your field…</option>
+                <option>Pharmacology</option>
+                <option>Molecular Biology</option>
+                <option>Biochemistry</option>
+                <option>Analytical Chemistry</option>
+                <option>Academic / Institutional Research</option>
+                <option>Clinical Laboratory Research</option>
+                <option>Other Laboratory Research</option>
+              </select>
+            </div>
           </div>
           <div class="cosection">
             <h3>Payment</h3>
@@ -497,6 +572,11 @@
               <div class="field"><label for="co-exp">Expiry</label><input id="co-exp" placeholder="MM / YY" required></div>
               <div class="field"><label for="co-cvc">CVC</label><input id="co-cvc" inputmode="numeric" placeholder="123" required></div>
             </div>
+          </div>
+          <div class="cosection">
+            <h3>Acknowledgements</h3>
+            <label class="co-check"><input type="checkbox" id="co-ack-research" required> I confirm these products are purchased for laboratory research purposes only, and not for human or animal consumption.</label>
+            <label class="co-check"><input type="checkbox" id="co-ack-terms" required> I have read and agree to the <a href="#" id="co-terms-link" role="button">Terms &amp; Conditions</a>.</label>
           </div>
         </form>
         <aside class="co-summary reveal" data-d="1">
@@ -515,6 +595,24 @@
   </div>
 </section>
 
+<div class="tmodal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+  <div class="tmodal-card">
+    <h3 id="termsTitle">Terms &amp; Conditions — Research Use Only</h3>
+    <p>By placing an order you acknowledge and agree to the following:</p>
+    <h4>Research-only use</h4>
+    <p>All products are sold strictly for in-vitro laboratory research and are not for human or animal consumption.</p>
+    <h4>No therapeutic use</h4>
+    <p>Products are not drugs, foods, cosmetics or medical devices, and are not intended to diagnose, treat, cure or prevent any disease or condition.</p>
+    <h4>Qualified professional</h4>
+    <p>You represent that you are a qualified professional or institution acquiring these materials for legitimate research purposes.</p>
+    <h4>Indemnification</h4>
+    <p>You agree to handle, store and dispose of the products in accordance with all applicable laws, and to indemnify and hold Vivo harmless from any claim arising from misuse.</p>
+    <h4>Shipping &amp; returns</h4>
+    <p>Shipment to P.O. boxes is not permitted. Refunds, returns and chargebacks are governed by our posted policies.</p>
+    <p class="tnote">Summary provided for acknowledgement at checkout. Final binding Terms &amp; Conditions are subject to legal review.</p>
+    <button type="button" class="tmodal-close" id="termsClose">Close</button>
+  </div>
+</div>
 <footer class="foot">
   <div class="wrap">
     <div class="top">
@@ -526,9 +624,6 @@
       <div>
         <h4>Shop</h4>
         <a class="fl" href="shop.html">All products</a>
-        <a class="fl" href="shop.html">By benefit</a>
-        <a class="fl" href="index.html#feature">Bestsellers</a>
-        <a class="fl" href="#">Gift cards</a>
       </div>
       <div>
         <h4>Support</h4>
@@ -539,14 +634,12 @@
       </div>
       <div>
         <h4>Company</h4>
-        <a class="fl" href="vivo_landing.html">Our story</a>
         <a class="fl" href="#">The science</a>
-        <a class="fl" href="#">Journal</a>
         <a class="fl" href="#">Wholesale</a>
       </div>
     </div>
     <div class="bottom">
-      <div class="disclaimer">Research Use Only. Vivo products are sold for laboratory and research purposes and are not intended to diagnose, treat, cure or prevent any disease, nor for human or veterinary use. © 2026 Vivo. Made in California.</div>
+      <div class="disclaimer">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
       <div class="pay"><span>Visa</span><span>MC</span><span>Amex</span><span>Pay</span></div>
     </div>
   </div>
@@ -732,10 +825,23 @@
   }
   renderCheckout();
 
+  (function setupTerms(){
+    const link = document.getElementById('co-terms-link');
+    const modal = document.getElementById('termsModal');
+    const close = document.getElementById('termsClose');
+    if(link && modal) link.addEventListener('click', e => { e.preventDefault(); modal.classList.add('open'); });
+    if(close && modal) close.addEventListener('click', () => modal.classList.remove('open'));
+    if(modal) modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('open'); });
+  })();
+
   if(coForm){
     coForm.addEventListener('submit', e => {
       e.preventDefault();
       if(!coEntries().length) return;
+      const pw = document.getElementById('co-pw'), pw2 = document.getElementById('co-pw2');
+      if(pw && pw2) pw2.setCustomValidity(pw.value === pw2.value ? '' : 'Passwords do not match.');
+      const addr = document.getElementById('co-addr');
+      if(addr) addr.setCustomValidity(/\bp\.?\s*o\.?\s*box\b|post\s*office\s*box/i.test(addr.value) ? 'We cannot ship to P.O. boxes — please enter a physical address.' : '');
       if(!coForm.checkValidity()){ coForm.reportValidity(); return; }
       const order = 'VV' + String(Date.now()).slice(-8);
       cart = {}; save(); renderCart();
