@@ -1,0 +1,76 @@
+{
+  "_note": "Vivo catalog export for Medusa seeding. Prices are placeholders (USD). Variant prices currently derive from base via round5(price*1.8) for 2x and round5(price*2.5) for 3x — confirm final pricing. 'ph' is the placeholder background color used by the frontend; carry it (and 'img') into product/variant metadata so the design keeps working.",
+  "currency": "usd",
+  "products": [
+    {
+      "id": "glow", "name": "GLOW", "category": "Skin & Renewal", "benefit": "skin",
+      "ph": "#cdbb95", "img": "Products/Vials/vial_glow.jpg",
+      "variants": [
+        { "dose": "5 mg",  "price": 120 },
+        { "dose": "10 mg", "price": 215 },
+        { "dose": "15 mg", "price": 300 }
+      ]
+    },
+    {
+      "id": "bpc157", "name": "BPC-157", "category": "Recovery & Healing", "benefit": "recovery",
+      "ph": "#b69487", "img": "Products/Vials/vial_bpc147.jpg",
+      "variants": [
+        { "dose": "10 mg", "price": 95 },
+        { "dose": "20 mg", "price": 170 },
+        { "dose": "30 mg", "price": 240 }
+      ]
+    },
+    {
+      "id": "selank", "name": "Selank", "category": "Mind, Mood & Sleep", "benefit": "vitality",
+      "ph": "#b9b893", "img": "Products/Vials/vial_selank.jpg",
+      "variants": [
+        { "dose": "5 mg",  "price": 70 },
+        { "dose": "10 mg", "price": 125 },
+        { "dose": "15 mg", "price": 175 }
+      ]
+    },
+    {
+      "id": "nad", "name": "NAD+", "category": "Cellular Energy", "benefit": "vitality",
+      "ph": "#b6b48f", "img": "Products/Vials/vial_nad+.jpg",
+      "variants": [
+        { "dose": "5 mg",  "price": 110 },
+        { "dose": "10 mg", "price": 200 },
+        { "dose": "15 mg", "price": 275 }
+      ]
+    },
+    {
+      "id": "glutathione", "name": "Glutathione", "category": "Detox & Antioxidant", "benefit": "skin",
+      "ph": "#b39184", "img": "Products/Vials/vial_glutathione.jpg",
+      "variants": [
+        { "dose": "5 mg",  "price": 85 },
+        { "dose": "10 mg", "price": 155 },
+        { "dose": "15 mg", "price": 215 }
+      ]
+    },
+    {
+      "id": "glp3", "name": "GLP-3", "category": "Metabolic Balance", "benefit": "metabolic",
+      "ph": "#9aa6b0", "img": "Products/Vials/vial_bpcglp-3.jpg",
+      "variants": [
+        { "dose": "5 mg",  "price": 130 },
+        { "dose": "10 mg", "price": 235 },
+        { "dose": "15 mg", "price": 325 }
+      ]
+    },
+    {
+      "id": "aod9604", "name": "AOD-9604", "category": "Lipotropic", "benefit": "metabolic",
+      "ph": "#94a1ad", "img": "Products/Vials/vial_aod9604.jpg",
+      "variants": [
+        { "dose": "5 mg",  "price": 90 },
+        { "dose": "10 mg", "price": 160 },
+        { "dose": "15 mg", "price": 225 }
+      ]
+    }
+  ],
+  "benefits": [
+    { "id": "recovery",    "name": "Recovery",     "color": "#7B3B34" },
+    { "id": "skin",        "name": "Anti-Aging",   "color": "#C4913A" },
+    { "id": "vitality",    "name": "Mind & Energy","color": "#3D5C36" },
+    { "id": "metabolic",   "name": "Weight Loss",  "color": "#3A5268" },
+    { "id": "performance", "name": "Performance",  "color": "#1C1A17" }
+  ]
+}

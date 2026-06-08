@@ -1,0 +1,25 @@
+# OS noise
+.DS_Store
+
+# Build artifacts / deploy bundles (regenerated; don't track)
+Vivo_deploy/
+Vivo_site/
+*.zip
+
+# Large source material not used by the live site
+batchvideo.mp4
+*.pdf
+Vivo Mood Board Images/
+
+# _source: keep ONLY fonts (loaded in production); ignore heavy design mockups
+_source/*.png
+_source/*.jpg
+_source/*.jpeg
+_source/*.html
+
+# Node / Medusa (for when the backend dev adds tooling)
+node_modules/
+.env
+.env.*
+dist/
+.netlify/
