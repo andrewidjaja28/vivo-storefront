@@ -20,7 +20,7 @@
     --clay-deep:#5C2A24;
     --champagne:#E4BC7A;
     --black:#1C1A17;
-    --white:#FAF8F4;
+    --white:#fffef2;
     --ink:#2e2c28;
     --muted:#6b6760;
 
@@ -68,7 +68,7 @@
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
 
-  h1,h2,h3{ font-family:var(--serif); font-weight:600; line-height:1.05; letter-spacing:-.01em; }
+  h1,h2,h3{ font-family:var(--serif); font-weight:600; line-height:1.05; letter-spacing:-1.5px; }
   .serif-italic{ font-family:var(--serif); font-style:italic; font-weight:400; }
 
   .section{ padding-block:clamp(72px, 11vw, 150px); }
@@ -84,25 +84,26 @@
 
   /* ---------- buttons ---------- */
   .btn{
-    display:inline-flex; align-items:center; gap:.55em;
-    font-family:var(--sans); font-weight:600; font-size:.84rem;
-    letter-spacing:.02em;
-    padding:.95em 1.6em;
-    border-radius:999px;
-    border:1px solid transparent;
+    display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+    font-weight:500; font-size:.82rem; letter-spacing:.02em;
+    padding:1.15em 2em; min-height:54px; border-radius:0; border:1px solid transparent;
     cursor:pointer;
-    transition:transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease, border-color 200ms ease;
-    will-change:transform;
+    transition:background-color .25s cubic-bezier(.645,.045,.355,1), color .25s cubic-bezier(.645,.045,.355,1), border-color .25s cubic-bezier(.645,.045,.355,1);
   }
-  .btn:active{ transform:scale(0.97); }
-  .btn-primary{ background:var(--sage-deep); color:var(--white); }
-  .btn-primary:hover{ background:#34522d; }
-  .btn-ghost{ background:transparent; color:var(--white); border-color:rgba(250,248,244,.45); }
-  .btn-ghost:hover{ border-color:var(--white); background:rgba(250,248,244,.08); }
-  .btn-dark{ background:var(--black); color:var(--white); }
-  .btn-dark:hover{ background:#000; }
-  .btn .arrow{ transition:transform 200ms var(--ease-out); }
-  .btn:hover .arrow{ transform:translateX(3px); }
+  .btn-primary{ background:var(--black); color:var(--white); border-color:var(--black); }
+  .btn-primary:hover{ background:var(--sage-deep); border-color:var(--sage-deep); }
+  .btn-champ{ background:var(--clay-deep); color:var(--champagne); border-color:var(--clay-deep); }
+  .btn-champ:hover{ background:var(--champagne); color:var(--clay-deep); border-color:var(--champagne); }
+  .btn-ghost{ background:var(--white); color:var(--ink); border-color:var(--white); }
+  .btn-ghost:hover{ background:transparent; color:var(--white); border-color:rgba(250,248,244,.55); }
+  .btn-dark{ background:transparent; color:var(--black); border-color:var(--black); }
+  .btn-dark:hover{ background:var(--black); color:var(--white); border-color:var(--black); }
+  .btn-light{ background:transparent; color:var(--white); border-color:var(--white); }
+  .btn-light:hover{ background:var(--white); color:var(--ink); border-color:var(--white); }
+  .btn .arrow{ transition:transform .25s cubic-bezier(.645,.045,.355,1); }
+  .btn:hover .arrow{ transform:translateX(4px); }
+
+
 
   /* ============================================================
      NAV
@@ -138,7 +139,7 @@
   header.nav.scrolled .nav-links a.link{ color:var(--ink); }
   header.nav.scrolled .nav-links a.link:hover{ color:var(--sage-deep); }
   .nav .btn-nav{
-    font-size:.78rem; padding:.7em 1.3em; border-radius:999px;
+    font-size:.78rem; padding:.7em 1.3em; border-radius:0;
     border:1px solid rgba(250,248,244,.5); color:var(--white);
     transition:transform 160ms var(--ease-out), background 200ms ease, border-color 200ms ease, color 200ms ease;
   }
@@ -214,7 +215,7 @@
     padding-block:18px;
     font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; font-weight:600;
   }
-  .trust .dot{ width:4px; height:4px; border-radius:50%; background:var(--amber); }
+  .trust .dot{ width:4px; height:4px; border-radius:0; background:var(--amber); }
   @media (max-width:560px){ .trust .dot{ display:none; } }
 
   /* ============================================================
@@ -272,7 +273,7 @@
   .range .head p{ margin-top:18px; font-size:1.02rem; color:var(--ink); max-width:54ch; }
 
   .lineup{
-    border-radius:14px; overflow:hidden;
+    border-radius:0; overflow:hidden;
     background:var(--sand);
     box-shadow:0 40px 80px -50px rgba(60,40,30,.55);
     margin-bottom:clamp(34px,5vw,56px);
@@ -284,7 +285,7 @@
     background:var(--white);
     border:1px solid rgba(28,26,23,.1);
     border-top:3px solid var(--c, var(--sage-deep));
-    border-radius:10px;
+    border-radius:0;
     padding:22px 20px 24px;
     transition:transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms ease;
     will-change:transform;
@@ -320,7 +321,7 @@
   .vgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
   .vcard{
     background:var(--white);
-    border-radius:12px;
+    border-radius:0;
     border-left:3px solid var(--c, var(--sage-deep));
     padding:28px 26px 30px;
   }
@@ -624,7 +625,6 @@
     <div class="top">
       <div>
         <img class="brand-logo" src="logo_white.png" alt="Vivo">
-        <div class="t">Live well, on purpose.</div>
       </div>
       <div class="cols">
         <div class="col">
