@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vivo — Product</title>
-<meta name="description" content="Research-grade peptides from Vivo. Color-coded by benefit, made in California.">
+<meta name="description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
 <style>
   :root{
     --sage-deep:#3D5C36; --sage-tint:#E4E9DE; --sand:#EDE4D0; --amber:#C4913A;
@@ -59,7 +59,7 @@
   .icon-btn:active{ transform:scale(0.92); }
   .icon-btn svg{ width:20px; height:20px; }
 
-  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-family:var(--mono); font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
   /* NAV */
   header.nav{ position:fixed; top:var(--bar-h); left:0; right:0; z-index:55; display:flex; align-items:center; justify-content:space-between;
     padding:14px var(--gutter); color:var(--ink);
@@ -98,7 +98,7 @@
   .pdp .bk{ display:flex; align-items:center; gap:9px; margin-bottom:18px; }
   .pdp .bk .dot{ width:12px; height:12px; border-radius:50%; background:var(--cc,var(--sage-deep)); }
   .pdp .bk .bn{ font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--cc,var(--sage-deep)); }
-  .pdp h1{ font-size:clamp(2.5rem,5.6vw,4rem); color:var(--ink); }
+  .pdp h1{ font-family:var(--sans); font-weight:500; font-size:clamp(2.5rem,5.6vw,4rem); color:var(--ink); }
   .pdp .tagline{ font-family:var(--serif); font-style:italic; font-size:clamp(1.3rem,2.4vw,1.7rem); color:#4a443a; margin-top:14px; line-height:1.4; }
   .pdp .overview{ margin-top:20px; font-size:1.02rem; color:var(--ink); max-width:48ch; line-height:1.7; }
   .pdp .points{ list-style:none; margin-top:24px; display:grid; gap:11px; }
@@ -108,14 +108,17 @@
   .pdp .specrow .s{ font-size:.74rem; color:var(--muted); }
   .pdp .specrow .s b{ display:block; font-size:.92rem; color:var(--ink); font-weight:600; margin-top:3px; }
   .pdp .pprice{ font-family:var(--sans); font-size:1.9rem; font-weight:400; color:var(--ink); letter-spacing:-.5px; margin-top:30px; padding-top:28px; border-top:1px solid var(--line); }
-  .pdp .sizelabel{ font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:24px; margin-bottom:11px; }
-  .pdp .sizes{ display:flex; gap:10px; flex-wrap:wrap; }
-  .pdp .size{ flex:1; min-width:96px; display:flex; flex-direction:column; align-items:flex-start; gap:3px; background:var(--white); border:1px solid var(--line); border-radius:0; padding:.7em .9em; cursor:pointer; transition:border-color 180ms ease, background-color 180ms ease; }
-  .pdp .size:hover{ border-color:var(--ink); }
-  .pdp .size.active{ border-color:var(--sage-deep); background:var(--sage-tint); }
+  .pdp .sizelabel{ font-family:var(--mono); font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); margin-top:24px; margin-bottom:11px; }
+  .pdp .sizes{ display:flex; gap:0; border:1px solid var(--ink); border-radius:0; }
+  .pdp .size{ flex:1; min-width:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:4px; background:var(--white); border:0; border-left:1px solid var(--ink); border-radius:0; padding:.85em .6em; cursor:pointer; transition:background-color 220ms cubic-bezier(.645,.045,.355,1), color 220ms cubic-bezier(.645,.045,.355,1); }
+  .pdp .size:first-child{ border-left:0; }
+  .pdp .size:hover:not(.active){ background:var(--sage-tint); }
+  .pdp .size.active{ background:var(--sage-deep); }
   .pdp .size .sz{ font-family:var(--mono); font-weight:600; font-size:.86rem; letter-spacing:-.02em; color:var(--ink); }
   .pdp .size .sp{ font-family:var(--mono); font-size:.78rem; letter-spacing:-.02em; color:var(--ink); }
   .pdp .size .sp .anchor{ color:var(--muted); text-decoration:line-through; text-decoration-thickness:1px; margin-right:5px; opacity:.85; }
+  .pdp .size.active .sz, .pdp .size.active .sp{ color:var(--white); }
+  .pdp .size.active .sp .anchor{ color:rgba(255,255,255,.55); }
   .pdp .buyrow{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:22px; }
   .pdp .add{ flex:1; background:var(--black); color:var(--white); border-color:var(--black); }  /* solid black, full width in the buy row */
   .pdp .add:hover{ background:#36312a; color:var(--white); border-color:#36312a; }  /* subtle lighten on hover */
@@ -129,14 +132,11 @@
   .details .dgrid{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; }
   .details .dtext{ padding:clamp(48px,7vw,110px) clamp(34px,5vw,92px); display:flex; flex-direction:column; justify-content:center; }
   .details h2{ font-size:clamp(2rem,3.6vw,3rem); color:var(--ink); line-height:1.1; max-width:17ch; margin:0; }
-  .details .dblocks{ margin-top:clamp(30px,4vw,46px); }
-  .details .dblock{ border-top:1px solid var(--line); padding:clamp(22px,2.6vw,30px) 0; }
-  .details .dblock:last-child{ padding-bottom:0; }
-  .details .dblock .dl{ font-weight:600; font-size:.98rem; color:var(--ink); margin-bottom:9px; }
-  .details .dblock p{ font-size:.98rem; color:#403c34; line-height:1.7; max-width:46ch; }
-  .details .dpoints{ list-style:none; padding:0; margin:0; }
-  .details .dpoints li{ font-size:.98rem; color:#403c34; line-height:1.7; padding-left:18px; position:relative; }
-  .details .dpoints li::before{ content:""; position:absolute; left:0; top:.62em; width:5px; height:5px; border-radius:0; background:var(--sage-deep); }
+  .details .dspec{ margin:clamp(30px,4vw,46px) 0 0; }
+  .details .drow{ display:grid; grid-template-columns:clamp(104px,11vw,150px) 1fr; border-top:1px solid var(--line); padding:clamp(20px,2.4vw,28px) 0; align-items:stretch; }
+  .details .drow:last-child{ border-bottom:1px solid var(--line); }
+  .details .drow dt{ font-family:var(--mono); font-weight:600; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage-deep); padding-right:clamp(12px,1.6vw,22px); padding-top:2px; }
+  .details .drow dd{ margin:0; font-size:.98rem; color:#403c34; line-height:1.7; max-width:48ch; padding-left:clamp(20px,2.6vw,36px); border-left:1px solid var(--line); }
   .details .dmedia{ position:relative; overflow:hidden; background:var(--sage-tint); min-height:clamp(420px,52vw,760px); }
   .details .dmedia img, .details .dmedia video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   @media (max-width:860px){
@@ -157,7 +157,7 @@
   .relgrid .card:hover .media img{ transform:scale(1.04); }
   .relgrid .card .body{ padding-top:20px; }
   .relgrid .card .namelink{ display:inline-block; }
-  .relgrid .card .name{ font-family:var(--display); font-weight:400; font-size:1.8rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
+  .relgrid .card .name{ font-family:var(--sans); font-weight:500; font-size:1.8rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
   .relgrid .card .namelink:hover .name{ color:var(--sage-deep); }
   .relgrid .card .titlerow{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
   .relgrid .card .price{ font-family:var(--sans); font-size:1.25rem; font-weight:400; color:var(--ink); letter-spacing:-.2px; white-space:nowrap; flex-shrink:0; }
@@ -352,7 +352,7 @@
     <div class="top">
       <div class="brandcol">
         <img class="brand-logo" src="logo_white.png" alt="Vivo">
-        <p>Research-grade peptides, color-coded by benefit and made in California. The science of longevity, made human.</p>
+        <p>Research-grade peptides, color-coded by research area and made in California. Compounds for the science of longevity.</p>
       </div>
       <div>
         <h4>Shop</h4>
@@ -409,50 +409,50 @@
 
   const PRODUCTS = [
     { id:'glow', name:'GLOW', benefit:'skin', cat:'Skin & Renewal', dose:'5 mg', price:120, ph:'#cdbb95', img:'Products/Vials/clean/vial_glow.png', detailVideo:'glow_float_card.mp4',
-      tagline:'Radiance you can read on skin, structure you can’t see.',
-      overview:'GLOW is a copper-peptide skin blend studied for the structures that keep skin firm, even and resilient. Naturally present in plasma, concentrated and given back.',
-      points:['Studied for skin firmness and elasticity','Supports even tone and texture','Copper peptide, naturally occurring'],
+      tagline:'The copper peptide behind skin’s firmness and structure.',
+      overview:'GLOW is a copper-peptide complex studied for the structures that keep skin firm, even and resilient. A compound naturally present in plasma, concentrated for research.',
+      points:['Studied for skin firmness and elasticity','Researched for tone and texture','Copper peptide, naturally occurring'],
       whatItIs:'A lyophilised copper-peptide complex (the GHK-Cu family) prepared to research grade. Each vial holds 5 mg of compound and nothing else.',
       howItWorks:'Copper peptides are associated with the signalling skin uses to remodel collagen and elastin. GLOW concentrates that signal so it can be studied directly.' },
 
-    { id:'bpc157', name:'BPC-157', benefit:'recovery', cat:'Recovery & Healing', dose:'10 mg', price:95, ph:'#b69487', img:'Products/Vials/clean/vial_bpc147.png',
-      tagline:'The body-protection compound your gut already makes.',
-      overview:'BPC-157 is a peptide sequence your body produces in the gut, researched for tissue repair and connective support. Not foreign — yours, concentrated.',
-      points:['Researched for tissue repair','Gut and connective support','Naturally occurring sequence'],
+    { id:'bpc157', name:'BPC-157', benefit:'recovery', cat:'Recovery & Healing', dose:'10 mg', price:95, ph:'#b69487', img:'Products/Vials/clean/vial_bpc147.png', detailVideo:'bpc157_float_card.mp4',
+      tagline:'The body-protection compound the gut already makes.',
+      overview:'BPC-157 is a peptide sequence the body produces in the gut, researched for tissue repair and connective tissue. A naturally occurring compound, concentrated for research.',
+      points:['Researched for tissue repair','Studied for gut and connective tissue','Naturally occurring sequence'],
       whatItIs:'A 10 mg lyophilised peptide, a stable fragment of a protective protein found in gastric juice, prepared to research grade.',
       howItWorks:'Research focuses on BPC-157’s role in repair signalling and the maintenance of connective and gut tissue.' },
 
-    { id:'selank', name:'Selank', benefit:'vitality', cat:'Mind, Mood & Sleep', dose:'5 mg', price:70, ph:'#b9b893', img:'Products/Vials/clean/vial_selank.png',
-      tagline:'Calm, focus, and the quality of rest.',
-      overview:'Selank is an anxiolytic peptide researched for a steadier baseline — calm without sedation, focus without edge.',
+    { id:'selank', name:'Selank', benefit:'vitality', cat:'Mind, Mood & Sleep', dose:'5 mg', price:70, ph:'#b9b893', img:'Products/Vials/clean/vial_selank.png', detailVideo:'selank_float_card.mp4',
+      tagline:'Studied for calm, focus, and the quality of rest.',
+      overview:'Selank is an anxiolytic peptide researched for a steadier baseline. Calm without sedation, focus without edge.',
       points:['Researched for calm and focus','Studied for sleep quality','Non-sedating profile'],
       whatItIs:'A 5 mg lyophilised peptide, a synthetic analog of a naturally occurring tetrapeptide, prepared to research grade.',
       howItWorks:'Selank is studied for its effect on the signalling tied to stress response, attention and mood.' },
 
-    { id:'nad', name:'NAD+', benefit:'vitality', cat:'Cellular Energy', dose:'5 mg', price:110, ph:'#b6b48f', img:'Products/Vials/clean/vial_nad+.png',
+    { id:'nad', name:'NAD+', benefit:'vitality', cat:'Cellular Energy', dose:'5 mg', price:110, ph:'#b6b48f', img:'Products/Vials/clean/vial_nad+.png', detailVideo:'nad_float_card.mp4',
       tagline:'The coenzyme at the centre of cellular energy.',
-      overview:'NAD+ is a coenzyme every cell uses to make energy and run repair. Levels fall with time; NAD+ concentrates it back.',
-      points:['Central to cellular energy','Supports repair pathways','Declines naturally over time'],
+      overview:'NAD+ is a coenzyme every cell uses to make energy and run repair. Levels fall with time; this preparation concentrates it for research.',
+      points:['Central to cellular energy','Studied for repair pathways','Declines naturally over time'],
       whatItIs:'A 5 mg lyophilised preparation of nicotinamide adenine dinucleotide, prepared to research grade.',
       howItWorks:'NAD+ is a cofactor for the enzymes that convert nutrients into energy and carry out cellular repair.' },
 
-    { id:'glutathione', name:'Glutathione', benefit:'skin', cat:'Detox & Antioxidant', dose:'5 mg', price:85, ph:'#b39184', img:'Products/Vials/clean/vial_glutathione.png',
-      tagline:'The body’s master antioxidant, returned.',
-      overview:'Glutathione is the antioxidant your cells rely on most, studied for oxidative defence, detox pathways and skin clarity.',
-      points:['Primary cellular antioxidant','Supports detox pathways','Studied for skin brightness'],
+    { id:'glutathione', name:'Glutathione', benefit:'skin', cat:'Detox & Antioxidant', dose:'5 mg', price:85, ph:'#b39184', img:'Products/Vials/clean/vial_glutathione.png', detailVideo:'glutathione_float_card.mp4',
+      tagline:'The body’s master antioxidant, prepared for research.',
+      overview:'Glutathione is the antioxidant cells rely on most, studied for oxidative defence, detox pathways and skin clarity.',
+      points:['Primary cellular antioxidant','Studied for detox pathways','Studied for skin brightness'],
       whatItIs:'A 5 mg lyophilised preparation of reduced glutathione, prepared to research grade.',
-      howItWorks:'Glutathione neutralises reactive oxygen species and supports the liver’s detox enzymes.' },
+      howItWorks:'Glutathione neutralises reactive oxygen species and is studied for its role in the liver’s detox enzymes.' },
 
-    { id:'glp3', name:'GLP-3', benefit:'metabolic', cat:'Metabolic Balance', dose:'5 mg', price:130, ph:'#9aa6b0', img:'Products/Vials/clean/vial_bpcglp-3.png',
+    { id:'glp3', name:'GLP-3', benefit:'metabolic', cat:'Metabolic Balance', dose:'5 mg', price:130, ph:'#9aa6b0', img:'Products/Vials/clean/vial_bpcglp-3.png', detailVideo:'glp3_float_card.mp4',
       tagline:'Next-generation metabolic balance.',
       overview:'GLP-3 is a metabolic peptide studied for steady appetite signalling and balanced energy use.',
       points:['Studied for metabolic regulation','Appetite signalling','Steady energy'],
       whatItIs:'A 5 mg lyophilised peptide of the GLP family, prepared to research grade.',
       howItWorks:'GLP peptides are studied for their role in the gut-brain signalling that governs appetite and glucose handling.' },
 
-    { id:'aod9604', name:'AOD-9604', benefit:'metabolic', cat:'Lipotropic', dose:'5 mg', price:90, ph:'#94a1ad', img:'Products/Vials/clean/vial_aod9604.png',
-      tagline:'A lipotropic fragment of a peptide you already make.',
-      overview:'AOD-9604 is a targeted fragment of human growth hormone studied for lipid metabolism — without the rest of the hormone’s activity.',
+    { id:'aod9604', name:'AOD-9604', benefit:'metabolic', cat:'Lipotropic', dose:'5 mg', price:90, ph:'#94a1ad', img:'Products/Vials/clean/vial_aod9604.png', detailVideo:'aod9604_float_card.mp4',
+      tagline:'A lipotropic fragment of a peptide the body already makes.',
+      overview:'AOD-9604 is a targeted fragment of human growth hormone studied for lipid metabolism, without the rest of the hormone’s activity.',
       points:['Studied for lipid metabolism','Targeted HGH fragment (176-191)','Non-glycemic profile'],
       whatItIs:'A 5 mg lyophilised peptide fragment (the 176-191 region of hGH), prepared to research grade.',
       howItWorks:'AOD-9604 isolates the fat-metabolism portion of the growth-hormone molecule so it can be studied on its own.' },
@@ -541,16 +541,20 @@
       <div class="dgrid">
         <div class="dtext">
           <h2 class="reveal">${esc(product.tagline)}</h2>
-          <div class="dblocks">
-            <div class="dblock reveal">
-              <div class="dl">How it works</div>
-              <p>${esc(product.howItWorks)}</p>
+          <dl class="dspec reveal">
+            <div class="drow">
+              <dt>Mechanism</dt>
+              <dd>${esc(product.howItWorks)}</dd>
             </div>
-            <div class="dblock reveal">
-              <div class="dl">Studied for</div>
-              <ul class="dpoints">${product.points.map(pt => `<li>${esc(pt)}</li>`).join('')}</ul>
+            <div class="drow">
+              <dt>Studied for</dt>
+              <dd>${product.points.map(esc).join(' · ')}</dd>
             </div>
-          </div>
+            <div class="drow">
+              <dt>Composition</dt>
+              <dd>${esc(product.whatItIs)}</dd>
+            </div>
+          </dl>
         </div>
         <div class="dmedia reveal">
           <video autoplay muted loop playsinline preload="metadata" poster="${product.detailVideo ? product.detailVideo.replace('.mp4','.jpg') : 'clearliquid_card.jpg'}">
@@ -563,7 +567,6 @@
     <section class="quality">
       <div class="wrap">
         <div class="qhead reveal">
-          <div class="kicker">Quality &amp; Standards</div>
           <h2>Held to the highest standard</h2>
         </div>
         <div class="qgrid">
@@ -602,7 +605,6 @@
       <div class="wrap">
         <div class="faqgrid">
           <div class="faqlead reveal">
-            <div class="kicker">Uncompromising purity</div>
             <h2>Proof in every batch</h2>
             <p>Every Vivo peptide ships with a third-party Certificate of Analysis. The exact purity and identity data behind every vial.</p>
             <a href="coa.html" class="btn btn-dark">View Certificate of Analysis</a>

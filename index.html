@@ -28,6 +28,7 @@
     --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
     --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
     --display:"Forum","Cormorant Garamond",Georgia,serif;
+    --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
 
     --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
     --ease-in-out:cubic-bezier(0.77, 0, 0.175, 1);
@@ -100,7 +101,7 @@
   /* ============================================================
      ANNOUNCEMENT BAR
      ============================================================ */
-  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-family:var(--mono); font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
   .announce .track{ display:flex; gap:42px; align-items:center; white-space:nowrap; animation:marq 26s linear infinite; }
   .announce .track span{ display:inline-flex; align-items:center; gap:42px; }
   .announce .track i{ width:4px; height:4px; border-radius:0; background:var(--amber); display:inline-block; }
@@ -224,7 +225,7 @@
   .card:hover .media img{ transform:scale(1.04); }
   .card .body{ padding-top:20px; }
   .card .namelink{ display:inline-block; }
-  .card .name{ font-family:var(--display); font-weight:400; font-size:1.8rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
+  .card .name{ font-family:var(--sans); font-weight:500; font-size:1.8rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
   .card .namelink:hover .name{ color:var(--sage-deep); }
   .card .titlerow{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
   .card .catl{ font-size:.82rem; color:var(--muted); margin-top:8px; line-height:1.4; }
@@ -299,7 +300,7 @@
   /* ============================================================
      STORY BAND
      ============================================================ */
-  .story{ background:var(--white); color:var(--ink); text-align:center; }
+  .story{ background:var(--white); color:var(--ink); text-align:center; padding-block:clamp(44px,5.5vw,80px); }
   .story .inner{ max-width:680px; margin-inline:auto; }
   .story h2{ color:var(--ink); font-size:clamp(2rem,3.6vw,3rem); margin-top:18px; }
   .story p{ margin-top:22px; color:var(--muted); font-size:1.05rem; max-width:46ch; margin-inline:auto; line-height:1.7; }
