@@ -220,10 +220,10 @@
   .card{ display:flex; flex-direction:column; }
   @keyframes cardin{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
   .prodgrid .card{ animation:cardin .5s var(--ease-out) both; }
-  .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; }
+  .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; margin-bottom:-14%; }
   .card .media img{ width:100%; height:100%; object-fit:cover; object-position:64% 36%; transition:transform 700ms var(--ease-out); }
   .card:hover .media img{ transform:scale(1.04); }
-  .card .body{ padding-top:20px; }
+  .card .body{ padding-top:8px; }
   .card .namelink{ display:inline-block; }
   .card .name{ font-family:var(--sans); font-weight:500; font-size:1.8rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
   .card .namelink:hover .name{ color:var(--sage-deep); }
@@ -234,8 +234,16 @@
   .card .add{ margin-top:16px; width:100%; min-height:auto; padding:.9em 1.4em; font-size:.84rem; }  /* size only; style from .btn.btn-dark */
   .card .add.added, .card .add.added:hover{ background:var(--sage-deep); color:var(--white); border-color:var(--sage-deep); }
   @media (max-width:1000px){ .prodgrid{ grid-template-columns:repeat(3,1fr); } }
-  @media (max-width:720px){ .prodgrid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:440px){ .prodgrid{ grid-template-columns:repeat(2,1fr); gap:clamp(20px,5vw,30px) 12px; } }
+  @media (max-width:720px){
+    .prodgrid{ grid-template-columns:repeat(2,1fr); }
+    /* stack title over price so the name gets the full column width (no wrap, no price overflow) */
+    .card .titlerow{ flex-direction:column; align-items:flex-start; gap:2px; }
+    .card .name{ font-size:1.4rem; }
+    .card .price{ font-size:1.05rem; }
+    .card .price .from{ font-size:.55rem; }
+    .card .add{ margin-top:12px; }
+  }
+  @media (max-width:440px){ .prodgrid{ grid-template-columns:repeat(2,1fr); gap:clamp(20px,5vw,30px) 12px; } .card .name{ font-size:1.25rem; } }
 
 
   /* ===== SHOP BY BENEFIT (uneven bento) ===== */

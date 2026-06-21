@@ -152,10 +152,10 @@
   .related h2{ font-size:clamp(1.8rem,3.6vw,2.6rem); color:var(--ink); margin-bottom:clamp(30px,4vw,48px); }
   .relgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(20px,2.6vw,34px); }
   .relgrid .card{ display:flex; flex-direction:column; }
-  .relgrid .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; }
+  .relgrid .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; margin-bottom:-14%; }
   .relgrid .card .media img{ width:100%; height:100%; object-fit:cover; object-position:64% 36%; transition:transform 700ms var(--ease-out); }
   .relgrid .card:hover .media img{ transform:scale(1.04); }
-  .relgrid .card .body{ padding-top:20px; }
+  .relgrid .card .body{ padding-top:8px; }
   .relgrid .card .namelink{ display:inline-block; }
   .relgrid .card .name{ font-family:var(--sans); font-weight:500; font-size:1.8rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
   .relgrid .card .namelink:hover .name{ color:var(--sage-deep); }
@@ -164,7 +164,15 @@
   .relgrid .card .price .from{ font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-right:.25em; vertical-align:middle; }
   .relgrid .card .add{ margin-top:16px; width:100%; min-height:auto; padding:.9em 1.4em; font-size:.84rem; }  /* size only; style from .btn.btn-dark */
   .relgrid .card .add.added, .relgrid .card .add.added:hover{ background:var(--sage-deep); color:var(--white); border-color:var(--sage-deep); }
-  @media (max-width:820px){ .relgrid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:820px){
+    .relgrid{ grid-template-columns:repeat(2,1fr); }
+    /* stack title over price so the name gets the full column width (no wrap, no price overflow) */
+    .relgrid .card .titlerow{ flex-direction:column; align-items:flex-start; gap:2px; }
+    .relgrid .card .name{ font-size:1.4rem; }
+    .relgrid .card .price{ font-size:1.05rem; }
+    .relgrid .card .add{ margin-top:12px; }
+  }
+  @media (max-width:440px){ .relgrid .card .name{ font-size:1.25rem; } }
 
   /* QUALITY & STANDARDS */
   .quality{ padding-block:clamp(56px,8vw,100px); }

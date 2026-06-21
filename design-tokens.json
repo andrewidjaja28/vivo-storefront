@@ -1,0 +1,76 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Vivo storefront design tokens (W3C Design Tokens format). Mirrors the :root custom properties.",
+  "color": {
+    "$type": "color",
+    "brand": {
+      "sageDeep": { "$value": "#3D5C36", "$description": "Primary brand accent; active states, primary-button hover, mono labels" },
+      "sageTint": { "$value": "#E4E9DE", "$description": "Soft green wash; inactive-hover backgrounds, chips" },
+      "sand":     { "$value": "#EDE4D0", "$description": "Warm beige alternating-section background" },
+      "amber":    { "$value": "#C4913A", "$description": "Kicker/eyebrow accent; Skin category" },
+      "champagne":{ "$value": "#E4BC7A", "$description": "Champagne accent text on clay buttons" },
+      "clay":     { "$value": "#7B3B34", "$description": "Deep red-brown; Recovery category" },
+      "clayDeep": { "$value": "#5C2A24", "$description": "Champagne-button fill" },
+      "slate":    { "$value": "#3A5268", "$description": "Cool blue-grey; Metabolic category" }
+    },
+    "neutral": {
+      "black": { "$value": "#1C1A17", "$description": "Primary dark; CTAs, announcement bar" },
+      "white": { "$value": "#fffef2", "$description": "Cream page background" },
+      "ink":   { "$value": "#2e2c28", "$description": "Body and heading text" },
+      "muted": { "$value": "#6b6760", "$description": "Secondary/caption text" },
+      "line":  { "$value": "rgba(28,26,23,0.12)", "$description": "Hairline borders and dividers" }
+    },
+    "category": {
+      "recovery":  { "$value": "#7B3B34" },
+      "skin":      { "$value": "#C4913A" },
+      "vitality":  { "$value": "#3D5C36" },
+      "metabolic": { "$value": "#3A5268" }
+    }
+  },
+  "fontFamily": {
+    "$type": "fontFamily",
+    "display": { "$value": ["Forum", "Cormorant Garamond", "Georgia", "serif"], "$description": "Editorial serif for headings" },
+    "sans":    { "$value": ["SF Pro Display", "SF Pro Text", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Arial", "sans-serif"], "$description": "Body, UI, product titles" },
+    "serif":   { "$value": ["Cormorant Garamond", "Georgia", "serif"], "$description": "Italic taglines" },
+    "mono":    { "$value": ["ui-monospace", "SF Mono", "SFMono-Regular", "Menlo", "Consolas", "monospace"], "$description": "Labels, spec data, prices, banner" }
+  },
+  "typography": {
+    "$type": "typography",
+    "heading":      { "$value": { "fontFamily": "{fontFamily.display}", "fontWeight": 400, "lineHeight": "1.05", "letterSpacing": "-1.5px" }, "$description": "h1-h3 base" },
+    "productTitle": { "$value": { "fontFamily": "{fontFamily.sans}", "fontWeight": 500, "fontSize": "clamp(2.5rem,5.6vw,4rem)", "letterSpacing": "-1.5px" } },
+    "tagline":      { "$value": { "fontFamily": "{fontFamily.serif}", "fontStyle": "italic", "fontSize": "clamp(1.3rem,2.4vw,1.7rem)" } },
+    "body":         { "$value": { "fontFamily": "{fontFamily.sans}", "lineHeight": "1.6" } },
+    "label":        { "$value": { "fontFamily": "{fontFamily.mono}", "fontWeight": 600, "fontSize": "0.7rem", "letterSpacing": "0.14em", "textTransform": "uppercase" }, "$description": "Kickers, spec labels, dosage label, banner" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "base": { "$value": "0px", "$description": "Hard shape-lock: sharp corners everywhere" }
+  },
+  "size": {
+    "$type": "dimension",
+    "maxWidth":  { "$value": "1600px" },
+    "gutter":    { "$value": "clamp(18px, 4.5vw, 80px)" },
+    "barHeight": { "$value": "34px" },
+    "buttonMinHeight": { "$value": "54px" }
+  },
+  "space": {
+    "$type": "dimension",
+    "sectionY":      { "$value": "clamp(64px, 9vw, 120px)", "$description": "Default section vertical padding" },
+    "sectionYTight": { "$value": "clamp(44px, 5.5vw, 80px)" }
+  },
+  "motion": {
+    "$type": "cubicBezier",
+    "easeOut":   { "$value": [0.23, 1, 0.32, 1], "$description": "Reveals, parallax" },
+    "easeDrawer":{ "$value": [0.32, 0.72, 0, 1], "$description": "Cart drawer" },
+    "easeButton":{ "$value": [0.645, 0.045, 0.355, 1], "$description": "Buttons, segmented control (Aesop curve)" },
+    "easeAccordionOpen":  { "$value": [0.16, 1, 0.3, 1] },
+    "easeAccordionClose": { "$value": [0.7, 0, 0.84, 0] }
+  },
+  "duration": {
+    "$type": "duration",
+    "button":         { "$value": "250ms" },
+    "segment":        { "$value": "220ms" },
+    "accordionOpen":  { "$value": "440ms" },
+    "accordionClose": { "$value": "300ms" }
+  }
+}
