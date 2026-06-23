@@ -370,7 +370,7 @@
   }
   .drawer.open{ transform:translateX(0); box-shadow:-30px 0 60px -30px rgba(40,28,20,.5); }
   .drawer .dhead{ display:flex; align-items:center; justify-content:space-between; padding:20px 22px; border-bottom:1px solid var(--line); }
-  .drawer .dhead .dt{ font-family:var(--serif); font-weight:600; font-size:1.4rem; color:var(--black); }
+  .drawer .dhead .dt{ font-family:var(--sans); font-weight:500; font-size:1.4rem; color:var(--black); letter-spacing:-.5px; }
   .drawer .dhead .dt span{ font-family:var(--sans); font-size:.8rem; font-weight:600; color:var(--muted); }
   .drawer .ship{ background:var(--sage-tint); color:var(--sage-deep); font-size:.72rem; font-weight:600; letter-spacing:.02em; text-align:center; padding:9px; }
   .drawer .items{ flex:1; overflow-y:auto; padding:6px 22px; }
@@ -378,7 +378,7 @@
   .ci .cimg{ width:64px; height:74px; border-radius:0; overflow:hidden; flex-shrink:0; background:transparent; }
   .ci .cimg img{ width:100%; height:100%; object-fit:cover; object-position:64% 36%; }
   .ci .cinfo{ flex:1; min-width:0; }
-  .ci .cn{ font-family:var(--serif); font-weight:600; font-size:1.15rem; color:var(--black); line-height:1.1; }
+  .ci .cn{ font-family:var(--sans); font-weight:500; font-size:1.15rem; color:var(--black); line-height:1.1; letter-spacing:-.4px; }
   .ci .cd{ font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
   .ci .crow{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
   .qty{ display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:0; overflow:hidden; }
@@ -389,11 +389,11 @@
   .ci .rm{ background:none; border:0; color:var(--muted); font-size:.7rem; text-decoration:underline; padding:0; margin-top:6px; transition:color 160ms ease; }
   .ci .rm:hover{ color:var(--clay); }
   .drawer .empty{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:40px; color:var(--muted); }
-  .drawer .empty .es{ font-family:var(--serif); font-style:italic; font-size:1.4rem; color:var(--sage-deep); }
+  .drawer .empty .es{ font-family:var(--sans); font-weight:500; font-size:1.4rem; color:var(--sage-deep); letter-spacing:-.4px; }
   .drawer .foot-cart{ border-top:1px solid var(--line); padding:18px 22px 22px; }
   .drawer .subline{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; }
   .drawer .subline .sl{ font-size:.74rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:600; }
-  .drawer .subline .sv{ font-family:var(--serif); font-weight:600; font-size:1.5rem; color:var(--black); }
+  .drawer .subline .sv{ font-family:var(--sans); font-weight:600; font-size:1.5rem; color:var(--black); letter-spacing:-.5px; }
   .drawer .tax{ font-size:.72rem; color:var(--muted); margin-bottom:14px; }
   .drawer .checkout{ width:100%; padding:1.05em; font-size:.92rem; min-height:auto; }  /* size only; style from .btn.btn-dark */
   .drawer .checkout:active{ transform:scale(0.98); }
@@ -531,28 +531,28 @@
     </div>
     <div class="bcards">
       <a class="bcard reveal" href="shop.html?benefit=metabolic" style="--bc:#3A5268">
-        <h3>Weight Loss</h3>
-        <p>Appetite, lipid metabolism, and steady energy.</p>
+        <h3>Metabolic</h3>
+        <p>Appetite signalling, lipid metabolism, and glucose handling.</p>
         <span class="blink">Learn More <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="1" href="shop.html?benefit=recovery" style="--bc:#7B3B34">
         <h3>Recovery</h3>
-        <p>Tissue repair, healing, and connective support.</p>
+        <p>Tissue repair, connective and gut tissue.</p>
         <span class="blink">Learn More <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="2" href="shop.html?benefit=skin" style="--bc:#C4913A">
-        <h3>Anti-Aging</h3>
-        <p>Firmness, tone, and visible renewal.</p>
+        <h3>Skin &amp; Structure</h3>
+        <p>Collagen, elastin, and dermal structure.</p>
         <span class="blink">Learn More <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="3" href="shop.html?benefit=vitality" style="--bc:#3D5C36">
         <h3>Mind &amp; Energy</h3>
-        <p>Focus, mood, sleep, and cellular energy.</p>
+        <p>Cognition, mood, sleep, and cellular energy.</p>
         <span class="blink">Learn More <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="4" href="shop.html" style="--bc:#1C1A17">
         <h3>Performance</h3>
-        <p>Strength, endurance, and recovery output.</p>
+        <p>Strength, endurance, and recovery.</p>
         <span class="blink">Learn More <span class="arrow">→</span></span>
       </a>
     </div>
@@ -749,9 +749,9 @@
   /* Benefit taxonomy — single source of truth (products reference these by id) */
   const BENEFITS = [
     { id:'recovery',  name:'Recovery',       k:'Repair',   color:'#7B3B34' },
-    { id:'skin',      name:'Anti-Aging', k:'Radiance', color:'#C4913A' },
+    { id:'skin',      name:'Skin & Structure', k:'Structure', color:'#C4913A' },
     { id:'vitality',  name:'Mind & Energy',  k:'Vitality', color:'#3D5C36' },
-    { id:'metabolic', name:'Weight Loss',   k:'Balance',  color:'#3A5268' }
+    { id:'metabolic', name:'Metabolic',   k:'Balance',  color:'#3A5268' }
   ];
 
   const byId = id => PRODUCTS.find(p => p.id === id);
