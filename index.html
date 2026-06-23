@@ -61,7 +61,9 @@
   h1,h2,h3{ font-family:var(--display); font-weight:400; line-height:1.05; letter-spacing:-1.5px; }
 
   .section{ padding-block:clamp(72px, 9vw, 130px); }
-  .benefits-sec{ padding-top:clamp(40px, 5vw, 72px); } /* first section after hero, pulled up to fill removed value-prop bar */
+  /* dark "explore" zone continuous with the hero */
+  .benefits-sec{ background:#140f0b; color:var(--white); padding-top:clamp(56px,7vw,104px); padding-bottom:clamp(72px,9vw,130px); }
+  .benefits-sec .sec-head h2{ color:var(--white); }
   .sec-head{ max-width:26ch; margin-bottom:clamp(44px,6vw,76px); }
   .sec-head h2{ font-size:clamp(2rem,3.6vw,3rem); color:var(--ink); margin-top:18px; }
   .sec-head p{ margin-top:18px; font-size:1.05rem; color:var(--muted); max-width:46ch; line-height:1.7; }
@@ -249,33 +251,22 @@
   @media (max-width:440px){ .prodgrid{ grid-template-columns:repeat(2,1fr); gap:clamp(20px,5vw,30px) 12px; } .card .name{ font-size:1.25rem; } }
 
 
-  /* ===== SHOP BY BENEFIT (uneven bento) ===== */
-  .bcards{ display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:minmax(168px,1fr); gap:16px; }
-  .bcard{ position:relative; border-radius:0; overflow:hidden; padding:clamp(22px,2.2vw,30px); display:flex; flex-direction:column; justify-content:flex-end; color:var(--white); background:var(--bc); box-shadow:0 30px 60px -40px rgba(0,0,0,.5); transition:filter 420ms ease, box-shadow 420ms ease; }
-  .bcard:hover, .bcard:focus-visible{ filter:brightness(1.04); }
-  .bcard:hover .blink, .bcard:focus-visible .blink{ opacity:1; transform:translateY(0); }
-  .bcard:nth-child(1){ grid-column:span 5; grid-row:span 2; }
-  .bcard:nth-child(2){ grid-column:span 4; }
-  .bcard:nth-child(3){ grid-column:span 3; }
-  .bcard:nth-child(4){ grid-column:span 3; }
-  .bcard:nth-child(5){ grid-column:span 4; }
-  .bcard .bk{ position:absolute; top:clamp(22px,2.2vw,30px); left:clamp(22px,2.2vw,30px); font-family:var(--sans); font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,.82); }
-  .bcard h3{ color:var(--white); font-size:clamp(1.4rem,2vw,1.9rem); }
-  .bcard:nth-child(1) h3{ font-size:clamp(2rem,3vw,3rem); }
-  .bcard p{ color:rgba(255,255,255,.84); font-size:.9rem; margin-top:8px; line-height:1.5; max-width:26ch; }
-  .bcard .blink{ margin-top:16px; font-size:.8rem; font-weight:600; display:inline-flex; align-items:center; gap:.45em; color:var(--white); opacity:0; transform:translateY(4px); transition:opacity 420ms ease, transform 420ms var(--ease-out); }
+  /* ===== EXPLORE BY RESEARCH AREA — dark cards that flow out of the hero ===== */
+  .bcards{ display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(12px,1.2vw,18px); }
+  .bcard{ position:relative; overflow:hidden; border-radius:0; aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:flex-end; padding:clamp(16px,1.5vw,24px); background:rgba(250,248,244,.045); border:1px solid rgba(250,248,244,.12); transition:background-color 320ms var(--ease-out), border-color 320ms ease; }
+  .bcard:hover, .bcard:focus-visible{ background:rgba(250,248,244,.09); border-color:rgba(250,248,244,.26); }
+  /* soft category-colored glow behind the vial */
+  .bcard::before{ content:""; position:absolute; left:50%; top:34%; width:128%; aspect-ratio:1; transform:translate(-50%,-50%); background:radial-gradient(circle, var(--bc) 0%, transparent 60%); opacity:.32; transition:opacity 320ms ease; pointer-events:none; }
+  .bcard:hover::before{ opacity:.5; }
+  .bcard .bvial{ position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); height:66%; width:auto; object-fit:contain; filter:drop-shadow(0 20px 34px rgba(0,0,0,.55)); pointer-events:none; }
+  .bcard h3{ position:relative; color:var(--white); font-family:var(--sans); font-weight:500; font-size:clamp(1.05rem,1.3vw,1.35rem); letter-spacing:-.5px; line-height:1.1; }
+  .bcard .blink{ position:relative; margin-top:8px; font-size:.74rem; font-weight:600; display:inline-flex; align-items:center; gap:.4em; color:rgba(250,248,244,.62); transition:color 200ms ease; }
+  .bcard:hover .blink{ color:var(--white); }
   .bcard .blink .arrow{ transition:transform 200ms var(--ease-out); }
   .bcard:hover .blink .arrow{ transform:translateX(3px); }
-  @media (hover:none){ .bcard .blink{ opacity:1; transform:none; } }
-  @media (max-width:900px){
-    .bcards{ grid-template-columns:repeat(2,1fr); grid-auto-rows:minmax(180px,1fr); }
-    .bcard:nth-child(n){ grid-column:span 1; grid-row:auto; }
-    .bcard:nth-child(1){ grid-column:1 / -1; }
-  }
-  @media (max-width:520px){
-    .bcards{ grid-template-columns:1fr; }
-    .bcard:nth-child(n){ grid-column:auto; }
-  }
+  @media (max-width:1000px){ .bcards{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:620px){ .bcards{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:380px){ .bcards{ grid-template-columns:1fr; } .bcard{ aspect-ratio:16/10; } }
 
   /* ===== MADE IN CALIFORNIA ===== */
   .madein{ background:var(--sage-tint); }
@@ -535,29 +526,29 @@
     </div>
     <div class="bcards">
       <a class="bcard reveal" href="shop.html?benefit=metabolic" style="--bc:#3A5268">
+        <img class="bvial" src="Products/Vials/clean/vial_bpcglp-3.png" alt="" loading="lazy">
         <h3>Metabolic</h3>
-        <p>Appetite signalling, lipid metabolism, and glucose handling.</p>
-        <span class="blink">Learn More <span class="arrow">→</span></span>
+        <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="1" href="shop.html?benefit=recovery" style="--bc:#7B3B34">
+        <img class="bvial" src="Products/Vials/clean/vial_bpc147.png" alt="" loading="lazy">
         <h3>Recovery</h3>
-        <p>Tissue repair, connective and gut tissue.</p>
-        <span class="blink">Learn More <span class="arrow">→</span></span>
+        <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="2" href="shop.html?benefit=skin" style="--bc:#C4913A">
+        <img class="bvial" src="Products/Vials/clean/vial_glow.png" alt="" loading="lazy">
         <h3>Skin &amp; Structure</h3>
-        <p>Collagen, elastin, and dermal structure.</p>
-        <span class="blink">Learn More <span class="arrow">→</span></span>
+        <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="3" href="shop.html?benefit=vitality" style="--bc:#3D5C36">
+        <img class="bvial" src="Products/Vials/clean/vial_nad+.png" alt="" loading="lazy">
         <h3>Mind &amp; Energy</h3>
-        <p>Cognition, mood, sleep, and cellular energy.</p>
-        <span class="blink">Learn More <span class="arrow">→</span></span>
+        <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
-      <a class="bcard reveal" data-d="4" href="shop.html" style="--bc:#1C1A17">
+      <a class="bcard reveal" data-d="4" href="shop.html" style="--bc:#46566b">
+        <img class="bvial" src="Products/Vials/clean/vial_aod9604.png" alt="" loading="lazy">
         <h3>Performance</h3>
-        <p>Strength, endurance, and recovery.</p>
-        <span class="blink">Learn More <span class="arrow">→</span></span>
+        <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
     </div>
   </div>
