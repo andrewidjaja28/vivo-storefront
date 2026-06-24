@@ -114,11 +114,12 @@
      ============================================================ */
   header.nav{
     position:fixed; top:var(--bar-h); left:0; right:0; z-index:55;
-    display:flex; align-items:center; justify-content:space-between;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
     padding:14px var(--gutter);
-    color:var(--ink);
+    background:var(--sand); color:var(--ink);
     transition:background-color 320ms ease, backdrop-filter 320ms ease, padding 320ms ease, box-shadow 320ms ease, color 320ms ease, transform 320ms var(--ease-out);
   }
+  /* once scrolled, drop the sand and use the translucent treatment */
   header.nav.scrolled{
     background:rgba(250,248,244,.86);
     backdrop-filter:saturate(150%) blur(16px); -webkit-backdrop-filter:saturate(150%) blur(16px);
@@ -138,7 +139,7 @@
   .nav-links a.link:hover{ opacity:1; }
   header.nav.scrolled .nav-links a.link:hover{ color:var(--sage-deep); }
 
-  .nav-actions{ display:flex; align-items:center; gap:6px; }
+  .nav-actions{ display:flex; align-items:center; gap:6px; justify-self:end; }
   .cart-btn .count{
     position:absolute; top:2px; right:2px; min-width:17px; height:17px; padding:0 4px;
     border-radius:999px; background:var(--amber); color:var(--black);
@@ -162,13 +163,14 @@
   /* scroll-scrub mode (desktop): tall track + pinned viewport, scroll drives the video */
   .hero.scrub{ height:200vh; }
   .hero.scrub .hero-pin{ position:sticky; top:0; height:100svh; }
-  .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  /* nudge the vial lower so it clears the headline/CTA above it */
+  .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:translateY(11%); z-index:0; }
   /* soft blend of the video's bottom edge into the continuous cream of the category section */
   .hero-pin::before{
     content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
     background:linear-gradient(0deg, rgba(247,240,223,.95) 0%, rgba(247,240,223,.45) 9%, rgba(247,240,223,0) 22%);
   }
-  .hero .inner{ position:relative; z-index:2; width:100%; padding-block:clamp(130px,18vh,240px) clamp(48px,7vw,92px); }
+  .hero .inner{ position:relative; z-index:2; width:100%; padding-block:clamp(150px,19vh,250px) clamp(48px,7vw,92px); }
   .hero .copy{ max-width:820px; margin-inline:auto; text-align:center; will-change:transform,opacity; }
   .hero .eyebrow{ color:var(--champagne); margin-bottom:22px; }
   .hero h3{
@@ -177,7 +179,7 @@
     text-shadow:0 1px 24px rgba(247,240,223,.6);
   }
   .hero h3 em{ font-style:italic; font-weight:400; color:var(--champagne); }
-  .hero .hsub{ margin:26px auto 0; font-family:var(--sans); font-size:clamp(1.05rem,1.6vw,1.3rem); line-height:1.55; color:rgba(250,248,244,.92); max-width:42ch; text-shadow:0 1px 16px rgba(0,0,0,.45); }
+  .hero .hsub{ margin:18px auto 0; font-family:var(--sans); font-size:clamp(.95rem,1.3vw,1.12rem); line-height:1.55; color:#56504a; max-width:42ch; }
   .hero .bullets{ list-style:none; margin-top:30px; display:grid; gap:12px; }
   .hero .bullets li{ display:flex; align-items:center; gap:12px; font-size:1.05rem; color:rgba(250,248,244,.95); font-weight:500; text-shadow:0 1px 14px rgba(0,0,0,.5); }
   .hero .bullets svg{ width:22px; height:22px; flex-shrink:0; color:var(--champagne); }
@@ -259,7 +261,9 @@
   .bcard .bvial{ position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); height:66%; width:auto; object-fit:contain; filter:drop-shadow(0 16px 26px rgba(60,40,30,.28)); pointer-events:none; }
   .bcard h3{ position:relative; color:var(--ink); font-family:var(--sans); font-weight:500; font-size:clamp(1.05rem,1.3vw,1.35rem); letter-spacing:-.5px; line-height:1.1; }
   .bcard .blink{ position:relative; margin-top:8px; font-size:.74rem; font-weight:600; display:inline-flex; align-items:center; gap:.4em; color:var(--muted); transition:color 200ms ease; }
-  .bcard:hover .blink{ color:var(--sage-deep); }
+  .bcard:hover .blink{ color:var(--ink); }
+  /* keep hero CTA hover monochromatic (not green) */
+  .hero .btn-primary:hover{ background:#39342d; border-color:#39342d; color:var(--white); }
   .bcard .blink .arrow{ transition:transform 200ms var(--ease-out); }
   .bcard:hover .blink .arrow{ transform:translateX(3px); }
   @media (max-width:1000px){ .bcards{ grid-template-columns:repeat(3,1fr); } }
@@ -507,7 +511,8 @@
     <div class="wrap">
       <div class="copy">
         <h3 class="reveal">Research-grade peptides</h3>
-        <div class="cta-row reveal" data-d="1">
+        <p class="hsub reveal" data-d="1">Certificate of Analysis on every batch. Made in USA.</p>
+        <div class="cta-row reveal" data-d="2">
           <a href="shop.html" class="btn btn-primary">Explore Catalog</a>
         </div>
       </div>

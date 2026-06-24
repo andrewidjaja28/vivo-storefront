@@ -111,7 +111,7 @@
      ============================================================ */
   header.nav{
     position:fixed; top:var(--bar-h); left:0; right:0; z-index:55;
-    display:flex; align-items:center; justify-content:space-between;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
     padding:14px var(--gutter);
     color:var(--white);
     transition:background-color 320ms ease, backdrop-filter 320ms ease, padding 320ms ease, box-shadow 320ms ease, color 320ms ease, transform 320ms var(--ease-out);
@@ -135,7 +135,7 @@
   .nav-links a.link:hover{ opacity:1; }
   header.nav.scrolled .nav-links a.link:hover{ color:var(--sage-deep); }
 
-  .nav-actions{ display:flex; align-items:center; gap:6px; }
+  .nav-actions{ display:flex; align-items:center; gap:6px; justify-self:end; }
   .cart-btn .count{
     position:absolute; top:2px; right:2px; min-width:17px; height:17px; padding:0 4px;
     border-radius:999px; background:var(--amber); color:var(--black);
