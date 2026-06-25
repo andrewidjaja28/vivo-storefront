@@ -190,19 +190,19 @@
      VALUE PROPS STRIP
      ============================================================ */
   .props{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .props .grid{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .props .grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
   .props .p{ display:flex; align-items:center; gap:13px; padding:30px clamp(10px,2vw,30px); }
   .props .p svg{ width:21px; height:21px; flex-shrink:0; color:var(--sage-deep); opacity:.9; }
   .props .p .t{ font-size:.74rem; font-weight:600; letter-spacing:.04em; line-height:1.35; color:var(--ink); text-transform:uppercase; }
   .props .p .t small{ display:block; font-weight:400; letter-spacing:.01em; color:var(--muted); text-transform:none; font-size:.74rem; margin-top:3px; }
-  @media (max-width:760px){ .props .grid{ grid-template-columns:repeat(2,1fr); } .props .p{ border-top:1px solid var(--line); } .props .p:nth-child(-n+2){ border-top:0; } }
+  @media (max-width:760px){ .props .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } .props .p{ border-top:1px solid var(--line); } .props .p:nth-child(-n+2){ border-top:0; } }
 
   /* ============================================================
      SHOP BY BENEFIT
      ============================================================ */
   .shop .filterbar{ margin-bottom:clamp(40px,5vw,64px); }
   .shop .filterlabel{ display:block; font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--muted); margin-bottom:20px; }
-  .catgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(18px,2.5vw,40px); }
+  .catgrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(18px,2.5vw,40px); }
   .cat{ display:flex; flex-direction:column; gap:13px; padding-top:24px; border-top:1px solid var(--line); transition:border-color 260ms ease; }
   .cat:hover{ border-color:var(--ink); }
   .cat .dot{ width:13px; height:13px; border-radius:50%; background:var(--cc, var(--sage-deep)); }
@@ -211,7 +211,7 @@
   .cat.active{ border-color:var(--ink); }
   .cat.active .cn{ color:var(--sage-deep); }
   .cat .ck{ font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:var(--muted); }
-  @media (max-width:780px){ .catgrid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:780px){ .catgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
 
   /* ============================================================
      PRODUCT GRID
@@ -222,7 +222,7 @@
   .shop .head-row a.viewall .arrow{ transition:transform 200ms var(--ease-out); }
   .shop .head-row a.viewall:hover .arrow{ transform:translateX(3px); }
 
-  .prodgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(34px,4vw,60px) clamp(20px,2.4vw,34px); }
+  .prodgrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(34px,4vw,60px) clamp(20px,2.4vw,34px); }
   .card{ display:flex; flex-direction:column; }
   @keyframes cardin{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
   .prodgrid .card{ animation:cardin .5s var(--ease-out) both; }
@@ -246,8 +246,8 @@
   .card .add:hover svg{ transform:translateX(3px); }
   .card .add:active{ transform:scale(0.97); }
   .card .add.added{ color:var(--sage-deep); }
-  @media (max-width:1000px){ .prodgrid{ grid-template-columns:repeat(3,1fr); } }
-  @media (max-width:720px){ .prodgrid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:1000px){ .prodgrid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media (max-width:720px){ .prodgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
   @media (max-width:440px){ .prodgrid{ grid-template-columns:1fr; } }
 
   /* ============================================================
@@ -278,7 +278,7 @@
      REVIEWS
      ============================================================ */
   .reviews{ background:var(--sage-tint); }
-  .rgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .rgrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
   .review{ background:var(--white); border-radius:0; padding:26px 24px 24px; border:1px solid rgba(61,92,54,.14); }
   .stars{ color:var(--amber); font-size:.95rem; letter-spacing:2px; }
   .review .q{ font-family:var(--serif); font-size:1.28rem; line-height:1.4; color:var(--sage-deep); margin:14px 0 18px; }
@@ -880,7 +880,10 @@
   .nav-toggle{ display:none; background:none; border:0; color:inherit; width:42px; height:42px; align-items:center; justify-content:center; padding:0; cursor:pointer; }
   .nav-toggle svg{ width:24px; height:24px; }
   @media (max-width:860px){
+    header.nav{ display:flex !important; align-items:center; }
     header.nav .nav-links{ display:none !important; }
+    .nav .brand{ margin-right:auto; }
+    .nav-actions{ flex-shrink:0; }
     .nav-toggle{ display:inline-flex; }
   }
   .mm-backdrop{ position:fixed; inset:0; background:rgba(20,15,11,.45); opacity:0; visibility:hidden; transition:opacity 300ms ease, visibility 300ms; z-index:90; }
