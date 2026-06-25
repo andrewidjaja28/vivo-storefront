@@ -222,12 +222,9 @@
   .faq summary::-webkit-details-marker{ display:none; }
   .faq summary::after{ content:"+"; position:absolute; right:2px; top:18px; font-size:1.5rem; color:var(--muted); }
   .faq details[open] summary::after{ content:"−"; }
-  .faq details p{ padding:0 44px 24px 0; color:#403c34; font-size:.98rem; line-height:1.7; max-width:68ch; }
-  @keyframes faqOpen{ from{ opacity:0; transform:translateY(-12px); } to{ opacity:1; transform:translateY(0); } }
-  @keyframes faqClose{ from{ opacity:1; transform:translateY(0); } to{ opacity:0; transform:translateY(-10px); } }
-  .faq details[open]:not(.closing) p{ animation:faqOpen .44s cubic-bezier(.16,1,.3,1) .1s both; }
-  .faq details.closing p{ animation:faqClose .3s cubic-bezier(.7,0,.84,0) both; }
-  @media (prefers-reduced-motion: reduce){ .faq details p{ animation:none !important; } }
+  /* sliding panel — same settings as feelpeptides: max-height 0.4s cubic-bezier(0.4,0,0.2,1) */
+  .faq details p{ box-sizing:border-box; display:block; overflow:hidden; max-height:0; padding:0 44px 24px 0; color:#403c34; font-size:.98rem; line-height:1.7; max-width:68ch; transition:max-height .4s cubic-bezier(.4,0,.2,1); }
+  @media (prefers-reduced-motion: reduce){ .faq details p{ transition:none; } }
 
   /* CLOSING CTA */
 
@@ -862,22 +859,47 @@
 })();
 </script>
 <script>
-/* FAQ accordions: animate the close (native <details> snaps shut instantly) */
+/* FAQ accordions: max-height slide — identical settings/technique to feelpeptides
+   (transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)) */
 (function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.addEventListener('click', function(e){
-    var summary = e.target.closest('.faq details > summary');
-    if(!summary || reduce) return;
-    var d = summary.parentElement;
-    var p = d.querySelector('p');
-    if(d.open && p){            /* currently open -> play close, then collapse */
-      e.preventDefault();
-      if(d.classList.contains('closing')) return;
-      d.classList.add('closing');
-      var done = function(){ d.open = false; d.classList.remove('closing'); p.removeEventListener('animationend', done); };
-      p.addEventListener('animationend', done);
+  var EASE = 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function onEnd(p, cb){
+    var h = function(e){ if(e.target!==p || e.propertyName!=='max-height') return; p.removeEventListener('transitionend', h); cb(); };
+    p.addEventListener('transitionend', h);
+  }
+  document.querySelectorAll('.faq .list details').forEach(function(d){
+    var s = d.querySelector('summary'), p = d.querySelector('p');
+    if(!s || !p) return;
+    p.style.overflow = 'hidden';
+    p.style.maxHeight = d.open ? 'none' : '0px';
+    if(reduce){
+      s.addEventListener('click', function(e){ e.preventDefault(); d.open = !d.open; p.style.maxHeight = d.open ? 'none' : '0px'; });
+      return;
     }
-    /* opening is left to the native toggle + CSS faqOpen */
+    var animating = false;
+    s.addEventListener('click', function(e){
+      e.preventDefault();
+      if(animating){ return; }
+      if(!d.open){                                   // OPEN
+        d.open = true;                               // marker flips immediately
+        p.style.transition = EASE;
+        p.style.maxHeight = '0px';
+        void p.offsetHeight;                         // force reflow
+        animating = true;
+        requestAnimationFrame(function(){
+          p.style.maxHeight = p.scrollHeight + 'px';
+          onEnd(p, function(){ animating = false; if(d.open){ p.style.maxHeight = 'none'; } });
+        });
+      } else {                                       // CLOSE (keep [open] until done)
+        p.style.transition = EASE;
+        p.style.maxHeight = p.scrollHeight + 'px';
+        void p.offsetHeight;                         // force reflow
+        animating = true;
+        p.style.maxHeight = '0px';
+        onEnd(p, function(){ animating = false; d.open = false; });
+      }
+    });
   });
 })();
 </script>
