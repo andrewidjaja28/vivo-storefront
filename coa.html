@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Certificates of Analysis — Vivo</title>
 <meta name="description" content="Every Vivo batch is independently tested by HPLC and LC-MS. Browse Certificates of Analysis for purity, identity, and batch verification.">
+<link rel="canonical" href="https://vivo-storefront.netlify.app/coa.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#3D5C36">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vivo">
+<meta property="og:title" content="Certificates of Analysis — Vivo">
+<meta property="og:description" content="Every Vivo batch is independently tested by HPLC and LC-MS. Browse Certificates of Analysis for purity, identity, and batch verification.">
+<meta property="og:url" content="https://vivo-storefront.netlify.app/coa.html">
+<meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Certificates of Analysis — Vivo">
+<meta name="twitter:description" content="Every Vivo batch is independently tested by HPLC and LC-MS. Browse Certificates of Analysis for purity, identity, and batch verification.">
+<meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <style>
   /* ============================================================
      VIVO — e-commerce home
@@ -506,8 +521,24 @@
   </div>
 </section>
 
+<style>
+  .foot .foot-sub{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; padding-block:clamp(30px,4vw,44px); border-bottom:1px solid rgba(250,248,244,.1); }
+  .foot .fs-head{ font-family:var(--display); font-size:clamp(1.5rem,2.4vw,2rem); color:var(--white); letter-spacing:-1px; }
+  .foot .fs-form{ display:flex; gap:10px; width:min(440px,100%); }
+  .foot .fs-form input{ flex:1; background:rgba(250,248,244,.06); border:1px solid rgba(250,248,244,.22); color:var(--white); border-radius:0; padding:.9em 1.2em; font-size:.9rem; outline:none; transition:border-color 200ms ease; }
+  .foot .fs-form input::placeholder{ color:rgba(250,248,244,.5); }
+  .foot .fs-form input:focus{ border-color:var(--champagne); }
+  @media (max-width:640px){ .foot .foot-sub{ flex-direction:column; align-items:flex-start; } .foot .fs-form{ width:100%; } }
+</style>
 <footer class="foot">
   <div class="wrap">
+    <div class="foot-sub">
+      <div class="fs-head">Stay learning.</div>
+      <form class="fs-form" onsubmit="return false">
+        <input type="email" placeholder="you@email.com" aria-label="Email address" required>
+        <button type="submit" class="btn btn-light">Subscribe</button>
+      </form>
+    </div>
     <div class="top">
       <div class="brandcol">
         <img class="brand-logo" src="logo_white.png" alt="Vivo">
@@ -519,15 +550,15 @@
       </div>
       <div>
         <h4>Support</h4>
-        <a class="fl" href="#">Shipping &amp; returns</a>
-        <a class="fl" href="#">Storage &amp; handling</a>
-        <a class="fl" href="#">FAQ</a>
+        <a class="fl" href="shipping.html">Shipping &amp; returns</a>
+        <a class="fl" href="storage.html">Storage &amp; handling</a>
+        <a class="fl" href="faq.html">FAQ</a>
         <a class="fl" href="contact.html">Contact</a>
       </div>
       <div>
         <h4>Company</h4>
-        <a class="fl" href="#">The science</a>
-        <a class="fl" href="#">Wholesale</a>
+        <a class="fl" href="science.html">The science</a>
+        <a class="fl" href="wholesale.html">Wholesale</a>
       </div>
     </div>
     <div class="bottom">
@@ -556,27 +587,9 @@
   </div>
 </aside>
 
+<script src="products.js"></script>
 <script>
-  /* ============================================================
-     PRODUCT DATA  (prices are placeholders — confirm before launch)
-     ============================================================ */
-  const PRODUCTS = [
-    { id:'glow',       name:'GLOW',        cat:'Skin & Renewal',     benefit:'skin',      ph:'#cdbb95', dose:'5 mg',  price:120, img:'Products/Vials/vial_glow.jpg' },
-    { id:'bpc157',     name:'BPC-157',     cat:'Recovery & Healing', benefit:'recovery',  ph:'#b69487', dose:'10 mg', price:95,  img:'Products/Vials/vial_bpc147.jpg' },
-    { id:'selank',     name:'Selank',      cat:'Mind, Mood & Sleep', benefit:'vitality',  ph:'#b9b893', dose:'5 mg',  price:70,  img:'Products/Vials/vial_selank.jpg' },
-    { id:'nad',        name:'NAD+',        cat:'Cellular Energy',    benefit:'vitality',  ph:'#b6b48f', dose:'5 mg',  price:110, img:'Products/Vials/vial_nad+.jpg' },
-    { id:'glutathione',name:'Glutathione', cat:'Detox & Antioxidant',benefit:'skin',      ph:'#b39184', dose:'5 mg',  price:85,  img:'Products/Vials/vial_glutathione.jpg' },
-    { id:'glp3',       name:'GLP-3',       cat:'Metabolic Balance',  benefit:'metabolic', ph:'#9aa6b0', dose:'5 mg',  price:130, img:'Products/Vials/vial_bpcglp-3.jpg' },
-    { id:'aod9604',    name:'AOD-9604',    cat:'Lipotropic',         benefit:'metabolic', ph:'#94a1ad', dose:'5 mg',  price:90,  img:'Products/Vials/vial_aod9604.jpg' }
-  ];
-
-  /* Benefit taxonomy — single source of truth (products reference these by id) */
-  const BENEFITS = [
-    { id:'recovery',  name:'Recovery',       k:'Repair',   color:'#7B3B34' },
-    { id:'skin',      name:'Skin & Renewal', k:'Radiance', color:'#C4913A' },
-    { id:'vitality',  name:'Mind & Energy',  k:'Vitality', color:'#3D5C36' },
-    { id:'metabolic', name:'Metabolic',      k:'Balance',  color:'#3A5268' }
-  ];
+  /* PRODUCTS + BENEFITS come from products.js (single source of truth). */
 
   const byId = id => PRODUCTS.find(p => p.id === id);
   const money = n => '$' + Number(n).toLocaleString('en-US');

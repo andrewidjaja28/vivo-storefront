@@ -5,6 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vivo — Research-grade peptides, made in California</title>
 <meta name="description" content="Shop research-grade peptides from Vivo. Color-coded by benefit, made in California. Live well, on purpose.">
+<link rel="canonical" href="https://vivo-storefront.netlify.app/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#3D5C36">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vivo">
+<meta property="og:title" content="Vivo — Research-grade peptides, made in California">
+<meta property="og:description" content="Shop research-grade peptides from Vivo. Color-coded by benefit, made in California. Live well, on purpose.">
+<meta property="og:url" content="https://vivo-storefront.netlify.app/">
+<meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vivo — Research-grade peptides, made in California">
+<meta name="twitter:description" content="Shop research-grade peptides from Vivo. Color-coded by benefit, made in California. Live well, on purpose.">
+<meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Vivo",
+  "url": "https://vivo-storefront.netlify.app/",
+  "logo": "https://vivo-storefront.netlify.app/logo_black.png",
+  "description": "Research-grade peptides, color-coded by benefit and made in California.",
+  "slogan": "Live well, on purpose."
+}
+</script>
 <style>
   /* ============================================================
      VIVO — e-commerce home
@@ -699,15 +725,15 @@
       </div>
       <div>
         <h4>Support</h4>
-        <a class="fl" href="#">Shipping &amp; returns</a>
-        <a class="fl" href="#">Storage &amp; handling</a>
-        <a class="fl" href="#">FAQ</a>
+        <a class="fl" href="shipping.html">Shipping &amp; returns</a>
+        <a class="fl" href="storage.html">Storage &amp; handling</a>
+        <a class="fl" href="faq.html">FAQ</a>
         <a class="fl" href="contact.html">Contact</a>
       </div>
       <div>
         <h4>Company</h4>
-        <a class="fl" href="#">The science</a>
-        <a class="fl" href="#">Wholesale</a>
+        <a class="fl" href="science.html">The science</a>
+        <a class="fl" href="wholesale.html">Wholesale</a>
       </div>
     </div>
     <div class="bottom">
@@ -736,27 +762,9 @@
   </div>
 </aside>
 
+<script src="products.js"></script>
 <script>
-  /* ============================================================
-     PRODUCT DATA  (prices are placeholders — confirm before launch)
-     ============================================================ */
-  const PRODUCTS = [
-    { id:'glow',       name:'GLOW',        cat:'Skin & Renewal',     benefit:'skin',      ph:'#cdbb95', dose:'5 mg',  price:120, img:'Products/Vials/clean/vial_glow.png' },
-    { id:'bpc157',     name:'BPC-157',     cat:'Recovery & Healing', benefit:'recovery',  ph:'#b69487', dose:'10 mg', price:95,  img:'Products/Vials/clean/vial_bpc147.png' },
-    { id:'selank',     name:'Selank',      cat:'Mind, Mood & Sleep', benefit:'vitality',  ph:'#b9b893', dose:'5 mg',  price:70,  img:'Products/Vials/clean/vial_selank.png' },
-    { id:'nad',        name:'NAD+',        cat:'Cellular Energy',    benefit:'vitality',  ph:'#b6b48f', dose:'5 mg',  price:110, img:'Products/Vials/clean/vial_nad+.png' },
-    { id:'glutathione',name:'Glutathione', cat:'Detox & Antioxidant',benefit:'skin',      ph:'#b39184', dose:'5 mg',  price:85,  img:'Products/Vials/clean/vial_glutathione.png' },
-    { id:'glp3',       name:'GLP-3',       cat:'Metabolic Balance',  benefit:'metabolic', ph:'#9aa6b0', dose:'5 mg',  price:130, img:'Products/Vials/clean/vial_bpcglp-3.png' },
-    { id:'aod9604',    name:'AOD-9604',    cat:'Lipotropic',         benefit:'metabolic', ph:'#94a1ad', dose:'5 mg',  price:90,  img:'Products/Vials/clean/vial_aod9604.png' }
-  ];
-
-  /* Benefit taxonomy — single source of truth (products reference these by id) */
-  const BENEFITS = [
-    { id:'recovery',  name:'Recovery',       k:'Repair',   color:'#7B3B34' },
-    { id:'skin',      name:'Skin & Structure', k:'Structure', color:'#C4913A' },
-    { id:'vitality',  name:'Mind & Energy',  k:'Vitality', color:'#3D5C36' },
-    { id:'metabolic', name:'Metabolic',   k:'Balance',  color:'#3A5268' }
-  ];
+  /* PRODUCTS + BENEFITS come from products.js (single source of truth). */
 
   const byId = id => PRODUCTS.find(p => p.id === id);
   const money = n => '$' + Number(n).toLocaleString('en-US');
