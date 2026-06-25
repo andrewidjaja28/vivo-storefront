@@ -87,8 +87,15 @@
   .pdp{ padding-top:clamp(22px,3vw,34px); padding-bottom:clamp(64px,9vw,120px); }
   .pdp .grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,80px); align-items:start; }
   .pdp .gallery{ display:flex; flex-direction:column; gap:14px; }
-  .pdp .gmain{ position:relative; aspect-ratio:1/1; overflow:hidden; background:transparent; }
+  .pdp .gmain{ position:relative; aspect-ratio:1/1; overflow:hidden; background:transparent; touch-action:pan-y; }
   .pdp .gmain img{ width:100%; height:100%; object-fit:cover; object-position:64% 42%; }
+  .pdp .gnav{ position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; display:flex; align-items:center; justify-content:center; padding:0; background:rgba(255,254,242,.3); border:1px solid rgba(255,254,242,.5); border-radius:50%; color:var(--ink); cursor:pointer; opacity:0; transition:opacity 220ms ease, background-color 180ms ease; backdrop-filter:blur(10px) saturate(120%); -webkit-backdrop-filter:blur(10px) saturate(120%); z-index:2; }
+  .pdp .gmain:hover .gnav{ opacity:1; }
+  .pdp .gnav:hover{ background:rgba(255,254,242,.5); }
+  .pdp .gnav.prev{ left:12px; }
+  .pdp .gnav.next{ right:12px; }
+  .pdp .gnav svg{ width:17px; height:17px; }
+  @media (hover:none){ .pdp .gnav{ opacity:.9; } }
   .pdp .gthumbs{ display:flex; gap:12px; }
   .pdp .gthumb{ width:74px; height:74px; flex:none; padding:0; overflow:hidden; background:transparent; border:1px solid var(--line); cursor:pointer; transition:border-color 180ms ease; }
   .pdp .gthumb img{ width:100%; height:100%; object-fit:cover; object-position:64% 42%; }
@@ -509,15 +516,25 @@
   const galleryImgs = (product.gallery && product.gallery.length)
     ? product.gallery
     : [product.img, 'peptideliquid.jpg', 'clearliquid_card.jpg'];
+  let galIndex = 0;
+  function setGallery(i){
+    galIndex = (i % galleryImgs.length + galleryImgs.length) % galleryImgs.length;
+    const m = document.getElementById('galleryMain');
+    if(m) m.src = galleryImgs[galIndex];
+    document.querySelectorAll('.gthumb').forEach((t,idx)=> t.classList.toggle('active', idx===galIndex));
+  }
 
   document.getElementById('pdp').innerHTML = `
     <section class="pdp">
       <div class="wrap">
         <div class="grid">
           <div class="gallery reveal" style="--ph:${product.ph}">
-            <div class="gmain"><img id="galleryMain" src="${galleryImgs[0]}" alt="Vivo ${esc(product.name)} peptide vial"></div>
+            <div class="gmain">
+              <img id="galleryMain" src="${galleryImgs[0]}" alt="Vivo ${esc(product.name)} peptide vial">
+              ${galleryImgs.length>1?`<button type="button" class="gnav prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button type="button" class="gnav next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>`:''}
+            </div>
             <div class="gthumbs">
-              ${galleryImgs.map((src,i)=>`<button type="button" class="gthumb${i===0?' active':''}" data-src="${src}" aria-label="View image ${i+1}"><img src="${src}" alt="" loading="lazy"></button>`).join('')}
+              ${galleryImgs.map((src,i)=>`<button type="button" class="gthumb${i===0?' active':''}" data-i="${i}" data-src="${src}" aria-label="View image ${i+1}"><img src="${src}" alt="" loading="lazy"></button>`).join('')}
             </div>
           </div>
           <div class="info" style="--cc:${benefit.color}">
@@ -751,9 +768,10 @@
   function closeCart(){ els.drawer.classList.remove('open'); els.backdrop.classList.remove('open'); els.drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
 
   document.addEventListener('click', e => {
+    const gnav = e.target.closest('.gnav');
+    if(gnav){ setGallery(galIndex + (gnav.classList.contains('next') ? 1 : -1)); return; }
     const th = e.target.closest('.gthumb');
-    if(th){ const m = document.getElementById('galleryMain'); if(m) m.src = th.dataset.src;
-      document.querySelectorAll('.gthumb').forEach(t => t.classList.remove('active')); th.classList.add('active'); return; }
+    if(th){ setGallery(+th.dataset.i); return; }
     const add = e.target.closest('.add');
     if(add){ addToCart(add.dataset.id, 1); openCart();
       const label = add.innerHTML; add.classList.add('added'); add.textContent='Added ✓';
@@ -762,6 +780,18 @@
     if(e.target.closest('[data-dec]')) return setQty(e.target.closest('[data-dec]').dataset.dec, -1);
     if(e.target.closest('[data-rm]'))  return removeItem(e.target.closest('[data-rm]').dataset.rm);
   });
+  // gallery swipe (mobile)
+  let gtX=null, gtY=null;
+  document.addEventListener('touchstart', e => {
+    if(e.target.closest('.gmain')){ gtX=e.touches[0].clientX; gtY=e.touches[0].clientY; }
+  }, {passive:true});
+  document.addEventListener('touchend', e => {
+    if(gtX===null) return;
+    const dx=e.changedTouches[0].clientX-gtX, dy=e.changedTouches[0].clientY-gtY;
+    gtX=gtY=null;
+    if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)) setGallery(galIndex + (dx<0 ? 1 : -1));
+  }, {passive:true});
+
   els.cartBtn.addEventListener('click', openCart);
   document.getElementById('closeCart').addEventListener('click', closeCart);
   document.getElementById('continue').addEventListener('click', closeCart);

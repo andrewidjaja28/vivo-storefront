@@ -267,8 +267,14 @@
   .bcard .blink .arrow{ transition:transform 200ms var(--ease-out); }
   .bcard:hover .blink .arrow{ transform:translateX(3px); }
   @media (max-width:1000px){ .bcards{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
-  @media (max-width:620px){ .bcards{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media (max-width:380px){ .bcards{ grid-template-columns:1fr; } .bcard{ aspect-ratio:16/10; } }
+  /* mobile: one-up horizontal carousel, next card peeking */
+  @media (max-width:640px){
+    .bcards{ display:flex; grid-template-columns:none; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:6px; }
+    .bcards::-webkit-scrollbar{ display:none; }
+    .bcard{ flex:0 0 82%; scroll-snap-align:start; aspect-ratio:4/5; }
+    .bcard h3{ font-size:1.45rem; }
+    .bcard .blink{ font-size:.82rem; }
+  }
 
   /* ===== MADE IN CALIFORNIA ===== */
   .madein{ background:var(--sage-tint); }
