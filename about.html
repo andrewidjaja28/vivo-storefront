@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The science — Vivo</title>
-<meta name="description" content="How research peptides work, why purity matters, and how every Vivo compound is synthesised and verified in California.">
-<link rel="canonical" href="https://vivo-storefront.netlify.app/science.html">
+<title>About Vivo — Research Peptides Made &amp; Tested in California</title>
+<meta name="description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
+<link rel="canonical" href="https://vivo-storefront.netlify.app/about.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
-<meta property="og:title" content="The science — Vivo">
-<meta property="og:description" content="How research peptides work, why purity matters, and how every Vivo compound is synthesised and verified in California.">
-<meta property="og:url" content="https://vivo-storefront.netlify.app/science.html">
+<meta property="og:title" content="About Vivo — Research Peptides Made &amp; Tested in California">
+<meta property="og:description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
+<meta property="og:url" content="https://vivo-storefront.netlify.app/about.html">
 <meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The science — Vivo">
-<meta name="twitter:description" content="How research peptides work, why purity matters, and how every Vivo compound is synthesised and verified in California.">
+<meta name="twitter:title" content="About Vivo — Research Peptides Made &amp; Tested in California">
+<meta name="twitter:description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
 <meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <style>
   /* ============================================================
@@ -505,51 +505,239 @@
 </header>
 
 <style>
-  .docpage{ padding:clamp(150px,18vh,230px) 0 clamp(80px,10vw,140px); }
-  .dochead{ max-width:62ch; }
-  .dochead h1{ font-size:clamp(2.6rem,6vw,4.6rem); color:var(--ink); margin-top:18px; }
-  .dochead .lead{ margin-top:22px; font-size:1.12rem; line-height:1.7; color:var(--muted); max-width:56ch; }
-  .docbody{ margin-top:clamp(48px,6vw,84px); display:grid; gap:clamp(40px,5vw,60px); max-width:780px; }
-  .docrow h2{ font-size:clamp(1.5rem,2.6vw,2rem); color:var(--ink); margin-bottom:16px; letter-spacing:-1px; }
-  .docrow p{ color:var(--ink); opacity:.84; line-height:1.78; margin-bottom:14px; max-width:66ch; }
-  .docrow p:last-child{ margin-bottom:0; }
-  .docrow ul{ list-style:none; display:grid; gap:11px; margin-top:6px; }
-  .docrow li{ position:relative; padding-left:22px; color:var(--ink); opacity:.84; line-height:1.65; max-width:64ch; }
-  .docrow li::before{ content:""; position:absolute; left:0; top:.62em; width:7px; height:7px; background:var(--amber); }
-  .docrow li strong{ opacity:1; font-weight:600; }
-  .docrow + .docrow{ border-top:1px solid var(--line); padding-top:clamp(36px,4vw,52px); }
-  .doccta{ margin-top:8px; }
-  .docnote{ margin-top:clamp(48px,6vw,72px); padding:22px 24px; background:var(--sage-tint); color:var(--sage-deep); font-size:.92rem; line-height:1.6; max-width:780px; }
+  /* ===================== ABOUT / LAB ===================== */
+  .ab-hero{ position:relative; min-height:clamp(540px,84vh,780px); display:flex; align-items:flex-end; color:var(--white); overflow:hidden; background:var(--black); }
+  .ab-hero .bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.6; }
+  .ab-hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,15,11,.5) 0%, rgba(20,15,11,.08) 34%, rgba(20,15,11,.9) 100%); }
+  .ab-hero .inner{ position:relative; z-index:2; width:100%; padding-top:clamp(130px,18vh,210px); padding-bottom:clamp(56px,8vw,108px); }
+  .ab-hero .kicker{ color:var(--champagne); }
+  .ab-hero h1{ color:var(--white); font-size:clamp(2.9rem,7vw,5.6rem); line-height:1; max-width:15ch; margin-top:20px; text-shadow:0 2px 40px rgba(0,0,0,.45); }
+  .ab-hero .lead{ margin-top:24px; max-width:50ch; font-size:clamp(1.08rem,1.7vw,1.4rem); line-height:1.6; color:rgba(255,255,255,.92); text-shadow:0 1px 16px rgba(0,0,0,.4); }
+  .ab-hero .cta{ display:flex; flex-wrap:wrap; gap:14px; margin-top:38px; }
+
+  .ab-mission{ padding:clamp(84px,12vw,170px) 0; text-align:center; }
+  .ab-mission .statement{ font-family:var(--display); font-weight:400; font-size:clamp(2rem,4.4vw,3.6rem); line-height:1.18; letter-spacing:-1.5px; color:var(--ink); max-width:24ch; margin:14px auto 0; }
+  .ab-mission .statement em{ font-style:italic; color:var(--sage-deep); }
+  .ab-mission p{ margin:28px auto 0; max-width:56ch; color:var(--muted); font-size:1.06rem; line-height:1.78; }
+
+  .ab-stats{ background:var(--black); color:var(--white); }
+  .ab-stats .grid{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .ab-stats .s{ padding:clamp(44px,5vw,76px) clamp(18px,2vw,34px); border-left:1px solid rgba(255,255,255,.12); }
+  .ab-stats .s:first-child{ border-left:0; }
+  .ab-stats .n{ font-family:var(--display); font-size:clamp(2.6rem,4vw,3.8rem); letter-spacing:-2px; color:var(--champagne); line-height:1; }
+  .ab-stats .l{ margin-top:16px; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.72); font-weight:600; }
+  .ab-stats .d{ margin-top:9px; font-size:.86rem; color:rgba(255,255,255,.52); line-height:1.5; }
+  @media(max-width:780px){ .ab-stats .grid{ grid-template-columns:repeat(2,1fr); } .ab-stats .s:nth-child(2){ border-left:0; } .ab-stats .s:nth-child(n+3){ border-top:1px solid rgba(255,255,255,.12); } }
+
+  .ab-steps{ padding:clamp(84px,12vw,170px) 0; }
+  .ab-steps .head{ max-width:34ch; margin-bottom:clamp(44px,5vw,72px); }
+  .ab-steps .head h2{ font-size:clamp(2.2rem,4.5vw,3.4rem); color:var(--ink); margin-top:16px; }
+  .ab-steps .head p{ margin-top:18px; color:var(--muted); font-size:1.04rem; line-height:1.7; max-width:48ch; }
+  .ab-steps .grid{ display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); }
+  .ab-steps .step{ padding:clamp(28px,2.4vw,40px) clamp(16px,1.5vw,26px) 0; border-left:1px solid var(--line); }
+  .ab-steps .step:first-child{ border-left:0; }
+  .ab-steps .num{ font-family:var(--mono); font-size:.78rem; color:var(--amber); letter-spacing:.12em; }
+  .ab-steps .step h3{ font-size:1.18rem; margin-top:16px; color:var(--ink); letter-spacing:-.5px; }
+  .ab-steps .step p{ margin-top:13px; font-size:.9rem; color:var(--muted); line-height:1.62; }
+  @media(max-width:900px){ .ab-steps .grid{ grid-template-columns:repeat(2,1fr); } .ab-steps .step{ border-left:0; border-top:1px solid var(--line); padding:28px 0 0; } .ab-steps .step:first-child{ border-top:0; } }
+  @media(max-width:520px){ .ab-steps .grid{ grid-template-columns:1fr; } }
+
+  .ab-split{ padding:clamp(70px,9vw,130px) 0; }
+  .ab-split.tint{ background:var(--sage-tint); }
+  .ab-split .grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(36px,6vw,92px); align-items:center; }
+  .ab-split .visual{ aspect-ratio:4/5; overflow:hidden; box-shadow:0 40px 80px -50px rgba(40,28,20,.6); background:var(--sand); }
+  .ab-split .visual img, .ab-split .visual video{ width:100%; height:100%; object-fit:cover; }
+  .ab-split .copy h2{ font-size:clamp(2rem,4vw,3rem); color:var(--ink); margin-top:14px; }
+  .ab-split .copy p{ margin-top:18px; color:var(--ink); opacity:.84; line-height:1.78; max-width:48ch; }
+  .ab-split .li{ list-style:none; margin-top:22px; display:grid; gap:12px; }
+  .ab-split .li li{ position:relative; padding-left:24px; color:var(--ink); opacity:.86; line-height:1.55; }
+  .ab-split .li li::before{ content:""; position:absolute; left:0; top:.5em; width:8px; height:8px; background:var(--amber); }
+  .ab-split .copy .more{ margin-top:30px; }
+  .ab-split.rev .visual{ order:2; }
+  @media(max-width:820px){ .ab-split .grid{ grid-template-columns:1fr; } .ab-split .visual, .ab-split.rev .visual{ order:-1; aspect-ratio:16/10; } }
+
+  .ab-values{ background:var(--sage-tint); padding:clamp(84px,11vw,160px) 0; }
+  .ab-values .head{ max-width:32ch; }
+  .ab-values .head h2{ font-size:clamp(2.2rem,4.5vw,3.4rem); color:var(--ink); margin-top:16px; }
+  .ab-values .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:clamp(44px,5vw,66px); }
+  .ab-values .card{ background:var(--white); padding:clamp(28px,2.4vw,38px); border:1px solid rgba(61,92,54,.16); display:flex; flex-direction:column; }
+  .ab-values .card .dot{ width:34px; height:34px; border-radius:50%; background:var(--cc,var(--sage-deep)); display:grid; place-items:center; }
+  .ab-values .card .dot svg{ width:18px; height:18px; color:var(--white); }
+  .ab-values .card h3{ font-size:1.32rem; margin-top:22px; color:var(--ink); letter-spacing:-.5px; }
+  .ab-values .card p{ margin-top:13px; font-size:.92rem; color:var(--muted); line-height:1.62; }
+  @media(max-width:900px){ .ab-values .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:520px){ .ab-values .grid{ grid-template-columns:1fr; } }
+
+  .ab-ruo{ padding:clamp(60px,8vw,108px) 0; }
+  .ab-ruo .box{ border:1px solid var(--line); padding:clamp(32px,4.4vw,56px); max-width:900px; margin:0 auto; text-align:center; }
+  .ab-ruo .box p{ margin-top:16px; color:var(--muted); font-size:1rem; line-height:1.75; max-width:66ch; margin-inline:auto; }
+
+  .ab-cta{ background:var(--black); color:var(--white); padding:clamp(88px,12vw,160px) 0; text-align:center; }
+  .ab-cta .kicker{ color:var(--champagne); }
+  .ab-cta h2{ color:var(--white); font-size:clamp(2.2rem,5vw,3.7rem); max-width:18ch; margin:16px auto 0; }
+  .ab-cta .row{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:38px; }
 </style>
-<!-- ===================== SCIENCE ===================== -->
-<section class="docpage">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vivo-storefront.netlify.app/#organization",
+      "name": "Vivo",
+      "url": "https://vivo-storefront.netlify.app/",
+      "logo": "https://vivo-storefront.netlify.app/logo_black.png",
+      "slogan": "Live well, on purpose.",
+      "description": "Research-grade peptides synthesised and tested in California — verified to \u226599% purity by HPLC and LC-MS, with a Certificate of Analysis behind every batch.",
+      "knowsAbout": ["Research peptides","Peptide synthesis","HPLC purity testing","LC-MS","Certificate of Analysis"],
+      "areaServed": "US"
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://vivo-storefront.netlify.app/about.html",
+      "url": "https://vivo-storefront.netlify.app/about.html",
+      "name": "About Vivo",
+      "about": { "@id": "https://vivo-storefront.netlify.app/#organization" },
+      "primaryImageOfPage": "https://vivo-storefront.netlify.app/hero_vials.jpg",
+      "description": "How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vivo-storefront.netlify.app/" },
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://vivo-storefront.netlify.app/about.html" }
+      ]
+    }
+  ]
+}
+</script>
+<!-- ===================== ABOUT / LAB ===================== -->
+<section class="ab-hero">
+  <img class="bg" src="peptideliquid.jpg" alt="Research peptide in solution in a Vivo laboratory" loading="eager">
+  <div class="inner">
+    <div class="wrap">
+      <div class="kicker reveal">Our standard</div>
+      <h1 class="reveal" data-d="1">The lab behind every vial.</h1>
+      <p class="lead reveal" data-d="2">Vivo makes research-grade peptides the deliberate way — each sequence synthesised, purified, and independently verified to &ge;99% purity, then filled in California. No shortcuts, no overseas guesswork, no marketing in place of data.</p>
+      <div class="cta reveal" data-d="3">
+        <a href="shop.html" class="btn btn-ghost">Explore the catalog <span class="arrow">&rarr;</span></a>
+        <a href="coa.html" class="btn btn-light">View Certificates of Analysis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ab-mission">
   <div class="wrap">
-    <div class="dochead">
-      <div class="kicker reveal">The science</div>
-      <h1 class="reveal" data-d="1">How research peptides work</h1>
-      <p class="lead reveal" data-d="2">Peptides are short chains of amino acids — the same signalling molecules the body already uses. Vivo concentrates single, well-characterised sequences so they can be studied directly.</p>
+    <div class="kicker sage reveal">Why Vivo exists</div>
+    <p class="statement reveal" data-d="1">Give the body back what it was built to use — and <em>prove</em> what is in every vial.</p>
+    <p class="reveal" data-d="2">Vivo was built on a simple conviction: research deserves materials you can trust. Every compound we make is a single, well-characterised sequence — concentrated, tested, and documented so it can be studied with confidence.</p>
+  </div>
+</section>
+
+<section class="ab-stats">
+  <div class="wrap">
+    <div class="grid">
+      <div class="s reveal"><div class="n">&ge;99%</div><div class="l">Purity</div><div class="d">Verified by HPLC on every batch</div></div>
+      <div class="s reveal" data-d="1"><div class="n">100%</div><div class="l">US-made</div><div class="d">Synthesised &amp; filled in California</div></div>
+      <div class="s reveal" data-d="2"><div class="n">2</div><div class="l">Methods</div><div class="d">HPLC purity + LC-MS identity</div></div>
+      <div class="s reveal" data-d="3"><div class="n">1:1</div><div class="l">Batch to CoA</div><div class="d">A Certificate of Analysis for every lot</div></div>
     </div>
-    <div class="docbody">
-      <div class="docrow">
-        <h2>What a peptide is</h2>
-        <p>A peptide is a short chain of amino acids — the building blocks of proteins. Many are signalling molecules the body produces naturally to direct repair, metabolism, and cellular maintenance. Research peptides isolate a single, defined sequence so its effects can be studied in a controlled setting.</p>
-      </div>
-      <div class="docrow">
-        <h2>Why purity is everything</h2>
-        <p>In peptide research, the result is only as good as the compound. Trace impurities, residual TFA salts, or incorrect sequences confound data. Every Vivo batch is verified before it ships:</p>
-        <ul>
-          <li><strong>HPLC</strong> — confirms purity of ≥99%</li>
-          <li><strong>LC-MS</strong> — confirms identity and exact mass</li>
-          <li>Screened to be free of synthesis impurities, TFA salts, and heavy metals</li>
+  </div>
+</section>
+
+<section class="ab-steps">
+  <div class="wrap">
+    <div class="head">
+      <div class="kicker reveal">The process</div>
+      <h2 class="reveal" data-d="1">How a Vivo peptide is made.</h2>
+      <p class="reveal" data-d="2">From sequence to sealed vial, every step happens under one standard.</p>
+    </div>
+    <div class="grid">
+      <div class="step reveal"><div class="num">01</div><h3>Synthesis</h3><p>Each peptide is built as a single defined sequence by solid-phase synthesis — the same chemistry used in clinical-grade production.</p></div>
+      <div class="step reveal" data-d="1"><div class="num">02</div><h3>Purification</h3><p>The crude peptide is purified by preparative HPLC to strip away synthesis by-products, TFA salts, and incomplete chains.</p></div>
+      <div class="step reveal" data-d="2"><div class="num">03</div><h3>Verification</h3><p>Independent HPLC confirms &ge;99% purity; LC-MS confirms identity and exact mass. Results are recorded per lot.</p></div>
+      <div class="step reveal" data-d="3"><div class="num">04</div><h3>Fill &amp; finish</h3><p>Verified compound is lyophilised and filled into vials in a controlled California facility — 5&ndash;10 mg of compound and nothing else.</p></div>
+      <div class="step reveal" data-d="3"><div class="num">05</div><h3>Documented &amp; shipped</h3><p>Every lot ships with its Certificate of Analysis and temperature-aware, discreet packaging.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ab-split">
+  <div class="wrap">
+    <div class="grid">
+      <div class="copy">
+        <div class="kicker reveal">Origin</div>
+        <h2 class="reveal" data-d="1">Made in California.</h2>
+        <p class="reveal" data-d="2">Every Vivo peptide is synthesised, tested, and filled in the United States, in California labs held to clinical-grade standards. No overseas sourcing and no guesswork — just transparent origins and a paper trail behind every vial.</p>
+        <ul class="li reveal" data-d="2">
+          <li>Synthesised and filled in-state</li>
+          <li>Clinical-grade facility standards</li>
+          <li>Documented chain of custody, batch to vial</li>
         </ul>
-        <p>Results for the exact lot in your vial are published as a <a href="coa.html" style="color:var(--sage-deep);text-decoration:underline;text-underline-offset:3px">Certificate of Analysis</a> — no averages, no marketing.</p>
       </div>
-      <div class="docrow">
-        <h2>Synthesised and filled in California</h2>
-        <p>Every Vivo peptide is synthesised, tested, and filled in the United States, in California labs held to clinical-grade standards. No overseas sourcing and no guesswork — just transparent origins behind every vial.</p>
+      <div class="visual reveal" data-d="1"><img src="madeincali.jpg" alt="Vivo peptides made in California" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="ab-split tint rev">
+  <div class="wrap">
+    <div class="grid">
+      <div class="copy">
+        <div class="kicker reveal">Verification</div>
+        <h2 class="reveal" data-d="1">Verified to the molecule.</h2>
+        <p class="reveal" data-d="2">We don't ask you to take purity on faith. Every batch is tested by independent labs and published — so the number on the vial is the number in the data.</p>
+        <ul class="li reveal" data-d="2">
+          <li>&ge;99% purity confirmed by HPLC</li>
+          <li>Identity and exact mass by LC-MS</li>
+          <li>Screened free of TFA salts and heavy metals</li>
+          <li>A Certificate of Analysis for every lot</li>
+        </ul>
+        <div class="more reveal" data-d="2"><a href="coa.html" class="btn btn-dark">View Certificates of Analysis <span class="arrow">&rarr;</span></a></div>
+      </div>
+      <div class="visual reveal" data-d="1">
+        <video autoplay muted loop playsinline preload="metadata" poster="clearliquid_card.jpg">
+          <source src="clearliquid_card.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
-    <div class="docnote">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease.</div>
+  </div>
+</section>
+
+<section class="ab-values">
+  <div class="wrap">
+    <div class="head">
+      <div class="kicker reveal">What we hold to</div>
+      <h2 class="reveal" data-d="1">Four standards, no exceptions.</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal" style="--cc:#3A5268"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 7"/></svg></div><h3>Transparency</h3><p>Every claim is backed by a document you can read — not a slogan.</p></div>
+      <div class="card reveal" data-d="1" style="--cc:#C4913A"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 7"/></svg></div><h3>Purity</h3><p>A single compound, verified — no fillers, no salts, no surprises.</p></div>
+      <div class="card reveal" data-d="2" style="--cc:#7B3B34"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 7"/></svg></div><h3>Honesty</h3><p>Research Use Only, labelled plainly on every single vial.</p></div>
+      <div class="card reveal" data-d="3" style="--cc:#3D5C36"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 7"/></svg></div><h3>Consistency</h3><p>Automated synthesis keeps every batch identical to the last.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ab-ruo">
+  <div class="wrap">
+    <div class="box reveal">
+      <div class="kicker sage">Compliance</div>
+      <p><strong>For Research Use Only — Not for Human or Animal Consumption.</strong> Vivo products are sold strictly for laboratory and research purposes and are not intended to diagnose, treat, cure, or prevent any disease. We label that plainly, because honest sourcing starts with honest labelling.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ab-cta">
+  <div class="wrap">
+    <div class="kicker reveal">Live well, on purpose.</div>
+    <h2 class="reveal" data-d="1">Research you can build on.</h2>
+    <div class="row reveal" data-d="2">
+      <a href="shop.html" class="btn btn-ghost">Explore the catalog <span class="arrow">&rarr;</span></a>
+      <a href="coa.html" class="btn btn-light">View Certificates</a>
+      <a href="contact.html" class="btn btn-light">Talk to us</a>
+    </div>
   </div>
 </section>
 
