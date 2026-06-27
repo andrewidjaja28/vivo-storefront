@@ -513,6 +513,10 @@
   .ab-hero .hsub{ margin:20px auto 0; font-family:var(--sans); font-size:clamp(.98rem,1.4vw,1.18rem); line-height:1.6; color:#56504a; max-width:52ch; }
   .ab-hero .cta-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-top:34px; }
 
+  /* consistent, centered section headers */
+  .ab-head{ margin-inline:auto; text-align:center; max-width:36ch; margin-bottom:clamp(40px,5vw,60px); }
+  .ab-head h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); letter-spacing:-1px; line-height:1.05; }
+
   .ab-stats{ background:var(--sand); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .ab-stats .grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
   .ab-stats .s{ padding:clamp(38px,4.5vw,64px) clamp(18px,2vw,34px); border-left:1px solid var(--line); }
@@ -522,25 +526,45 @@
   .ab-stats .d{ margin-top:8px; font-size:.85rem; color:var(--muted); line-height:1.5; }
   @media(max-width:780px){ .ab-stats .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } .ab-stats .s:nth-child(2){ border-left:0; } .ab-stats .s:nth-child(n+3){ border-top:1px solid var(--line); } }
 
-  .ab-story{ background:var(--white); text-align:center; }
-  .ab-story .inner{ max-width:700px; margin-inline:auto; }
-  .ab-story .statement{ font-family:var(--display); font-size:clamp(1.9rem,3.6vw,2.9rem); line-height:1.2; letter-spacing:-1px; color:var(--ink); }
-  .ab-story .statement em{ font-style:italic; color:var(--sage-deep); }
-  .ab-story p{ margin:24px auto 0; max-width:54ch; color:var(--muted); font-size:1.05rem; line-height:1.78; }
 
-  .ab-steps .grid{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--line); margin-top:clamp(40px,5vw,64px); }
-  .ab-steps .step{ padding:clamp(26px,2.4vw,38px) clamp(14px,1.4vw,24px) 0; border-left:1px solid var(--line); }
-  .ab-steps .step:first-child{ border-left:0; }
-  .ab-steps .num{ font-family:var(--mono); font-size:.74rem; color:var(--amber); letter-spacing:.1em; }
-  .ab-steps .step h3{ font-family:var(--sans); font-weight:500; font-size:1.1rem; margin-top:16px; color:var(--ink); letter-spacing:-.4px; }
-  .ab-steps .step p{ margin-top:12px; font-size:.88rem; color:var(--muted); line-height:1.6; }
-  @media(max-width:900px){ .ab-steps .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } .ab-steps .step{ border-left:0; border-top:1px solid var(--line); padding:26px 0 0; } .ab-steps .step:nth-child(1),.ab-steps .step:nth-child(2){ border-top:0; } }
-  @media(max-width:520px){ .ab-steps .grid{ grid-template-columns:1fr; } .ab-steps .step:nth-child(2){ border-top:1px solid var(--line); } }
+  /* process — pinned scroll sequence */
+  .ab-steps .proc{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:clamp(36px,6vw,90px); align-items:start; margin-top:clamp(40px,5vw,64px); }
+  .ab-steps .proc-visual{ position:sticky; top:calc(var(--bar-h) + 96px); aspect-ratio:4/5; overflow:hidden; background:var(--sand); box-shadow:0 40px 80px -50px rgba(40,28,20,.6); }
+  .ab-steps .proc-visual video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .ab-steps .proc-visual::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(28,20,14,.82), rgba(28,20,14,.12) 55%, rgba(28,20,14,.04)); }
+  .ab-steps .proc-overlay{ position:absolute; left:0; bottom:0; z-index:1; padding:clamp(26px,3vw,40px); color:var(--white); }
+  .ab-steps .proc-num{ font-family:var(--display); font-size:clamp(3rem,6vw,5rem); line-height:.9; letter-spacing:-2px; color:var(--champagne); }
+  .ab-steps .proc-name{ font-family:var(--sans); font-weight:500; font-size:clamp(1.1rem,1.6vw,1.4rem); margin-top:6px; letter-spacing:-.4px; }
+  .ab-steps .proc-track{ position:absolute; top:clamp(26px,3vw,40px); right:clamp(26px,3vw,40px); z-index:1; display:flex; gap:7px; }
+  .ab-steps .proc-track i{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.42); transition:background-color .35s ease, transform .35s ease; }
+  .ab-steps .proc-track i.on{ background:var(--champagne); transform:scale(1.3); }
+  .ab-steps .proc-steps{ display:flex; flex-direction:column; }
+  .ab-steps .pstep{ min-height:54vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(20px,3vw,40px) 0; border-top:1px solid var(--line); transition:opacity .45s var(--ease-out); }
+  .ab-steps .pstep:first-child{ border-top:0; }
+  .ab-steps.js-pinned .pstep{ opacity:.34; }
+  .ab-steps.js-pinned .pstep.active{ opacity:1; }
+  .ab-steps .pstep .num{ font-family:var(--mono); font-size:.78rem; color:var(--amber); letter-spacing:.12em; }
+  .ab-steps .pstep h3{ font-family:var(--display); font-weight:400; font-size:clamp(1.8rem,3vw,2.6rem); margin-top:14px; color:var(--ink); letter-spacing:-1px; line-height:1.05; }
+  .ab-steps .pstep p{ margin-top:14px; font-size:1rem; color:var(--muted); line-height:1.7; max-width:42ch; }
+  @media(max-width:860px){
+    .ab-steps .proc{ grid-template-columns:1fr; gap:0; }
+    .ab-steps .proc-visual{ position:relative; top:0; aspect-ratio:16/9; margin-bottom:clamp(20px,5vw,32px); }
+    .ab-steps .proc-overlay, .ab-steps .proc-track{ display:none; }
+    /* steps become a one-up horizontal swipe carousel, next card peeking */
+    .ab-steps .proc-steps{ flex-direction:row; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:8px; }
+    .ab-steps .proc-steps::-webkit-scrollbar{ display:none; }
+    .ab-steps .pstep{ flex:0 0 82%; scroll-snap-align:start; min-height:0; border-top:0; border:1px solid var(--line); background:var(--white); padding:26px 24px; }
+    .ab-steps .pstep:first-child{ border-top:1px solid var(--line); }
+    .ab-steps.js-pinned .pstep{ opacity:1; }
+    .ab-steps .pstep h3{ font-size:1.45rem; }
+    .ab-steps .pstep p{ font-size:.92rem; max-width:none; }
+  }
+  @media (prefers-reduced-motion: reduce){ .ab-steps.js-pinned .pstep{ opacity:1; } }
 
   .ab-madein{ background:var(--sage-tint); }
   .ab-madein .midgrid{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; }
   .ab-madein .midtext{ padding:clamp(48px,7vw,110px) clamp(34px,5vw,92px); display:flex; flex-direction:column; justify-content:center; }
-  .ab-madein h2{ font-size:clamp(2rem,3.6vw,3rem); color:var(--ink); line-height:1.1; max-width:17ch; margin:0; }
+  .ab-madein h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); line-height:1.1; max-width:17ch; margin:0; }
   .ab-madein .midblocks{ margin-top:clamp(26px,3.6vw,42px); display:grid; gap:22px; }
   .ab-madein .midblock .ml{ font-weight:600; font-size:.98rem; color:var(--ink); margin-bottom:8px; }
   .ab-madein .midblock p{ font-size:.96rem; color:#403c34; line-height:1.7; max-width:46ch; }
@@ -548,18 +572,6 @@
   .ab-madein .midmedia img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   @media(max-width:860px){ .ab-madein .midgrid{ grid-template-columns:1fr; } .ab-madein .midmedia{ min-height:0; aspect-ratio:4/5; order:-1; } .ab-madein .midtext{ padding:clamp(40px,8vw,64px) var(--gutter); } }
 
-  .ab-verify{ background:var(--white); }
-  .ab-verify .whyhead{ max-width:640px; }
-  .ab-verify .whygrid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,2.4vw,30px); margin-top:clamp(36px,4.4vw,56px); }
-  .ab-verify .whycard{ position:relative; overflow:hidden; aspect-ratio:4/3; display:flex; align-items:flex-end; box-shadow:0 40px 70px -44px rgba(60,40,30,.5); }
-  .ab-verify .whycard img, .ab-verify .whycard video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .ab-verify .whycard::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(28,20,14,.85), rgba(28,20,14,.30) 52%, rgba(28,20,14,.05)); }
-  .ab-verify .whycard .c{ position:relative; z-index:1; padding:clamp(26px,3vw,40px); color:var(--white); }
-  .ab-verify .whycard .cl{ font-family:var(--sans); font-weight:600; font-size:.66rem; letter-spacing:.26em; text-transform:uppercase; color:var(--amber); margin-bottom:12px; }
-  .ab-verify .whycard .stat{ font-family:var(--display); line-height:1; font-size:clamp(2.1rem,4vw,3.1rem); letter-spacing:-1px; }
-  .ab-verify .whycard p{ color:rgba(255,255,255,.86); font-size:.95rem; line-height:1.6; margin-top:14px; max-width:34ch; }
-  .ab-verify .more{ margin-top:clamp(34px,4vw,52px); }
-  @media(max-width:760px){ .ab-verify .whygrid{ grid-template-columns:1fr; } }
 
   .ab-values{ background:var(--sage-tint); }
   .ab-values .head{ max-width:34ch; }
@@ -577,7 +589,7 @@
   .ab-ruo .box p{ margin-top:14px; color:var(--muted); font-size:1rem; line-height:1.75; max-width:66ch; margin-inline:auto; }
 
   .ab-cta{ background:var(--sand); text-align:center; }
-  .ab-cta h2{ font-size:clamp(2.2rem,4.4vw,3.4rem); color:var(--ink); max-width:20ch; margin:0 auto; letter-spacing:-1px; }
+  .ab-cta h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); max-width:20ch; margin:0 auto; letter-spacing:-1px; }
   .ab-cta .row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:32px; }
 </style>
 <script type="application/ld+json">
@@ -621,7 +633,7 @@
         <h1 class="reveal">The lab behind every vial.</h1>
         <p class="hsub reveal" data-d="1">Vivo makes research-grade peptides the deliberate way — each sequence synthesised, purified, and independently verified to &ge;99% purity, then filled in California.</p>
         <div class="cta-row reveal" data-d="2">
-          <a href="shop.html" class="btn btn-primary">Explore the catalog</a>
+          <a href="shop.html" class="btn btn-dark">Explore the catalog</a>
           <a href="coa.html" class="btn btn-dark">View Certificates</a>
         </div>
       </div>
@@ -640,26 +652,29 @@
   </div>
 </section>
 
-<section class="section ab-story">
-  <div class="wrap">
-    <div class="inner">
-      <p class="statement reveal">A single sequence, purified and verified — with <em>proof</em> of exactly what is in every vial.</p>
-      <p class="reveal" data-d="1">Vivo was built on a simple conviction: research deserves materials you can trust. Every compound we make is a single, well-characterised sequence — concentrated, tested, and documented so it can be studied with confidence.</p>
-    </div>
-  </div>
-</section>
-
 <section class="section ab-steps">
   <div class="wrap">
-    <div class="sec-head reveal" style="max-width:34ch">
+    <div class="ab-head reveal">
       <h2>How a Vivo peptide is made</h2>
     </div>
-    <div class="grid">
-      <div class="step reveal"><div class="num">01</div><h3>Synthesis</h3><p>Each peptide is built as a single defined sequence by solid-phase synthesis — the same chemistry used in clinical-grade production.</p></div>
-      <div class="step reveal" data-d="1"><div class="num">02</div><h3>Purification</h3><p>The crude peptide is purified by preparative HPLC to strip away synthesis by-products, TFA salts, and incomplete chains.</p></div>
-      <div class="step reveal" data-d="2"><div class="num">03</div><h3>Verification</h3><p>Independent HPLC confirms &ge;99% purity; LC-MS confirms identity and exact mass. Results are recorded per lot.</p></div>
-      <div class="step reveal" data-d="3"><div class="num">04</div><h3>Fill &amp; finish</h3><p>Verified compound is lyophilised and filled into vials in a controlled California facility — 5&ndash;10 mg of compound and nothing else.</p></div>
-      <div class="step reveal" data-d="3"><div class="num">05</div><h3>Documented</h3><p>Every lot ships with its Certificate of Analysis and temperature-aware, discreet packaging.</p></div>
+    <div class="proc">
+      <div class="proc-visual reveal">
+        <video autoplay muted loop playsinline preload="metadata" poster="clearliquid_card.jpg">
+          <source src="clearliquid_card.mp4" type="video/mp4">
+        </video>
+        <div class="proc-track" id="procTrack"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <div class="proc-overlay">
+          <div class="proc-num" id="procNum">01</div>
+          <div class="proc-name" id="procName">Synthesis</div>
+        </div>
+      </div>
+      <div class="proc-steps" id="procSteps">
+        <div class="pstep active" data-n="01" data-name="Synthesis"><div class="num">Step 01</div><h3>Synthesis</h3><p>Each peptide is built as a single defined sequence by solid-phase synthesis — the same chemistry used in clinical-grade production.</p></div>
+        <div class="pstep" data-n="02" data-name="Purification"><div class="num">Step 02</div><h3>Purification</h3><p>The crude peptide is purified by preparative HPLC to strip away synthesis by-products, TFA salts, and incomplete chains.</p></div>
+        <div class="pstep" data-n="03" data-name="Verification"><div class="num">Step 03</div><h3>Verification</h3><p>Independent HPLC confirms &ge;99% purity; LC-MS confirms identity and exact mass. Results are recorded per lot.</p></div>
+        <div class="pstep" data-n="04" data-name="Fill &amp; finish"><div class="num">Step 04</div><h3>Fill &amp; finish</h3><p>Verified compound is lyophilised and filled into vials in a controlled California facility — 5&ndash;10 mg of compound and nothing else.</p></div>
+        <div class="pstep" data-n="05" data-name="Documented"><div class="num">Step 05</div><h3>Documented</h3><p>Every lot ships with its Certificate of Analysis and temperature-aware, discreet packaging.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -680,39 +695,11 @@
   </div>
 </section>
 
-<section class="section ab-verify">
-  <div class="wrap">
-    <div class="whyhead">
-      <h2 class="reveal">Verified to the molecule</h2>
-    </div>
-    <div class="whygrid">
-      <article class="whycard reveal">
-        <video autoplay muted loop playsinline preload="metadata" poster="clearliquid_card.jpg">
-          <source src="clearliquid_card.mp4" type="video/mp4">
-        </video>
-        <div class="c">
-          <div class="cl">Purity</div>
-          <div class="stat">&ge;99%</div>
-          <p>Confirmed by independent HPLC — no fillers, no salts, just the peptide.</p>
-        </div>
-      </article>
-      <article class="whycard reveal" data-d="1">
-        <img src="peptideliquid.jpg" alt="Research peptide in solution" loading="lazy">
-        <div class="c">
-          <div class="cl">Identity</div>
-          <div class="stat">HPLC + LC-MS</div>
-          <p>Two independent methods confirm purity, identity, and exact mass — recorded per lot.</p>
-        </div>
-      </article>
-    </div>
-    <div class="more reveal"><a href="coa.html" class="btn btn-dark">View Certificates of Analysis <span class="arrow">&rarr;</span></a></div>
-  </div>
-</section>
 
 <section class="section ab-values">
   <div class="wrap">
-    <div class="head">
-      <h2 class="reveal">Four standards, no exceptions</h2>
+    <div class="ab-head reveal">
+      <h2>Four standards, no exceptions</h2>
     </div>
     <div class="grid">
       <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg></div><h3>Transparency</h3><p>Every claim is backed by a document you can read — not a slogan.</p></div>
@@ -964,6 +951,31 @@
     }, { threshold:0.12, rootMargin:'0px 0px -6% 0px' });
     reveals.forEach(el => io.observe(el));
   }
+
+  /* ---------- About: pinned process + parallax band ---------- */
+  (function(){
+    var psteps = Array.prototype.slice.call(document.querySelectorAll('.ab-steps .pstep'));
+    var sec = document.querySelector('.ab-steps');
+    var procNum = document.getElementById('procNum');
+    var procName = document.getElementById('procName');
+    var track = document.getElementById('procTrack');
+    var dots = track ? Array.prototype.slice.call(track.querySelectorAll('i')) : [];
+    if(sec && psteps.length && ('IntersectionObserver' in window)){
+      sec.classList.add('js-pinned');
+      var setActive = function(el){
+        var i = psteps.indexOf(el);
+        psteps.forEach(function(s){ s.classList.remove('active'); });
+        el.classList.add('active');
+        if(procNum) procNum.textContent = el.getAttribute('data-n');
+        if(procName) procName.textContent = el.getAttribute('data-name');
+        dots.forEach(function(d, di){ d.classList.toggle('on', di === i); });
+      };
+      var sio = new IntersectionObserver(function(ents){
+        ents.forEach(function(e){ if(e.isIntersecting) setActive(e.target); });
+      }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+      psteps.forEach(function(s){ sio.observe(s); });
+    }
+  })();
 
 </script>
 
