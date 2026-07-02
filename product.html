@@ -147,15 +147,6 @@
   .pdp .add.added{ background:var(--sage-deep); color:var(--white); border-color:var(--sage-deep); }
   .pdp .add.added:hover{ background:var(--sage-deep); color:var(--white); border-color:var(--sage-deep); }
   .pdp .ruo{ font-size:.72rem; letter-spacing:.04em; color:var(--muted); }
-  /* buy-box trust / verification block */
-  .pdp .trustrow{ list-style:none; margin-top:24px; padding-top:22px; border-top:1px solid var(--line); display:grid; gap:11px; }
-  .pdp .trustrow li{ display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:var(--ink); line-height:1.45; }
-  .pdp .trustrow li svg{ width:18px; height:18px; flex-shrink:0; color:var(--sage-deep); margin-top:1px; }
-  .pdp .assure{ margin-top:20px; }
-  .pdp .assure-coa{ display:inline-flex; align-items:center; gap:.4em; font-size:.84rem; font-weight:600; color:var(--sage-deep); }
-  .pdp .assure-coa .arrow{ transition:transform .2s var(--ease-out); }
-  .pdp .assure-coa:hover .arrow{ transform:translateX(3px); }
-  .pdp .assure-note{ margin-top:13px; font-size:.76rem; color:var(--muted); line-height:1.55; max-width:48ch; }
   @media (max-width:820px){ .pdp .grid{ grid-template-columns:1fr; } .pdp .info{ position:static; } .pdp .gallery{ max-width:520px; } }
 
   /* DETAILS */
@@ -537,14 +528,6 @@
             </div>
             <div class="buyrow reveal">
               <button class="btn btn-dark add" data-id="${product.id}::${esc(sizes[0].dose)}::${sizes[0].price}">Add to cart</button>
-            </div>
-            <ul class="trustrow reveal">
-              <li>${check}<span>Independently tested by HPLC &amp; LC-MS</span></li>
-              <li>${check}<span>In stock &mdash; ships in 1&ndash;2 days, discreet &amp; temperature-aware</span></li>
-            </ul>
-            <div class="assure reveal">
-              <a href="coa.html" class="assure-coa">View Certificates of Analysis <span class="arrow">&rarr;</span></a>
-              <p class="assure-note">Purity guaranteed &mdash; or your vial replaced.</p>
             </div>
           </div>
         </div>
