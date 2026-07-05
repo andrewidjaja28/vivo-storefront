@@ -37,7 +37,7 @@
     --black:#1C1A17;
     --white:#fffef2;
     --ink:#2e2c28;
-    --muted:#6b6760;
+    --muted:#575049;
     --line:rgba(28,26,23,.12);
 
     --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
@@ -115,7 +115,7 @@
   /* ============================================================
      ANNOUNCEMENT BAR
      ============================================================ */
-  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-family:var(--mono); font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-family:var(--mono); font-size:clamp(.46rem,1.9vw,.62rem); letter-spacing:.08em; text-transform:uppercase; font-weight:600; }
   .announce .track{ display:flex; gap:42px; align-items:center; white-space:nowrap; animation:marq 26s linear infinite; }
   .announce .track span{ display:inline-flex; align-items:center; gap:42px; }
   .announce .track i{ width:4px; height:4px; border-radius:0; background:var(--amber); display:inline-block; }
@@ -418,21 +418,48 @@
   .coahead{ max-width:720px; }
   .coahead h1{ font-size:clamp(2.2rem,4.8vw,3.4rem); color:var(--ink); margin-top:14px; }
   .coahead p{ margin-top:16px; color:var(--muted); font-size:1.05rem; max-width:56ch; line-height:1.7; }
-  .coanote{ background:var(--sage-tint); border-radius:0; padding:20px 24px; margin-top:28px; max-width:780px; font-size:.95rem; color:var(--ink); line-height:1.6; }
-  .coatable{ margin-top:clamp(34px,4.4vw,52px); border-top:1px solid var(--line); }
-  .coahdr, .coarow{ display:grid; grid-template-columns:1.4fr 1fr .8fr 1fr .8fr .9fr; gap:16px; align-items:center; padding:16px 4px; border-bottom:1px solid var(--line); }
-  .coahdr{ font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
-  .coarow{ font-size:.9rem; color:var(--ink); }
-  .cprod{ display:flex; align-items:center; gap:10px; font-weight:600; }
-  .cdot{ width:11px; height:11px; border-radius:50%; flex-shrink:0; }
-  .cdl a{ font-weight:600; color:var(--sage-deep); border-bottom:1px solid rgba(61,92,54,.4); }
-  .cdl a:hover{ border-color:var(--sage-deep); }
-  @media (max-width:760px){
-    .coahdr{ display:none; }
-    .coarow{ grid-template-columns:1fr 1fr; gap:8px 16px; padding:18px 4px; }
-    .coarow > div[data-l]::before{ content:attr(data-l) ": "; color:var(--muted); font-size:.78rem; }
-    .cprod{ grid-column:1 / -1; font-size:1.05rem; }
-    .cdl{ grid-column:1 / -1; }
+  /* ---------- certificate viewer ---------- */
+  .certview{ margin-top:clamp(34px,4.4vw,56px); display:grid; grid-template-columns:248px 1fr; gap:clamp(20px,2.4vw,40px); align-items:start; }
+  .certlist{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
+  .certlist button{ display:grid; grid-template-columns:12px 1fr; gap:12px; align-items:center; text-align:left; background:transparent; border:0; border-bottom:1px solid var(--line); padding:15px 8px; cursor:pointer; color:var(--ink); transition:background-color .2s ease; }
+  .certlist button:hover{ background:var(--sand); }
+  .certlist button.active{ background:var(--sage-tint); }
+  .certlist .cl-dot{ width:12px; height:12px; border-radius:50%; }
+  .certlist .cl-name{ display:block; font-weight:600; font-size:.95rem; letter-spacing:-.2px; }
+  .certlist .cl-batch{ display:block; font-family:var(--mono); font-size:.66rem; color:var(--muted); margin-top:3px; letter-spacing:.03em; }
+  .certdoc{ background:var(--white); border:1px solid var(--line); box-shadow:0 44px 90px -60px rgba(40,28,20,.45); }
+  .cert{ position:relative; padding:clamp(24px,3vw,44px); }
+  .cert-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--line); }
+  .cert-brand{ font-family:var(--display); font-size:1.5rem; letter-spacing:-.5px; color:var(--ink); line-height:1; }
+  .cert-brand span{ display:block; font-family:var(--mono); font-size:.58rem; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+  .cert-meta{ text-align:right; flex-shrink:0; }
+  .cert-meta .cm-t{ font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+  .cert-meta .cm-b{ font-family:var(--mono); font-size:.82rem; color:var(--ink); margin-top:6px; }
+  .cert-title{ display:flex; align-items:flex-start; gap:12px; margin-top:22px; }
+  .cert-title .ct-dot{ width:15px; height:15px; border-radius:50%; margin-top:6px; flex-shrink:0; }
+  .cert-title h2{ font-family:var(--display); font-size:clamp(1.7rem,3vw,2.5rem); color:var(--ink); letter-spacing:-1px; line-height:1; }
+  .cert-sub{ font-size:.8rem; color:var(--muted); margin-top:9px; letter-spacing:.01em; }
+  .cert-headline{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:24px; }
+  .cert-headline .ch{ background:var(--white); padding:16px 18px; }
+  .cert-headline .ch-k{ font-size:.6rem; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); }
+  .cert-headline .ch-v{ font-family:var(--display); font-size:1.7rem; color:var(--ink); margin-top:9px; letter-spacing:-.5px; line-height:1; }
+  .cert-chart{ margin-top:28px; }
+  .cert-chart-head{ display:flex; justify-content:space-between; align-items:baseline; font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .cert-chart svg{ width:100%; height:auto; display:block; border:1px solid var(--line); background:#fffdf6; }
+  .cert-chart-note{ font-family:var(--mono); font-size:.7rem; color:var(--muted); margin-top:9px; }
+  .cert-table{ width:100%; border-collapse:collapse; margin-top:28px; font-size:.85rem; }
+  .cert-table th{ text-align:left; font-size:.6rem; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--ink); }
+  .cert-table td{ padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink); vertical-align:top; }
+  .cert-table td:last-child{ font-weight:600; text-align:right; white-space:nowrap; }
+  .cert-table .pass{ color:var(--sage-deep); }
+  .cert-foot{ margin-top:24px; padding-top:18px; border-top:1px solid var(--line); display:grid; gap:7px; font-size:.75rem; color:var(--muted); line-height:1.55; }
+  .cert-foot .cert-ruo{ color:var(--ink); font-weight:600; }
+  @media (max-width:820px){
+    .certview{ grid-template-columns:1fr; gap:20px; }
+    .certlist{ flex-direction:row; overflow-x:auto; border-top:0; scrollbar-width:none; gap:0; }
+    .certlist::-webkit-scrollbar{ display:none; }
+    .certlist button{ flex:0 0 auto; border-bottom:0; border-right:1px solid var(--line); grid-template-columns:10px auto; padding:12px 16px; }
+    .cert-headline .ch-v{ font-size:1.35rem; }
   }
 </style>
 </head>
@@ -510,14 +537,11 @@
     <div class="coahead">
       <div class="kicker reveal">Transparency</div>
       <h1 class="reveal" data-d="1">Certificates of Analysis</h1>
-      <p class="reveal" data-d="2">Every batch we ship is independently tested for purity and identity by HPLC and LC-MS. Each Certificate of Analysis lists the exact results for the lot in your vial — no averages, no marketing.</p>
-      <div class="coanote reveal" data-d="2">A Certificate of Analysis (CoA) is a verified document from an independent lab detailing the purity and mass of the synthesized compound, confirming it is free from synthesis impurities, TFA salts, and heavy metals.</div>
+      <p class="reveal" data-d="2">Every batch is independently tested for purity and identity by HPLC and LC-MS. Select a compound to view its certificate; each lot ships with its own batch-specific results.</p>
     </div>
-    <div class="coatable">
-      <div class="coahdr">
-        <div>Compound</div><div>Batch</div><div>Purity</div><div>Methods</div><div>Tested</div><div>Document</div>
-      </div>
-      <div id="coaBody"></div>
+    <div class="certview reveal" data-d="2">
+      <aside class="certlist" id="certList" aria-label="Select a compound"></aside>
+      <div class="certdoc" id="certDoc"></div>
     </div>
   </div>
 </section>
@@ -707,20 +731,105 @@
 
   renderCart();
 
-  /* ---------- certificates of analysis (rendered from product data) ---------- */
-  const coaBody = document.getElementById('coaBody');
-  if(coaBody){
-    coaBody.innerHTML = PRODUCTS.map(p => {
-      const batch = 'VV-' + p.id.toUpperCase() + '-2406';
-      return `<div class="coarow">
-        <div class="cprod"><span class="cdot" style="background:${p.ph}"></span>${p.name}</div>
-        <div data-l="Batch">${batch}</div>
-        <div data-l="Purity">&ge; 99%</div>
-        <div data-l="Methods">HPLC · LC-MS</div>
-        <div data-l="Tested">Apr 2026</div>
-        <div class="cdl" data-l="Document"><a href="#" aria-label="Download ${p.name} Certificate of Analysis">Download PDF</a></div>
-      </div>`;
+  /* ---------- certificate viewer (designed COA + HPLC chromatogram) ---------- */
+  const certList = document.getElementById('certList');
+  const certDoc  = document.getElementById('certDoc');
+  if(certList && certDoc){
+    const hash = s => { let h = 5381; for(let i=0;i<s.length;i++) h = ((h*33) ^ s.charCodeAt(i)) >>> 0; return h; };
+    const specs = p => {
+      const h = hash(p.id);
+      return {
+        purity: (99.1 + (h % 60)/100).toFixed(1),
+        tfa:    (0.2 + (h % 5)/10).toFixed(1),
+        water:  (2.4 + (h % 38)/10).toFixed(1),
+        rt:     (4.6 + (h % 42)/10).toFixed(1),
+        batch:  'VV-' + p.id.toUpperCase().replace('+','') + '-2406'
+      };
+    };
+    const chromo = (p, s) => {
+      const W = 620, base = 176, top = 30, N = 260, xmax = 12, A = base - top;
+      const rt = parseFloat(s.rt);
+      const peaks = [
+        { mu: rt,       amp: A,        sig: 0.16 },
+        { mu: 1.15,     amp: A*0.045,  sig: 0.22 },
+        { mu: rt - 1.7, amp: A*0.02,   sig: 0.12 },
+        { mu: rt + 2.3, amp: A*0.017,  sig: 0.13 }
+      ];
+      let line = '';
+      for(let i=0;i<=N;i++){
+        const t = xmax*i/N;
+        let y = 0; peaks.forEach(pk => { y += pk.amp*Math.exp(-Math.pow(t-pk.mu,2)/(2*pk.sig*pk.sig)); });
+        line += (i===0?'M':'L') + ((i/N)*W).toFixed(1) + ',' + (base - y).toFixed(1) + ' ';
+      }
+      const fill = line + 'L'+W+','+base+' L0,'+base+' Z';
+      let grid = '';
+      for(let g=0;g<=6;g++){
+        const gx = (g/6)*W;
+        grid += `<line x1="${gx.toFixed(0)}" y1="16" x2="${gx.toFixed(0)}" y2="${base}" stroke="rgba(28,26,23,.06)"/>`;
+        grid += `<text x="${gx.toFixed(0)}" y="${base+15}" font-size="9" fill="#9a938a" text-anchor="middle" font-family="monospace">${g*2}</text>`;
+      }
+      const peakX = (rt/xmax)*W;
+      return `<svg viewBox="0 0 ${W} 200" role="img" aria-label="RP-HPLC purity trace for ${p.name}">
+        ${grid}
+        <line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="rgba(28,26,23,.28)"/>
+        <path d="${fill}" fill="${p.ph}" fill-opacity=".13"/>
+        <path d="${line}" fill="none" stroke="#2e2c28" stroke-width="1.4" stroke-linejoin="round"/>
+        <line x1="${peakX.toFixed(0)}" y1="${base}" x2="${peakX.toFixed(0)}" y2="${top-4}" stroke="${p.ph}" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="${(peakX+7).toFixed(0)}" y="${top-1}" font-size="10" fill="#2e2c28" font-family="monospace">${s.purity}% area</text>
+        <text x="7" y="13" font-size="9" fill="#9a938a" font-family="monospace">mAU · UV 214 nm</text>
+        <text x="${W-7}" y="${base+15}" font-size="9" fill="#9a938a" text-anchor="end" font-family="monospace">min</text>
+      </svg>`;
+    };
+    const render = p => {
+      const s = specs(p);
+      certDoc.innerHTML = `<article class="cert">
+        <header class="cert-top">
+          <div class="cert-brand">Vivo<span>Analytical</span></div>
+          <div class="cert-meta"><div class="cm-t">Certificate of Analysis</div><div class="cm-b">Lot ${s.batch}</div></div>
+        </header>
+        <div class="cert-title">
+          <span class="ct-dot" style="background:${p.ph}"></span>
+          <div><h2>${p.name}</h2><div class="cert-sub">${p.cat} · ${p.dose} · lyophilised · Research Use Only</div></div>
+        </div>
+        <div class="cert-headline">
+          <div class="ch"><div class="ch-k">Purity, HPLC</div><div class="ch-v">${s.purity}%</div></div>
+          <div class="ch"><div class="ch-k">Identity, LC-MS</div><div class="ch-v">Confirmed</div></div>
+          <div class="ch"><div class="ch-k">Released</div><div class="ch-v" style="font-size:1.15rem">Apr 2026</div></div>
+        </div>
+        <div class="cert-chart">
+          <div class="cert-chart-head"><span>RP-HPLC purity trace</span><span>Single dominant species</span></div>
+          ${chromo(p, s)}
+          <div class="cert-chart-note">Main peak ${s.purity}% area at retention ${s.rt} min.</div>
+        </div>
+        <table class="cert-table">
+          <thead><tr><th>Parameter</th><th>Method</th><th>Specification</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Appearance</td><td>Visual</td><td>White to off-white powder</td><td class="pass">Conforms</td></tr>
+            <tr><td>Purity</td><td>RP-HPLC</td><td>&ge; 99.0%</td><td>${s.purity}%</td></tr>
+            <tr><td>Identity / mass</td><td>LC-MS (ESI)</td><td>Consistent with theoretical</td><td class="pass">Confirmed</td></tr>
+            <tr><td>TFA content</td><td>RP-HPLC</td><td>&le; 1.0%</td><td>${s.tfa}%</td></tr>
+            <tr><td>Water content</td><td>Karl Fischer</td><td>&le; 8.0%</td><td>${s.water}%</td></tr>
+            <tr><td>Heavy metals</td><td>ICP-MS</td><td>&le; 10 ppm</td><td class="pass">Pass</td></tr>
+          </tbody>
+        </table>
+        <div class="cert-foot">
+          <div>Analysis performed by an independent third-party laboratory. Methods: RP-HPLC, LC-MS (ESI), ICP-MS, Karl Fischer titration.</div>
+          <div>Released by Vivo QA/QC, California. Representative certificate; each lot ships with its own batch-specific results.</div>
+          <div class="cert-ruo">For Research Use Only. Not for human or animal consumption.</div>
+        </div>
+      </article>`;
+    };
+    certList.innerHTML = PRODUCTS.map((p,i) => {
+      const s = specs(p);
+      return `<button type="button" class="cl${i===0?' active':''}" data-i="${i}"><span class="cl-dot" style="background:${p.ph}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
     }).join('');
+    certList.addEventListener('click', e => {
+      const b = e.target.closest('button[data-i]'); if(!b) return;
+      certList.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      render(PRODUCTS[+b.dataset.i]);
+    });
+    render(PRODUCTS[0]);
   }
 
   /* ============================================================

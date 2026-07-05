@@ -37,7 +37,7 @@
     --black:#1C1A17;
     --white:#fffef2;
     --ink:#2e2c28;
-    --muted:#6b6760;
+    --muted:#575049;
     --line:rgba(28,26,23,.12);
 
     --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
@@ -115,7 +115,7 @@
   /* ============================================================
      ANNOUNCEMENT BAR
      ============================================================ */
-  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-family:var(--mono); font-size:clamp(.5rem,2.1vw,.64rem); letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .announce{ position:fixed; top:0; left:0; right:0; height:var(--bar-h); z-index:60; background:var(--black); color:rgba(250,248,244,.9); display:flex; align-items:center; justify-content:center; padding:0 14px; text-align:center; white-space:nowrap; overflow:hidden; font-family:var(--mono); font-size:clamp(.46rem,1.9vw,.62rem); letter-spacing:.08em; text-transform:uppercase; font-weight:600; }
   .announce .track{ display:flex; gap:42px; align-items:center; white-space:nowrap; animation:marq 26s linear infinite; }
   .announce .track span{ display:inline-flex; align-items:center; gap:42px; }
   .announce .track i{ width:4px; height:4px; border-radius:0; background:var(--amber); display:inline-block; }
@@ -517,14 +517,13 @@
   .ab-head{ margin-inline:auto; text-align:center; max-width:36ch; margin-bottom:clamp(40px,5vw,60px); }
   .ab-head h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); letter-spacing:-1px; line-height:1.05; }
 
-  .ab-stats{ background:var(--sand); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .ab-stats .grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
-  .ab-stats .s{ padding:clamp(38px,4.5vw,64px) clamp(18px,2vw,34px); border-left:1px solid var(--line); }
-  .ab-stats .s:first-child{ border-left:0; }
-  .ab-stats .n{ font-family:var(--display); font-size:clamp(2.4rem,3.8vw,3.5rem); letter-spacing:-1.5px; color:var(--sage-deep); line-height:1; }
-  .ab-stats .l{ margin-top:14px; font-size:.64rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink); font-weight:700; }
-  .ab-stats .d{ margin-top:8px; font-size:.85rem; color:var(--muted); line-height:1.5; }
-  @media(max-width:780px){ .ab-stats .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } .ab-stats .s:nth-child(2){ border-left:0; } .ab-stats .s:nth-child(n+3){ border-top:1px solid var(--line); } }
+  .ab-specs{ background:var(--sand); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding-block:clamp(40px,5vw,72px); }
+  .ab-specs .lrow{ display:grid; grid-template-columns:1fr auto; gap:clamp(20px,3vw,48px); align-items:center; padding:clamp(18px,2.4vw,30px) 2px; border-top:1px solid rgba(28,26,23,.14); }
+  .ab-specs .lrow:first-child{ border-top:0; }
+  .ab-specs .lk{ font-family:var(--display); font-size:clamp(1.3rem,2.2vw,1.9rem); color:var(--ink); letter-spacing:-.5px; line-height:1.05; }
+  .ab-specs .lm{ font-family:var(--mono); font-size:.7rem; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; margin-top:8px; }
+  .ab-specs .lv{ font-size:clamp(1.05rem,1.7vw,1.5rem); color:var(--sage-deep); font-weight:600; text-align:right; white-space:nowrap; letter-spacing:-.2px; }
+  @media(max-width:600px){ .ab-specs .lk{ font-size:1.25rem; } .ab-specs .lv{ font-size:1.05rem; } }
 
 
   /* process — pinned scroll sequence */
@@ -539,7 +538,7 @@
   .ab-steps .proc-track i{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.42); transition:background-color .35s ease, transform .35s ease; }
   .ab-steps .proc-track i.on{ background:var(--champagne); transform:scale(1.3); }
   .ab-steps .proc-steps{ display:flex; flex-direction:column; }
-  .ab-steps .pstep{ min-height:54vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(20px,3vw,40px) 0; border-top:1px solid var(--line); transition:opacity .45s var(--ease-out); }
+  .ab-steps .pstep{ min-height:40vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(20px,3vw,40px) 0; border-top:1px solid var(--line); transition:opacity .45s var(--ease-out); }
   .ab-steps .pstep:first-child{ border-top:0; }
   .ab-steps.js-pinned .pstep{ opacity:.34; }
   .ab-steps.js-pinned .pstep.active{ opacity:1; }
@@ -574,15 +573,12 @@
 
 
   .ab-values{ background:var(--sage-tint); }
-  .ab-values .head{ max-width:34ch; }
-  .ab-values .grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:clamp(40px,5vw,60px); }
-  .ab-values .card{ background:var(--white); border:1px solid rgba(61,92,54,.14); padding:clamp(26px,2.4vw,34px); display:flex; flex-direction:column; }
-  .ab-values .card .ic{ width:28px; height:28px; color:var(--sage-deep); }
-  .ab-values .card .ic svg{ width:100%; height:100%; display:block; }
-  .ab-values .card h3{ font-family:var(--sans); font-weight:500; font-size:1.2rem; margin-top:20px; color:var(--ink); letter-spacing:-.4px; }
-  .ab-values .card p{ margin-top:12px; font-size:.9rem; color:var(--muted); line-height:1.6; }
-  @media(max-width:900px){ .ab-values .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media(max-width:520px){ .ab-values .grid{ grid-template-columns:1fr; } }
+  .ab-std-list{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,3.6vw,56px) clamp(40px,6vw,90px); margin-top:clamp(40px,5vw,64px); }
+  .ab-std-list li{ display:grid; grid-template-columns:auto 1fr; gap:clamp(16px,2vw,26px); align-items:baseline; }
+  .ab-std-list .sn{ font-family:var(--display); font-size:clamp(1.9rem,2.8vw,2.6rem); color:var(--sage-deep); opacity:.5; line-height:1; letter-spacing:-1px; }
+  .ab-std-list h3{ font-family:var(--display); font-weight:400; font-size:clamp(1.5rem,2.3vw,2rem); color:var(--ink); letter-spacing:-.5px; line-height:1.05; }
+  .ab-std-list p{ margin-top:12px; color:var(--muted); font-size:.95rem; line-height:1.65; max-width:44ch; }
+  @media(max-width:640px){ .ab-std-list{ grid-template-columns:1fr; gap:clamp(28px,6vw,36px); } }
 
   .ab-ruo{ background:var(--white); }
   .ab-ruo .box{ border:1px solid var(--line); padding:clamp(32px,4.4vw,56px); max-width:900px; margin:0 auto; text-align:center; }
@@ -641,14 +637,12 @@
   </div>
 </section>
 
-<section class="ab-stats">
+<section class="ab-specs">
   <div class="wrap">
-    <div class="grid">
-      <div class="s reveal"><div class="n">&ge;99%</div><div class="l">Purity</div><div class="d">Verified by HPLC on every batch</div></div>
-      <div class="s reveal" data-d="1"><div class="n">100%</div><div class="l">US-made</div><div class="d">Synthesised &amp; filled in California</div></div>
-      <div class="s reveal" data-d="2"><div class="n">2</div><div class="l">Methods</div><div class="d">HPLC purity + LC-MS identity</div></div>
-      <div class="s reveal" data-d="3"><div class="n">1:1</div><div class="l">Batch to CoA</div><div class="d">A Certificate of Analysis for every lot</div></div>
-    </div>
+    <div class="lrow reveal"><div><div class="lk">Purity</div><div class="lm">RP-HPLC, every batch</div></div><div class="lv">&ge; 99%</div></div>
+    <div class="lrow reveal" data-d="1"><div><div class="lk">Identity</div><div class="lm">LC-MS, ESI</div></div><div class="lv">Confirmed</div></div>
+    <div class="lrow reveal" data-d="2"><div><div class="lk">Origin</div><div class="lm">Synthesised &amp; filled in-state</div></div><div class="lv">California, USA</div></div>
+    <div class="lrow reveal" data-d="3"><div><div class="lk">Documentation</div><div class="lm">Certificate of Analysis</div></div><div class="lv">Every lot</div></div>
   </div>
 </section>
 
@@ -701,12 +695,12 @@
     <div class="ab-head reveal">
       <h2>Four standards, no exceptions</h2>
     </div>
-    <div class="grid">
-      <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg></div><h3>Transparency</h3><p>Every claim is backed by a document you can read — not a slogan.</p></div>
-      <div class="card reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3s6 6.4 6 10.5a6 6 0 0 1-12 0C6 9.4 12 3 12 3Z"/></svg></div><h3>Purity</h3><p>A single compound, verified — no fillers, no salts, no surprises.</p></div>
-      <div class="card reveal" data-d="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v5.5c0 4.8-3.4 7.7-8 9-4.6-1.3-8-4.2-8-9V6l8-3Z"/></svg></div><h3>Honesty</h3><p>Research Use Only, labelled plainly on every single vial.</p></div>
-      <div class="card reveal" data-d="3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9V8a3 3 0 0 1 3-3h11M20 15v1a3 3 0 0 1-3 3H6"/><path d="M16 2l3 3-3 3M8 22l-3-3 3-3"/></svg></div><h3>Consistency</h3><p>Automated synthesis keeps every batch identical to the last.</p></div>
-    </div>
+    <ol class="ab-std-list">
+      <li class="reveal"><span class="sn">01</span><div><h3>Transparency</h3><p>Every claim is backed by a document you can read, not a slogan.</p></div></li>
+      <li class="reveal" data-d="1"><span class="sn">02</span><div><h3>Purity</h3><p>A single compound, verified: no fillers, no salts, no surprises.</p></div></li>
+      <li class="reveal" data-d="2"><span class="sn">03</span><div><h3>Honesty</h3><p>Research Use Only, labelled plainly on every single vial.</p></div></li>
+      <li class="reveal" data-d="3"><span class="sn">04</span><div><h3>Consistency</h3><p>Automated synthesis keeps every batch identical to the last.</p></div></li>
+    </ol>
   </div>
 </section>
 
