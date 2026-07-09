@@ -429,14 +429,27 @@
   .coahead h1{ font-size:clamp(2.2rem,4.8vw,3.4rem); color:var(--ink); margin-top:14px; }
   .coahead p{ margin-top:16px; color:var(--muted); font-size:1.05rem; max-width:56ch; line-height:1.7; }
   /* ---------- certificate viewer ---------- */
-  .certview{ margin-top:clamp(34px,4.4vw,56px); display:grid; grid-template-columns:248px 1fr; gap:clamp(20px,2.4vw,40px); align-items:start; }
-  .certlist{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
-  .certlist button{ display:grid; grid-template-columns:12px 1fr; gap:12px; align-items:center; text-align:left; background:transparent; border:0; border-bottom:1px solid var(--line); padding:15px 8px; cursor:pointer; color:var(--ink); transition:background-color .2s ease; }
+  .certview{ margin-top:clamp(34px,4.4vw,56px); display:grid; grid-template-columns:264px 1fr; gap:clamp(20px,2.4vw,40px); align-items:start; }
+  .cert-nav{ position:sticky; top:96px; }
+  .cert-picker{ display:none; }  /* mobile-only trigger */
+  .cert-search{ position:relative; display:flex; align-items:center; }
+  .cert-search svg{ position:absolute; left:12px; width:16px; height:16px; color:var(--muted); pointer-events:none; }
+  .cert-search input{ width:100%; background:#fffdf6; border:1px solid var(--line); border-radius:0; color:var(--ink); font:inherit; font-size:.9rem; padding:.72em .9em .72em 2.35em; outline:none; transition:border-color .2s ease; }
+  .cert-search input::placeholder{ color:var(--muted); }
+  .cert-search input:focus{ border-color:var(--sage-deep); }
+  .cert-search input::-webkit-search-cancel-button{ -webkit-appearance:none; }
+  .certlist{ display:block; margin-top:14px; max-height:calc(100vh - 200px); overflow-y:auto; overscroll-behavior:contain; }
+  .cert-group + .cert-group{ margin-top:4px; }
+  .cg-head{ display:flex; align-items:center; gap:9px; font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); padding:15px 4px 8px; position:sticky; top:0; background:var(--white); z-index:1; }
+  .cg-head .cg-dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .cg-head .cg-n{ margin-left:auto; font-family:var(--mono); font-weight:600; letter-spacing:.05em; opacity:.6; }
+  .certlist button{ display:grid; grid-template-columns:12px 1fr; gap:12px; align-items:center; width:100%; text-align:left; background:transparent; border:0; border-bottom:1px solid var(--line); padding:13px 8px; cursor:pointer; color:var(--ink); transition:background-color .18s ease; }
   .certlist button:hover{ background:var(--sand); }
   .certlist button.active{ background:var(--sage-tint); }
   .certlist .cl-dot{ width:12px; height:12px; border-radius:50%; }
   .certlist .cl-name{ display:block; font-weight:600; font-size:.95rem; letter-spacing:-.2px; }
   .certlist .cl-batch{ display:block; font-family:var(--mono); font-size:.66rem; color:var(--muted); margin-top:3px; letter-spacing:.03em; }
+  .cert-empty{ padding:22px 8px; font-size:.86rem; color:var(--muted); }
   .certdoc{ background:var(--white); border:1px solid var(--line); box-shadow:0 44px 90px -60px rgba(40,28,20,.45); }
   .cert{ position:relative; padding:clamp(24px,3vw,44px); }
   .cert-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--line); }
@@ -473,10 +486,19 @@
   .cert-foot{ margin-top:24px; padding-top:18px; border-top:1px solid var(--line); display:grid; gap:7px; font-size:.75rem; color:var(--muted); line-height:1.55; }
   .cert-foot .cert-ruo{ color:var(--ink); font-weight:600; }
   @media (max-width:820px){
-    .certview{ grid-template-columns:minmax(0,1fr); gap:20px; }
-    .certlist{ flex-direction:row; overflow-x:auto; border-top:0; scrollbar-width:none; gap:0; min-width:0; }
-    .certlist::-webkit-scrollbar{ display:none; }
-    .certlist button{ flex:0 0 auto; border-bottom:0; border-right:1px solid var(--line); grid-template-columns:10px auto; padding:12px 16px; }
+    .certview{ grid-template-columns:minmax(0,1fr); gap:16px; }
+    .cert-nav{ position:relative; top:0; z-index:30; }
+    .cert-picker{ display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:#fffdf6; border:1px solid var(--line); border-radius:0; padding:13px 16px; cursor:pointer; color:var(--ink); }
+    .cert-picker .cp-dot{ width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+    .cert-picker .cp-txt{ min-width:0; flex:1; }
+    .cert-picker .cp-name{ display:block; font-weight:600; font-size:.98rem; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .cert-picker .cp-batch{ display:block; font-family:var(--mono); font-size:.64rem; color:var(--muted); margin-top:2px; }
+    .cert-picker .cp-chev{ width:18px; height:18px; color:var(--muted); flex-shrink:0; transition:transform .25s ease; }
+    .cert-picker[aria-expanded="true"] .cp-chev{ transform:rotate(180deg); }
+    .cert-index{ position:absolute; top:calc(100% + 6px); left:0; right:0; background:var(--white); border:1px solid var(--line); box-shadow:0 30px 60px -30px rgba(40,28,20,.5); padding:12px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .2s ease, transform .2s ease, visibility .2s; }
+    .cert-index.open{ opacity:1; visibility:visible; transform:none; }
+    .cert-search input{ font-size:1rem; }
+    .certlist{ max-height:56vh; margin-top:12px; }
     .cert-headline .ch-v{ font-size:1.35rem; }
   }
   @media (max-width:560px){
@@ -575,7 +597,21 @@
       <p class="reveal" data-d="2">Every batch is independently tested for purity and identity by HPLC and LC-MS. Select a compound to view its certificate; each lot ships with its own batch-specific results.</p>
     </div>
     <div class="certview reveal" data-d="2">
-      <aside class="certlist" id="certList" aria-label="Select a compound"></aside>
+      <div class="cert-nav">
+        <button type="button" class="cert-picker" id="certPicker" aria-expanded="false" aria-controls="certIndex" aria-label="Choose a compound">
+          <span class="cp-dot" id="cpDot"></span>
+          <span class="cp-txt"><span class="cp-name" id="cpName">Select a compound</span><span class="cp-batch" id="cpBatch"></span></span>
+          <svg class="cp-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="cert-index" id="certIndex">
+          <div class="cert-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5 17 17"/></svg>
+            <input type="search" id="certSearch" placeholder="Search compound or lot" aria-label="Search certificates" autocomplete="off">
+          </div>
+          <div class="certlist" id="certList" role="listbox" aria-label="Compounds"></div>
+          <div class="cert-empty" id="certEmpty" hidden>No compounds match that search.</div>
+        </div>
+      </div>
       <div class="certdoc" id="certDoc"></div>
     </div>
   </div>
@@ -858,18 +894,87 @@
         </div>
       </article>`;
     };
-    certList.innerHTML = PRODUCTS.map((p,i) => {
+    /* ---- grouped, searchable index + mobile picker ---- */
+    const certSearch = document.getElementById('certSearch');
+    const certEmpty  = document.getElementById('certEmpty');
+    const certIndex  = document.getElementById('certIndex');
+    const certPicker = document.getElementById('certPicker');
+    const cpDot   = document.getElementById('cpDot');
+    const cpName  = document.getElementById('cpName');
+    const cpBatch = document.getElementById('cpBatch');
+    let currentIndex = 0;
+
+    const catColorOf = p => (BENEFIT_BY_ID[p.benefit] || {}).color || p.ph;
+    const matchesSearch = (p, q) => {
+      if(!q) return true;
       const s = specs(p);
-      const catColor = (BENEFIT_BY_ID[p.benefit] || {}).color || p.ph;
-      return `<button type="button" class="cl${i===0?' active':''}" data-i="${i}"><span class="cl-dot" style="background:${catColor}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
-    }).join('');
+      return p.name.toLowerCase().includes(q)
+        || (p.cat || '').toLowerCase().includes(q)
+        || s.batch.toLowerCase().includes(q);
+    };
+    const buttonHTML = (p, i) => {
+      const s = specs(p);
+      return `<button type="button" class="cl${i===currentIndex?' active':''}" role="option" aria-selected="${i===currentIndex}" data-i="${i}"><span class="cl-dot" style="background:${catColorOf(p)}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
+    };
+
+    function buildIndex(){
+      const q = (certSearch && certSearch.value || '').trim().toLowerCase();
+      const known = new Set(BENEFITS.map(b => b.id));
+      const groups = BENEFITS.map(b => ({ name:b.name, color:b.color, test:p => p.benefit === b.id }));
+      groups.push({ name:'Other', color:'var(--muted)', test:p => !known.has(p.benefit) });
+      let html = '', anyVisible = false;
+      groups.forEach(g => {
+        const items = PRODUCTS.map((p,i) => ({p,i})).filter(({p}) => g.test(p) && matchesSearch(p, q));
+        if(!items.length) return;
+        anyVisible = true;
+        html += `<div class="cert-group"><div class="cg-head"><span class="cg-dot" style="background:${g.color}"></span>${g.name}<span class="cg-n">${items.length}</span></div>`
+          + items.map(({p,i}) => buttonHTML(p, i)).join('')
+          + `</div>`;
+      });
+      certList.innerHTML = html;
+      if(certEmpty) certEmpty.hidden = anyVisible;
+    }
+
+    function updatePicker(p){
+      const s = specs(p);
+      if(cpDot)   cpDot.style.background = catColorOf(p);
+      if(cpName)  cpName.textContent = p.name;
+      if(cpBatch) cpBatch.textContent = 'Lot ' + s.batch;
+    }
+
+    function select(i, fromClick){
+      currentIndex = i;
+      const p = PRODUCTS[i];
+      render(p);
+      updatePicker(p);
+      certList.querySelectorAll('button[data-i]').forEach(x => {
+        const on = +x.dataset.i === i;
+        x.classList.toggle('active', on);
+        x.setAttribute('aria-selected', on);
+      });
+      if(fromClick) closeIndex();
+    }
+
+    function openIndex(){ certIndex.classList.add('open'); certPicker.setAttribute('aria-expanded','true'); }
+    function closeIndex(){ certIndex.classList.remove('open'); certPicker.setAttribute('aria-expanded','false'); }
+
+    certPicker.addEventListener('click', () => {
+      certIndex.classList.contains('open') ? closeIndex() : openIndex();
+    });
     certList.addEventListener('click', e => {
       const b = e.target.closest('button[data-i]'); if(!b) return;
-      certList.querySelectorAll('button').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      render(PRODUCTS[+b.dataset.i]);
+      select(+b.dataset.i, true);
     });
-    render(PRODUCTS[0]);
+    if(certSearch) certSearch.addEventListener('input', buildIndex);
+    document.addEventListener('click', e => {
+      if(!certIndex.classList.contains('open')) return;
+      if(certIndex.contains(e.target) || certPicker.contains(e.target)) return;
+      closeIndex();
+    });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeIndex(); });
+
+    buildIndex();
+    select(0, false);
   }
 
   /* ============================================================
