@@ -6,7 +6,8 @@
 <title>Vivo — Research-grade peptides, made in California</title>
 <meta name="description" content="Shop research-grade peptides from Vivo. Organised by research area, made in California. Live well, on purpose.">
 <link rel="canonical" href="https://vivo-storefront.netlify.app/">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="vivo-favicon.png">
+<link rel="apple-touch-icon" href="vivo-favicon.png">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
@@ -93,7 +94,7 @@
   .kicker{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
-  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; text-wrap:balance; }
 
   .section{ padding-block:clamp(72px, 9vw, 130px); }
   /* light "explore" zone continuous with the hero's cream surface */
@@ -310,7 +311,7 @@
 
 
   /* ===== EXPLORE BY RESEARCH AREA — dark cards that flow out of the hero ===== */
-  .bcards{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(12px,1.2vw,18px); }
+  .bcards{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(12px,1.2vw,18px); }
   .bcard{ position:relative; overflow:hidden; border-radius:0; aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:flex-end; padding:clamp(16px,1.5vw,24px); background:var(--sand); border:1px solid var(--line); transition:background-color 320ms var(--ease-out), border-color 320ms ease; }
   .bcard:hover, .bcard:focus-visible{ background:#E7DCC6; border-color:rgba(28,26,23,.2); }
   /* soft category-colored glow behind the vial */
@@ -601,22 +602,17 @@
       </a>
       <a class="bcard reveal" data-d="1" href="shop.html?benefit=recovery" style="--bc:#7B3B34">
         <img class="bvial" src="Products/Vials/clean/vial_bpc147.png" alt="" loading="lazy">
-        <h3>Recovery</h3>
+        <h3>Regenerative</h3>
         <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="2" href="shop.html?benefit=skin" style="--bc:#C4913A">
         <img class="bvial" src="Products/Vials/clean/vial_glow.png" alt="" loading="lazy">
-        <h3>Skin &amp; Structure</h3>
+        <h3>Dermal &amp; structural</h3>
         <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
       <a class="bcard reveal" data-d="3" href="shop.html?benefit=vitality" style="--bc:#3D5C36">
         <img class="bvial" src="Products/Vials/clean/vial_nad+.png" alt="" loading="lazy">
-        <h3>Mind &amp; Energy</h3>
-        <span class="blink">Browse <span class="arrow">→</span></span>
-      </a>
-      <a class="bcard reveal" data-d="4" href="shop.html" style="--bc:#46566b">
-        <img class="bvial" src="Products/Vials/clean/vial_aod9604.png" alt="" loading="lazy">
-        <h3>Performance</h3>
+        <h3>Neuroactive</h3>
         <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
     </div>
@@ -732,7 +728,7 @@
       </a>
     </div>
     <div class="rsmore-wrap reveal">
-      <button type="button" class="btn btn-dark" id="rsMore" aria-expanded="false">Read more</button>
+      <a class="btn btn-dark" href="research.html">Read more</a>
     </div>
   </div>
 </section>
@@ -1044,18 +1040,6 @@
   bd.addEventListener('click', shut);
   panel.addEventListener('click', function(e){ if(e.target.closest('a')) shut(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') shut(); });
-})();
-</script>
-<script>
-(function(){
-  var btn = document.getElementById('rsMore');
-  var list = document.querySelector('.rslist');
-  if(!btn || !list) return;
-  btn.addEventListener('click', function(){
-    var open = list.classList.toggle('expanded');
-    btn.textContent = open ? 'Show less' : 'Read more';
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
 })();
 </script>
 </body>

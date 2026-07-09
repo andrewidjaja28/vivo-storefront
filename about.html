@@ -6,7 +6,8 @@
 <title>About Vivo — Research Peptides Made &amp; Tested in California</title>
 <meta name="description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
 <link rel="canonical" href="https://vivo-storefront.netlify.app/about.html">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="vivo-favicon.png">
+<link rel="apple-touch-icon" href="vivo-favicon.png">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
@@ -82,7 +83,7 @@
   .kicker{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
-  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; text-wrap:balance; }
 
   .section{ padding-block:clamp(96px, 13vw, 190px); }
   .sec-head{ max-width:26ch; margin-bottom:clamp(44px,6vw,76px); }
@@ -542,7 +543,7 @@
   /* process — pinned scroll sequence */
   .ab-steps .proc{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:clamp(36px,6vw,90px); align-items:start; margin-top:clamp(40px,5vw,64px); }
   .ab-steps .proc-visual{ position:sticky; top:calc(var(--bar-h) + 96px); aspect-ratio:4/5; overflow:hidden; background:var(--sand); box-shadow:0 40px 80px -50px rgba(40,28,20,.6); }
-  .ab-steps .proc-visual video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .ab-steps .proc-visual video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .4s ease; }
   .ab-steps .proc-visual::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(28,20,14,.82), rgba(28,20,14,.12) 55%, rgba(28,20,14,.04)); }
   .ab-steps .proc-overlay{ position:absolute; left:0; bottom:0; z-index:1; padding:clamp(26px,3vw,40px); color:var(--white); }
   .ab-steps .proc-num{ font-family:var(--display); font-size:clamp(3rem,6vw,5rem); line-height:.9; letter-spacing:-2px; color:var(--champagne); }
@@ -685,8 +686,8 @@
     </div>
     <div class="proc">
       <div class="proc-visual reveal">
-        <video autoplay muted loop playsinline preload="metadata" poster="clearliquid_card.jpg">
-          <source src="clearliquid_card.mp4" type="video/mp4">
+        <video id="procVideo" autoplay muted loop playsinline preload="metadata" poster="proc-synthesis.jpg">
+          <source src="proc-synthesis.mp4" type="video/mp4">
         </video>
         <div class="proc-track" id="procTrack"><i class="on"></i><i></i><i></i><i></i><i></i></div>
         <div class="proc-overlay">
@@ -695,11 +696,11 @@
         </div>
       </div>
       <div class="proc-steps" id="procSteps">
-        <div class="pstep active" data-n="01" data-name="Synthesis"><div class="num">Step 01</div><h3>Synthesis</h3><p>Each peptide is built as a single defined sequence by solid-phase synthesis — the same chemistry used in clinical-grade production.</p></div>
-        <div class="pstep" data-n="02" data-name="Purification"><div class="num">Step 02</div><h3>Purification</h3><p>The crude peptide is purified by preparative HPLC to strip away synthesis by-products, TFA salts, and incomplete chains.</p></div>
-        <div class="pstep" data-n="03" data-name="Verification"><div class="num">Step 03</div><h3>Verification</h3><p>Independent HPLC confirms &ge;99% purity; LC-MS confirms identity and exact mass. Results are recorded per lot.</p></div>
-        <div class="pstep" data-n="04" data-name="Fill &amp; finish"><div class="num">Step 04</div><h3>Fill &amp; finish</h3><p>Verified compound is lyophilised and filled into vials in a controlled California facility — 5&ndash;10 mg of compound and nothing else.</p></div>
-        <div class="pstep" data-n="05" data-name="Documented"><div class="num">Step 05</div><h3>Documented</h3><p>Every lot ships with its Certificate of Analysis and temperature-aware, discreet packaging.</p></div>
+        <div class="pstep active" data-n="01" data-name="Synthesis" data-src="proc-synthesis.mp4" data-poster="proc-synthesis.jpg"><div class="num">Step 01</div><h3>Synthesis</h3><p>Each peptide is built as a single defined sequence by solid-phase synthesis — the same chemistry used in clinical-grade production.</p></div>
+        <div class="pstep" data-n="02" data-name="Purification" data-src="clearliquid_card.mp4" data-poster="clearliquid_card.jpg"><div class="num">Step 02</div><h3>Purification</h3><p>The crude peptide is purified by preparative HPLC to strip away synthesis by-products, TFA salts, and incomplete chains.</p></div>
+        <div class="pstep" data-n="03" data-name="Verification" data-src="proc-verify.mp4" data-poster="proc-verify.jpg"><div class="num">Step 03</div><h3>Verification</h3><p>Independent HPLC confirms &ge;99% purity; LC-MS confirms identity and exact mass. Results are recorded per lot.</p></div>
+        <div class="pstep" data-n="04" data-name="Fill &amp; finish" data-src="proc-fill.mp4" data-poster="proc-fill.jpg"><div class="num">Step 04</div><h3>Fill &amp; finish</h3><p>Verified compound is lyophilised and filled into vials in a controlled California facility — 5&ndash;10 mg of compound and nothing else.</p></div>
+        <div class="pstep" data-n="05" data-name="Documented" data-src="proc-doc.mp4" data-poster="proc-doc.jpg"><div class="num">Step 05</div><h3>Documented</h3><p>Every lot ships with its Certificate of Analysis and temperature-aware, discreet packaging.</p></div>
       </div>
     </div>
   </div>
@@ -708,7 +709,7 @@
 <section class="ab-madein">
   <div class="midgrid">
     <div class="midtext">
-      <h2 class="reveal">Made in California</h2>
+      <h2 class="reveal">Made in Southern California</h2>
       <div class="midblocks">
         <div class="midblock reveal" data-d="1"><div class="ml">Synthesised &amp; filled in-state</div><p>Every Vivo peptide is synthesised, tested, and filled in the United States, in California labs held to clinical-grade standards.</p></div>
         <div class="midblock reveal" data-d="2"><div class="ml">No overseas guesswork</div><p>No overseas sourcing and no shortcuts — just transparent origins and a documented chain of custody, batch to vial.</p></div>
@@ -717,7 +718,7 @@
         <a href="coa.html" class="btn btn-dark">View Certificate of Analysis</a>
       </div>
     </div>
-    <div class="midmedia reveal"><img src="madeincali.jpg" alt="Vivo research peptides made in California"></div>
+    <div class="midmedia reveal"><img src="madeincali.jpg" alt="Vivo research peptides made in Southern California"></div>
   </div>
 </section>
 
@@ -972,6 +973,8 @@
     var procName = document.getElementById('procName');
     var track = document.getElementById('procTrack');
     var dots = track ? Array.prototype.slice.call(track.querySelectorAll('i')) : [];
+    var vid = document.getElementById('procVideo');
+    var curSrc = 'proc-synthesis.mp4';
     if(sec && psteps.length && ('IntersectionObserver' in window)){
       sec.classList.add('js-pinned');
       var setActive = function(el){
@@ -981,6 +984,18 @@
         if(procNum) procNum.textContent = el.getAttribute('data-n');
         if(procName) procName.textContent = el.getAttribute('data-name');
         dots.forEach(function(d, di){ d.classList.toggle('on', di === i); });
+        var src = el.getAttribute('data-src');
+        if(vid && src && src !== curSrc){
+          curSrc = src;
+          var poster = el.getAttribute('data-poster');
+          vid.style.opacity = '0';
+          setTimeout(function(){
+            if(poster) vid.setAttribute('poster', poster);
+            var s = vid.querySelector('source');
+            if(s){ s.setAttribute('src', src); vid.load(); var pr = vid.play(); if(pr && pr.catch) pr.catch(function(){}); }
+            vid.style.opacity = '1';
+          }, 200);
+        }
       };
       var sio = new IntersectionObserver(function(ents){
         ents.forEach(function(e){ if(e.isIntersecting) setActive(e.target); });

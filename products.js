@@ -12,11 +12,10 @@
    `name` is the customer-facing label shown on the homepage,
    shop filters, and product pages. */
 const BENEFITS = [
-  { id:'recovery',    name:'Recovery',         k:'Repair',    color:'#7B3B34' },
-  { id:'skin',        name:'Skin & Structure', k:'Structure', color:'#C4913A' },
-  { id:'vitality',    name:'Mind & Energy',    k:'Vitality',  color:'#3D5C36' },
-  { id:'metabolic',   name:'Metabolic',        k:'Balance',   color:'#3A5268' },
-  { id:'performance', name:'Performance',      k:'Strength',  color:'#1C1A17' }
+  { id:'recovery',    name:'Regenerative',        k:'Regeneration', color:'#7B3B34' },
+  { id:'skin',        name:'Dermal & structural', k:'Structure',    color:'#C4913A' },
+  { id:'vitality',    name:'Neuroactive',         k:'Neural',       color:'#3D5C36' },
+  { id:'metabolic',   name:'Metabolic',           k:'Metabolic',    color:'#3A5268' }
 ];
 
 /* Quick lookup by benefit id, e.g. BENEFIT_BY_ID.skin.name */

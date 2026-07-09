@@ -6,7 +6,8 @@
 <title>All Products — Vivo</title>
 <meta name="description" content="Browse all Vivo research-grade peptides — organised by research area, verified to ≥99% purity, made in California.">
 <link rel="canonical" href="https://vivo-storefront.netlify.app/shop.html">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="vivo-favicon.png">
+<link rel="apple-touch-icon" href="vivo-favicon.png">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
@@ -82,7 +83,7 @@
   .kicker{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
-  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; text-wrap:balance; }
 
   .section{ padding-block:clamp(96px, 13vw, 190px); }
   .sec-head{ max-width:26ch; margin-bottom:clamp(44px,6vw,76px); }
@@ -226,7 +227,7 @@
      ============================================================ */
   .shop .filterbar{ margin-bottom:clamp(40px,5vw,64px); }
   .shop .filterlabel{ display:block; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--muted); margin-bottom:20px; }
-  .catgrid{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(16px,2vw,32px); width:100%; min-width:0; }
+  .catgrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(16px,2vw,32px); width:100%; min-width:0; }
   .cat{ display:flex; flex-direction:column; gap:13px; min-width:0; padding:24px 14px 18px; border-top:2px solid var(--cc, var(--line)); transition:border-width 200ms ease, padding 200ms ease, background-color 260ms cubic-bezier(.645,.045,.355,1); }
   .cat .cn{ font-family:var(--sans); font-weight:500; font-size:clamp(1.15rem,1.7vw,1.5rem); line-height:1.1; color:var(--ink); letter-spacing:-.5px; }
   .cat .cn::after{ content:""; display:block; height:2px; width:0; margin-top:9px; background:var(--cc, var(--sage-deep)); transition:width 240ms cubic-bezier(.645,.045,.355,1); }
