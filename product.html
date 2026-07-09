@@ -25,9 +25,9 @@
     --sage-deep:#3D5C36; --sage-tint:#E4E9DE; --sand:#EDE4D0; --amber:#C4913A;
     --slate:#3A5268; --clay:#7B3B34; --clay-deep:#5C2A24; --champagne:#E4BC7A;
     --black:#1C1A17; --white:#fffef2; --ink:#2e2c28; --muted:#575049; --line:rgba(28,26,23,.12);
-    --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
-    --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-    --display:"Forum","Cormorant Garamond",Georgia,serif;
+    --sans:"Switzer","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
+    --serif:var(--sans);
+    --display:var(--sans);
     --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
     --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
     --ease-drawer:cubic-bezier(0.32, 0.72, 0, 1);
@@ -38,15 +38,24 @@
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
   @font-face{ font-family:"Forum"; src:url('_source/fonts/Forum-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
 
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-MediumItalic.woff2') format('woff2'); font-weight:500; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-SemiboldItalic.woff2') format('woff2'); font-weight:600; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+  html{ font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
   body{ font-family:var(--sans); color:var(--ink); background:var(--white); line-height:1.6; overflow-x:clip; }
   body.lock{ overflow:hidden; }
   a{ color:inherit; text-decoration:none; }
   img{ display:block; max-width:100%; }
   button{ font-family:inherit; cursor:pointer; }
   .wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); }
-  h1,h2,h3{ font-family:var(--display); font-weight:400; line-height:1.05; letter-spacing:-1.5px; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
   .kicker{ font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
 
   .btn{
@@ -139,8 +148,11 @@
   .pdp .size .sz{ font-family:var(--mono); font-weight:600; font-size:.86rem; letter-spacing:-.02em; color:var(--ink); }
   .pdp .size .sp{ font-family:var(--mono); font-size:.78rem; letter-spacing:-.02em; color:var(--ink); }
   .pdp .size .sp .anchor{ color:var(--muted); text-decoration:line-through; text-decoration-thickness:1px; margin-right:5px; opacity:.85; }
+  .pdp .size .sd{ font-family:var(--mono); font-size:.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--sage-deep); }
+  .pdp .size .sd.reg{ color:var(--muted); font-weight:500; }
   .pdp .size.active .sz, .pdp .size.active .sp{ color:var(--white); }
   .pdp .size.active .sp .anchor{ color:rgba(255,255,255,.55); }
+  .pdp .size.active .sd{ color:rgba(255,255,255,.8); }
   .pdp .buyrow{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:22px; }
   .pdp .add{ flex:1; background:var(--black); color:var(--white); border-color:var(--black); }  /* solid black, full width in the buy row */
   .pdp .add:hover{ background:#36312a; color:var(--white); border-color:#36312a; }  /* subtle lighten on hover */
@@ -237,9 +249,8 @@
   .faq summary::-webkit-details-marker{ display:none; }
   .faq summary::after{ content:"+"; position:absolute; right:2px; top:18px; font-size:1.5rem; color:var(--muted); }
   .faq details[open] summary::after{ content:"−"; }
-  /* sliding panel — same settings as feelpeptides: max-height 0.4s cubic-bezier(0.4,0,0.2,1) */
-  .faq details p{ box-sizing:border-box; display:block; overflow:hidden; max-height:0; padding:0 44px 24px 0; color:#403c34; font-size:.98rem; line-height:1.7; max-width:68ch; transition:max-height .4s cubic-bezier(.4,0,.2,1); }
-  @media (prefers-reduced-motion: reduce){ .faq details p{ transition:none; } }
+  /* answer body — reveal is animated by the WAAPI accordion (height + opacity, 0.25s ease) */
+  .faq details p{ box-sizing:border-box; display:block; padding:0 44px 24px 0; color:#403c34; font-size:.98rem; line-height:1.7; max-width:68ch; }
 
   /* CLOSING CTA */
 
@@ -278,7 +289,7 @@
   .qty button{ width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:1rem; display:grid; place-items:center; transition:background-color 160ms ease; }
   .qty button:hover{ background:var(--sand); }
   .qty .qv{ min-width:26px; text-align:center; font-size:.82rem; font-weight:600; }
-  .ci .cp{ font-weight:600; font-size:.78rem; color:var(--muted); }
+  .ci .cp{ font-weight:700; font-size:1.1rem; color:var(--ink); }
   .ci .rm{ background:none; border:0; color:var(--muted); font-size:.7rem; text-decoration:underline; padding:0; margin-top:6px; transition:color 160ms ease; }
   .ci .rm:hover{ color:var(--clay); }
   .drawer .empty{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:40px; color:var(--muted); }
@@ -450,6 +461,10 @@
   const cartLine = key => { const [cid,cdose,cprice] = String(key).split('::'); const cp = byId(cid); return cp ? { id:cid, name:cp.name, img:cp.img, ph:cp.ph, cat:cp.cat, dose:(cdose||cp.dose), price:(cprice!==undefined?+cprice:cp.price) } : null; };
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+  /* Quantity-break pricing: discount depends purely on how many units are bought. */
+  const discountForQty = q => q >= 6 ? 0.10 : q >= 3 ? 0.05 : 0;
+  const lineTotal = (unit, q) => Math.round(unit * q * (1 - discountForQty(q)));
+
   /* ---------- resolve product from ?id= ---------- */
   const params = new URLSearchParams(location.search);
   const product = byId(params.get('id')) || PRODUCTS[0];
@@ -466,22 +481,10 @@
     .sort((a,b) => (b.benefit === product.benefit) - (a.benefit === product.benefit))
     .slice(0,4);
 
-  const baseN = parseFloat(product.dose) || 1;
-  const unit = (product.dose.match(/[a-zA-Z]+/) || ['mg'])[0];
-  const round5 = n => Math.round(n/5)*5;
-  const sizes = [
-    { dose: product.dose, price: product.price },
-    { dose: (baseN*2) + ' ' + unit, price: round5(product.price*1.8) },
-    { dose: (baseN*3) + ' ' + unit, price: round5(product.price*2.5) }
-  ];
-  // anchored savings: what the same mg would cost at the base size's per-unit rate
-  const basePerUnit = product.price / baseN;
-  sizes.forEach((s, i) => {
-    const mg = parseFloat(s.dose) || baseN;
-    const anchor = Math.round(basePerUnit * mg);   // base-rate equivalent price
-    const saveAmt = anchor - s.price;
-    const show = i > 0 && saveAmt > 0;
-    s.priceHtml = show ? `<span class="anchor">${money(anchor)}</span>${money(s.price)}` : money(s.price);
+  // Quantity tiers: buy more, save more (1 = regular, 3 = 5% off, 6 = 10% off).
+  const tiers = [1, 3, 6].map(qty => {
+    const off = discountForQty(qty);
+    return { qty, off, regular: product.price * qty, total: lineTotal(product.price, qty) };
   });
 
   // gallery: per-product `gallery` array if present, else the vial + supporting brand visuals
@@ -516,18 +519,18 @@
               ${product.points.map(pt => `<li>${check}${esc(pt)}</li>`).join('')}
             </ul>
             <div class="specrow reveal">
-              <div class="s">Dose<b id="specDose">${esc(sizes[0].dose)}</b></div>
+              <div class="s">Strength<b>${esc(product.dose)}</b></div>
               <div class="s">Form<b>Lyophilised</b></div>
               <div class="s">Purity<b>&ge; 99%</b></div>
               <div class="s">Origin<b>California</b></div>
             </div>
-            <div class="pprice reveal" id="pprice">${money(sizes[0].price)}</div>
-            <div class="sizelabel reveal">Dosage size</div>
+            <div class="pprice reveal" id="pprice">${money(tiers[0].total)}</div>
+            <div class="sizelabel reveal">Quantity · buy more, save more</div>
             <div class="sizes reveal" id="sizeSel">
-              ${sizes.map((s,i)=>`<button type="button" class="size${i===0?' active':''}" data-i="${i}"><span class="sz">${esc(s.dose)}</span><span class="sp">${s.priceHtml}</span></button>`).join('')}
+              ${tiers.map((t,i)=>`<button type="button" class="size${i===0?' active':''}" data-i="${i}"><span class="sz">${t.qty} ${t.qty===1?'vial':'vials'}</span><span class="sp">${t.off>0?`<span class="anchor">${money(t.regular)}</span>`:''}${money(t.total)}</span><span class="sd${t.off>0?'':' reg'}">${t.off>0?`${Math.round(t.off*100)}% off`:'Regular'}</span></button>`).join('')}
             </div>
             <div class="buyrow reveal">
-              <button class="btn btn-dark add" data-id="${product.id}::${esc(sizes[0].dose)}::${sizes[0].price}">Add to cart</button>
+              <button class="btn btn-dark add" data-id="${product.id}::${esc(product.dose)}::${product.price}" data-qty="${tiers[0].qty}">Add to cart</button>
             </div>
           </div>
         </div>
@@ -656,21 +659,18 @@
 
     `;
 
-  /* ---------- dosage size selector ---------- */
+  /* ---------- quantity selector ---------- */
   (function(){
     const sel = document.getElementById('sizeSel');
     const ppriceEl = document.getElementById('pprice');
-    const specDoseEl = document.getElementById('specDose');
     const addBtn = document.querySelector('.pdp .buyrow .add');
     if(!sel || !addBtn) return;
-    let i = 0;
     sel.addEventListener('click', e => {
       const b = e.target.closest('.size'); if(!b) return;
-      i = +b.dataset.i;
-      const s = sizes[i];
-      ppriceEl.textContent = money(s.price);
-      if(specDoseEl) specDoseEl.textContent = s.dose;
-      addBtn.dataset.id = `${product.id}::${s.dose}::${s.price}`;
+      const i = +b.dataset.i;
+      const t = tiers[i];
+      ppriceEl.textContent = money(t.total);
+      addBtn.dataset.qty = t.qty;
       sel.querySelectorAll('.size').forEach((x,xi)=>x.classList.toggle('active', xi===i));
     });
   })();
@@ -713,20 +713,20 @@
         <div class="cimg"><img src="${p.img}" alt="${esc(p.name)}"></div>
         <div class="cinfo" style="flex:1">
           <div class="cn">${esc(p.name)}</div>
-          <div class="cd">${esc(p.cat)} · ${esc(p.dose)}</div>
+          <div class="cd">${esc(p.cat)} · ${esc(p.dose)}${discountForQty(qy)>0?` · ${Math.round(discountForQty(qy)*100)}% off`:''}</div>
           <div class="crow">
             <div class="qty">
               <button data-dec="${key}" aria-label="Decrease">−</button>
               <span class="qv">${qy}</span>
               <button data-inc="${key}" aria-label="Increase">+</button>
             </div>
-            <div class="cp">${money(p.price * qy)}</div>
+            <div class="cp">${money(lineTotal(p.price, qy))}</div>
           </div>
           <button class="rm" data-rm="${key}">Remove</button>
         </div>
       </div>`;
     }).join('');
-    const sum = entries.reduce((t,[key,qy]) => { const p=cartLine(key); return p ? t + p.price*qy : t; }, 0);
+    const sum = entries.reduce((t,[key,qy]) => { const p=cartLine(key); return p ? t + lineTotal(p.price, qy) : t; }, 0);
     els.subtotal.textContent = money(sum);
     els.ship.style.display = 'block';
     els.ship.textContent = 'Discreet, temperature-aware delivery';
@@ -745,7 +745,7 @@
     const th = e.target.closest('.gthumb');
     if(th){ setGallery(+th.dataset.i); return; }
     const add = e.target.closest('.add');
-    if(add){ addToCart(add.dataset.id, 1); openCart();
+    if(add){ addToCart(add.dataset.id, +add.dataset.qty || 1); openCart();
       const label = add.innerHTML; add.classList.add('added'); add.textContent='Added ✓';
       setTimeout(()=>{ add.classList.remove('added'); add.innerHTML=label; }, 1100); return; }
     if(e.target.closest('[data-inc]')) return setQty(e.target.closest('[data-inc]').dataset.inc, 1);
@@ -834,48 +834,62 @@
 })();
 </script>
 <script>
-/* FAQ accordions: max-height slide — identical settings/technique to feelpeptides
-   (transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)) */
+/* Animated accordion: reversible height + opacity, {duration:.25, easing:"ease"} */
 (function(){
-  var EASE = 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function onEnd(p, cb){
-    var h = function(e){ if(e.target!==p || e.propertyName!=='max-height') return; p.removeEventListener('transitionend', h); cb(); };
-    p.addEventListener('transitionend', h);
+  var OPTS = { duration:250, easing:'ease' };
+  function A(el){
+    this.el = el;
+    this.summary = el.querySelector('summary');
+    this.content = this.summary ? this.summary.nextElementSibling : null;
+    this.anim = null; this.opac = null;
+    this.isClosing = false; this.isExpanding = false;
+    var self = this;
+    if(this.summary && this.content) this.summary.addEventListener('click', function(e){ self.onClick(e); });
   }
-  document.querySelectorAll('.faq .list details').forEach(function(d){
-    var s = d.querySelector('summary'), p = d.querySelector('p');
-    if(!s || !p) return;
-    p.style.overflow = 'hidden';
-    p.style.maxHeight = d.open ? 'none' : '0px';
-    if(reduce){
-      s.addEventListener('click', function(e){ e.preventDefault(); d.open = !d.open; p.style.maxHeight = d.open ? 'none' : '0px'; });
-      return;
-    }
-    var animating = false;
-    s.addEventListener('click', function(e){
-      e.preventDefault();
-      if(animating){ return; }
-      if(!d.open){                                   // OPEN
-        d.open = true;                               // marker flips immediately
-        p.style.transition = EASE;
-        p.style.maxHeight = '0px';
-        void p.offsetHeight;                         // force reflow
-        animating = true;
-        requestAnimationFrame(function(){
-          p.style.maxHeight = p.scrollHeight + 'px';
-          onEnd(p, function(){ animating = false; if(d.open){ p.style.maxHeight = 'none'; } });
-        });
-      } else {                                       // CLOSE (keep [open] until done)
-        p.style.transition = EASE;
-        p.style.maxHeight = p.scrollHeight + 'px';
-        void p.offsetHeight;                         // force reflow
-        animating = true;
-        p.style.maxHeight = '0px';
-        onEnd(p, function(){ animating = false; d.open = false; });
-      }
-    });
-  });
+  A.prototype.onClick = function(e){
+    e.preventDefault();
+    if(reduce){ this.el.open = !this.el.open; return; }
+    this.el.style.overflow = 'hidden';
+    if(this.isClosing || !this.el.open) this.open();
+    else this.shrink();
+  };
+  A.prototype.kill = function(){ if(this.anim) this.anim.cancel(); if(this.opac) this.opac.cancel(); };
+  A.prototype.shrink = function(){
+    var self = this;
+    this.isExpanding = false; this.isClosing = true;
+    var start = this.el.offsetHeight + 'px';
+    var end = this.summary.offsetHeight + 'px';
+    this.kill();
+    this.anim = this.el.animate({ height:[start, end] }, OPTS);
+    this.opac = this.content.animate({ opacity:[1, 0] }, OPTS);
+    this.anim.onfinish = function(){ self.finish(false); };
+    this.anim.oncancel = function(){ self.isClosing = false; };
+  };
+  A.prototype.open = function(){
+    this.el.style.height = this.el.offsetHeight + 'px';
+    this.el.open = true;
+    var self = this;
+    window.requestAnimationFrame(function(){ self.expand(); });
+  };
+  A.prototype.expand = function(){
+    var self = this;
+    this.isClosing = false; this.isExpanding = true;
+    var start = this.el.offsetHeight + 'px';
+    var end = (this.summary.offsetHeight + this.content.offsetHeight) + 'px';
+    this.kill();
+    this.anim = this.el.animate({ height:[start, end] }, OPTS);
+    this.opac = this.content.animate({ opacity:[0, 1] }, OPTS);
+    this.anim.onfinish = function(){ self.finish(true); };
+    this.anim.oncancel = function(){ self.isExpanding = false; };
+  };
+  A.prototype.finish = function(open){
+    this.el.open = open;
+    this.anim = null; this.opac = null;
+    this.isClosing = false; this.isExpanding = false;
+    this.el.style.height = ''; this.el.style.overflow = '';
+  };
+  document.querySelectorAll('.faq details').forEach(function(el){ new A(el); });
 })();
 </script>
 </body>

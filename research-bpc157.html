@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About Vivo — Research Peptides Made &amp; Tested in California</title>
-<meta name="description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
-<link rel="canonical" href="https://vivo-storefront.netlify.app/about.html">
+<title>BPC-157 and tissue repair — Vivo Research</title>
+<meta name="description" content="A research summary on BPC-157 and preclinical findings on cytoprotection, angiogenesis, and connective and gut tissue repair in animal models. Research use only.">
+<link rel="canonical" href="https://vivo-storefront.netlify.app/research-bpc157.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
-<meta property="og:title" content="About Vivo — Research Peptides Made &amp; Tested in California">
-<meta property="og:description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
-<meta property="og:url" content="https://vivo-storefront.netlify.app/about.html">
+<meta property="og:title" content="BPC-157 and tissue repair — Vivo Research">
+<meta property="og:description" content="A research summary on BPC-157 and preclinical findings on cytoprotection, angiogenesis, and connective and gut tissue repair in animal models. Research use only.">
+<meta property="og:url" content="https://vivo-storefront.netlify.app/research-bpc157.html">
 <meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Vivo — Research Peptides Made &amp; Tested in California">
-<meta name="twitter:description" content="How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch.">
+<meta name="twitter:title" content="BPC-157 and tissue repair — Vivo Research">
+<meta name="twitter:description" content="A research summary on BPC-157 and preclinical findings on cytoprotection, angiogenesis, and connective and gut tissue repair in animal models. Research use only.">
 <meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <style>
   /* ============================================================
@@ -141,10 +141,10 @@
     transition:background-color 320ms ease, backdrop-filter 320ms ease, padding 320ms ease, box-shadow 320ms ease, color 320ms ease, transform 320ms var(--ease-out);
   }
   header.nav.scrolled{
-    background:rgba(247,240,223,.82);
+    background:rgba(250,248,244,.86);
     backdrop-filter:saturate(150%) blur(16px); -webkit-backdrop-filter:saturate(150%) blur(16px);
     color:var(--ink); padding-block:10px;
-    box-shadow:none;
+    box-shadow:0 1px 0 var(--line);
   }
   body.bar-hidden header.nav{ top:var(--bar-h); }
   .nav .brand{ display:inline-flex; align-items:center; height:20px; }
@@ -514,230 +514,63 @@
 </header>
 
 <style>
-  /* ===================== ABOUT / LAB — homepage-aligned (light, editorial) ===================== */
-  .ab-hero{ background:#F7F0DF; }
-  .ab-hero .inner{ padding-block:clamp(150px,19vh,230px) clamp(56px,8vw,108px); }
-  .ab-hero .copy{ max-width:860px; margin-inline:auto; text-align:center; }
-  .ab-hero h1{ font-weight:400; font-size:clamp(2.6rem,5.6vw,4.8rem); line-height:1.02; letter-spacing:-1.5px; color:var(--ink); }
-  .ab-hero .hsub{ margin:20px auto 0; font-family:var(--sans); font-size:clamp(.98rem,1.4vw,1.18rem); line-height:1.6; color:#56504a; max-width:52ch; }
-  .ab-hero .cta-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-top:34px; }
-
-  /* consistent, centered section headers */
-  .ab-head{ margin-inline:auto; text-align:center; max-width:36ch; margin-bottom:clamp(40px,5vw,60px); }
-  .ab-head h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); letter-spacing:-1px; line-height:1.05; }
-
-  .ab-specs{ background:var(--sand); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding-block:clamp(48px,6vw,84px); }
-  .ab-specs .grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
-  .ab-specs .spec{ padding:0 clamp(22px,2.4vw,44px); border-left:1px solid rgba(28,26,23,.16); }
-  .ab-specs .spec:first-child{ border-left:0; padding-left:0; }
-  .ab-specs .spec-ic{ width:32px; height:32px; color:var(--sage-deep); }
-  .ab-specs .spec-ic svg{ width:100%; height:100%; display:block; }
-  .ab-specs .spec-v{ font-family:var(--display); font-size:clamp(1.7rem,2.3vw,2.4rem); color:var(--sage-deep); letter-spacing:-1px; line-height:1; margin-top:clamp(20px,2.2vw,30px); }
-  .ab-specs .spec-k{ font-size:.92rem; color:var(--ink); font-weight:600; margin-top:14px; letter-spacing:-.2px; }
-  .ab-specs .spec-m{ font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:7px; line-height:1.45; }
-  @media(max-width:820px){ .ab-specs .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:clamp(38px,6vw,48px); } .ab-specs .spec{ padding:0 clamp(14px,3vw,26px); } .ab-specs .spec:nth-child(odd){ border-left:0; padding-left:0; } }
-  @media(max-width:460px){ .ab-specs .spec{ padding:0 clamp(10px,3vw,16px); } .ab-specs .spec:nth-child(odd){ padding-left:0; } .ab-specs .spec-v{ font-size:clamp(1.4rem,6.5vw,1.85rem); } .ab-specs .spec-ic{ width:28px; height:28px; } }
-
-
-  /* process — pinned scroll sequence */
-  .ab-steps .proc{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:clamp(36px,6vw,90px); align-items:start; margin-top:clamp(40px,5vw,64px); }
-  .ab-steps .proc-visual{ position:sticky; top:calc(var(--bar-h) + 96px); aspect-ratio:4/5; overflow:hidden; background:var(--sand); box-shadow:0 40px 80px -50px rgba(40,28,20,.6); }
-  .ab-steps .proc-visual video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .ab-steps .proc-visual::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(28,20,14,.82), rgba(28,20,14,.12) 55%, rgba(28,20,14,.04)); }
-  .ab-steps .proc-overlay{ position:absolute; left:0; bottom:0; z-index:1; padding:clamp(26px,3vw,40px); color:var(--white); }
-  .ab-steps .proc-num{ font-family:var(--display); font-size:clamp(3rem,6vw,5rem); line-height:.9; letter-spacing:-2px; color:var(--champagne); }
-  .ab-steps .proc-name{ font-family:var(--sans); font-weight:500; font-size:clamp(1.1rem,1.6vw,1.4rem); margin-top:6px; letter-spacing:-.4px; }
-  .ab-steps .proc-track{ position:absolute; top:clamp(26px,3vw,40px); right:clamp(26px,3vw,40px); z-index:1; display:flex; gap:7px; }
-  .ab-steps .proc-track i{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.42); transition:background-color .35s ease, transform .35s ease; }
-  .ab-steps .proc-track i.on{ background:var(--champagne); transform:scale(1.3); }
-  .ab-steps .proc-steps{ display:flex; flex-direction:column; }
-  .ab-steps .pstep{ min-height:40vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(20px,3vw,40px) 0; border-top:1px solid var(--line); transition:opacity .45s var(--ease-out); }
-  .ab-steps .pstep:first-child{ border-top:0; }
-  .ab-steps.js-pinned .pstep{ opacity:.34; }
-  .ab-steps.js-pinned .pstep.active{ opacity:1; }
-  .ab-steps .pstep .num{ font-family:var(--mono); font-size:.78rem; color:var(--amber); letter-spacing:.12em; }
-  .ab-steps .pstep h3{ font-family:var(--display); font-weight:400; font-size:clamp(1.8rem,3vw,2.6rem); margin-top:14px; color:var(--ink); letter-spacing:-1px; line-height:1.05; }
-  .ab-steps .pstep p{ margin-top:14px; font-size:1rem; color:var(--muted); line-height:1.7; max-width:42ch; }
-  @media(max-width:860px){
-    .ab-steps .proc{ grid-template-columns:1fr; gap:0; }
-    .ab-steps .proc-visual{ position:relative; top:0; aspect-ratio:16/9; margin-bottom:clamp(20px,5vw,32px); }
-    .ab-steps .proc-overlay, .ab-steps .proc-track{ display:none; }
-    /* steps become a one-up horizontal swipe carousel, next card peeking */
-    .ab-steps .proc-steps{ flex-direction:row; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:8px; }
-    .ab-steps .proc-steps::-webkit-scrollbar{ display:none; }
-    .ab-steps .pstep{ flex:0 0 82%; scroll-snap-align:start; min-height:0; border-top:0; border:1px solid var(--line); background:var(--white); padding:26px 24px; }
-    .ab-steps .pstep:first-child{ border-top:1px solid var(--line); }
-    .ab-steps.js-pinned .pstep{ opacity:1; }
-    .ab-steps .pstep h3{ font-size:1.45rem; }
-    .ab-steps .pstep p{ font-size:.92rem; max-width:none; }
-  }
-  @media (prefers-reduced-motion: reduce){ .ab-steps.js-pinned .pstep{ opacity:1; } }
-
-  .ab-madein{ background:var(--sage-tint); }
-  .ab-madein .midgrid{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; }
-  .ab-madein .midtext{ padding:clamp(48px,7vw,110px) clamp(34px,5vw,92px); display:flex; flex-direction:column; justify-content:center; }
-  .ab-madein h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); line-height:1.1; max-width:17ch; margin:0; }
-  .ab-madein .midblocks{ margin-top:clamp(26px,3.6vw,42px); display:grid; gap:22px; }
-  .ab-madein .midblock .ml{ font-weight:600; font-size:.98rem; color:var(--ink); margin-bottom:8px; }
-  .ab-madein .midblock p{ font-size:.96rem; color:#403c34; line-height:1.7; max-width:46ch; }
-  .ab-madein .midmedia{ position:relative; overflow:hidden; background:var(--sand); min-height:clamp(420px,52vw,720px); }
-  .ab-madein .midmedia img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  @media(max-width:860px){ .ab-madein .midgrid{ grid-template-columns:1fr; } .ab-madein .midmedia{ min-height:0; aspect-ratio:4/5; order:-1; } .ab-madein .midtext{ padding:clamp(40px,8vw,64px) var(--gutter); } }
-
-
-
-  .ab-ruo{ background:var(--white); }
-  .ab-ruo .box{ border:1px solid var(--line); padding:clamp(32px,4.4vw,56px); max-width:900px; margin:0 auto; text-align:center; }
-  .ab-ruo .box p{ margin-top:14px; color:var(--muted); font-size:1rem; line-height:1.75; max-width:66ch; margin-inline:auto; }
-
-  .ab-cta{ background:var(--sand); text-align:center; }
-  .ab-cta h2{ font-size:clamp(2rem,3.8vw,3.1rem); color:var(--ink); max-width:20ch; margin:0 auto; letter-spacing:-1px; }
-  .ab-cta .row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:32px; }
-  @media(max-width:560px){
-    .ab-cta .row, .ab-hero .cta-row, .hero .cta-row{ flex-wrap:nowrap; gap:10px; }
-    .ab-cta .row .btn, .ab-hero .cta-row .btn, .hero .cta-row .btn{ flex:1 1 0; min-width:0; padding:1.05em .85em; font-size:.76rem; }
-  }
+  .docpage{ padding:clamp(150px,18vh,230px) 0 clamp(80px,10vw,140px); }
+  .dochead{ max-width:62ch; }
+  .dochead h1{ font-size:clamp(2.6rem,6vw,4.6rem); color:var(--ink); margin-top:18px; }
+  .dochead .lead{ margin-top:22px; font-size:1.12rem; line-height:1.7; color:var(--muted); max-width:56ch; }
+  .docbody{ margin-top:clamp(48px,6vw,84px); display:grid; gap:clamp(40px,5vw,60px); max-width:780px; }
+  .docrow h2{ font-size:clamp(1.5rem,2.6vw,2rem); color:var(--ink); margin-bottom:16px; letter-spacing:-1px; }
+  .docrow p{ color:var(--ink); opacity:.84; line-height:1.78; margin-bottom:14px; max-width:66ch; }
+  .docrow p:last-child{ margin-bottom:0; }
+  .docrow + .docrow{ border-top:1px solid var(--line); padding-top:clamp(36px,4vw,52px); }
+  .docnote{ margin-top:clamp(48px,6vw,72px); padding:22px 24px; background:var(--sage-tint); color:var(--sage-deep); font-size:.92rem; line-height:1.6; max-width:780px; }
+  .docmeta{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-top:22px; }
+  .docmeta .src{ font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--sage-deep); }
+  .docmeta .tag{ font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); padding:4px 9px; }
+  .refs{ list-style:none; counter-reset:ref; display:grid; gap:16px; margin-top:10px; max-width:780px; }
+  .refs li{ counter-increment:ref; position:relative; padding-left:36px; line-height:1.6; font-size:.95rem; color:var(--ink); }
+  .refs li::before{ content:counter(ref,decimal-leading-zero); position:absolute; left:0; top:.2em; font-family:var(--mono); font-size:.76rem; color:var(--sage-deep); letter-spacing:.04em; }
+  .refs .ct{ opacity:.9; }
+  .refs a.vs{ display:inline-block; margin-top:3px; font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--sage-deep); text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+  .backrow{ margin-top:clamp(40px,5vw,64px); display:flex; flex-wrap:wrap; gap:14px 28px; align-items:center; max-width:780px; }
+  .backrow a{ font-family:var(--mono); font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; color:var(--sage-deep); text-decoration:underline; text-underline-offset:3px; }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://vivo-storefront.netlify.app/#organization",
-      "name": "Vivo",
-      "url": "https://vivo-storefront.netlify.app/",
-      "logo": "https://vivo-storefront.netlify.app/logo_black.png",
-      "description": "Research-grade peptides synthesised and tested in California — verified to \u226599% purity by HPLC and LC-MS, with a Certificate of Analysis behind every batch.",
-      "knowsAbout": ["Research peptides","Peptide synthesis","HPLC purity testing","LC-MS","Certificate of Analysis"],
-      "areaServed": "US"
-    },
-    {
-      "@type": "AboutPage",
-      "@id": "https://vivo-storefront.netlify.app/about.html",
-      "url": "https://vivo-storefront.netlify.app/about.html",
-      "name": "About Vivo",
-      "about": { "@id": "https://vivo-storefront.netlify.app/#organization" },
-      "primaryImageOfPage": "https://vivo-storefront.netlify.app/hero_vials.jpg",
-      "description": "How Vivo makes research-grade peptides: each sequence is synthesised, HPLC/LC-MS verified to ≥99% purity, and filled in California — with a Certificate of Analysis behind every batch."
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vivo-storefront.netlify.app/" },
-        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://vivo-storefront.netlify.app/about.html" }
-      ]
-    }
-  ]
-}
-</script>
-<!-- ===================== ABOUT / LAB ===================== -->
-<section class="ab-hero">
-  <div class="inner">
-    <div class="wrap">
-      <div class="copy">
-        <h1 class="reveal">The lab behind every vial.</h1>
-        <p class="hsub reveal" data-d="1">Vivo makes research-grade peptides the deliberate way — each sequence synthesised, purified, and independently verified to &ge;99% purity, then filled in California.</p>
-        <div class="cta-row reveal" data-d="2">
-          <a href="shop.html" class="btn btn-dark">Explore the catalog</a>
-          <a href="coa.html" class="btn btn-dark">View Certificates</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ab-specs">
+<!-- ===================== RESEARCH ARTICLE ===================== -->
+<section class="docpage">
   <div class="wrap">
-    <div class="grid">
-      <div class="spec reveal">
-        <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3s6 6.4 6 10.5a6 6 0 0 1-12 0C6 9.4 12 3 12 3Z"/></svg></div>
-        <div class="spec-v">&ge; 99%</div>
-        <div class="spec-k">Purity</div>
-        <div class="spec-m">RP-HPLC, every batch</div>
+    <div class="dochead">
+      <a class="kicker reveal" href="index.html#research" style="text-decoration:none">← The research</a>
+      <h1 class="reveal" data-d="1">Cytoprotective signalling of BPC-157 in connective and gut tissue repair</h1>
+      <div class="docmeta reveal" data-d="2">
+        <span class="src">Cell and Tissue Research · 2019</span>
+        <span class="tag">BPC-157</span>
+        <span class="tag">Research summary</span>
       </div>
-      <div class="spec reveal" data-d="1">
-        <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19h20"/><path d="M3 16l3-1 2-9 3 12 2.5-7 2 3 3-1.5 2 2.5"/></svg></div>
-        <div class="spec-v">Confirmed</div>
-        <div class="spec-k">Identity</div>
-        <div class="spec-m">LC-MS, ESI</div>
+      <p class="lead reveal" data-d="3">BPC-157, a stable peptide derived from a sequence in gastric juice, has been studied in preclinical models for its role in cytoprotection and tissue repair.</p>
+    </div>
+    <div class="docbody">
+      <div class="docrow">
+        <h2>Overview</h2>
+        <p>BPC-157 (body protection compound) is a synthetic pentadecapeptide derived from a sequence in human gastric juice, studied as a cytoprotective and pro-healing agent. The published science is largely preclinical (animal and in-vitro), and evidence in humans remains limited. Studies report that BPC-157 modulates angiogenesis in injured tissue: in rodent models of muscle and tendon injury, research suggests it upregulates vascular endothelial growth factor (VEGF) expression and promotes capillary ingrowth, contributing to more organized repair.</p>
+        <p>In-vitro work reports that BPC-157 increases growth hormone receptor expression in tendon fibroblasts in a dose- and time-dependent manner, a pathway associated with fibroblast proliferation and collagen synthesis. A substantial body of work links its effects to the nitric oxide (NO) system, where reviews describe it engaging eNOS signalling and counteracting the effects of NOS blockers. In rodent gastrointestinal models, studies report accelerated healing of intestinal anastomoses, cytoprotection of gastric mucosa, and attenuation of experimental inflammation. High-quality human clinical evidence is not established.</p>
       </div>
-      <div class="spec reveal" data-d="2">
-        <div class="spec-ic"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><clipPath id="usflag"><rect x="2" y="5" width="20" height="14" rx="1.2"/></clipPath></defs><g clip-path="url(#usflag)"><rect x="2" y="5" width="20" height="14" fill="#B22234"/><rect x="2" y="6.08" width="20" height="1.08" fill="#fff"/><rect x="2" y="8.23" width="20" height="1.08" fill="#fff"/><rect x="2" y="10.38" width="20" height="1.08" fill="#fff"/><rect x="2" y="12.54" width="20" height="1.08" fill="#fff"/><rect x="2" y="14.69" width="20" height="1.08" fill="#fff"/><rect x="2" y="16.85" width="20" height="1.08" fill="#fff"/><rect x="2" y="5" width="8.5" height="7.54" fill="#3C3B6E"/><g fill="#fff"><circle cx="3.4" cy="6.1" r=".28"/><circle cx="5" cy="6.1" r=".28"/><circle cx="6.6" cy="6.1" r=".28"/><circle cx="8.2" cy="6.1" r=".28"/><circle cx="4.2" cy="7.4" r=".28"/><circle cx="5.8" cy="7.4" r=".28"/><circle cx="7.4" cy="7.4" r=".28"/><circle cx="3.4" cy="8.7" r=".28"/><circle cx="5" cy="8.7" r=".28"/><circle cx="6.6" cy="8.7" r=".28"/><circle cx="8.2" cy="8.7" r=".28"/><circle cx="4.2" cy="10" r=".28"/><circle cx="5.8" cy="10" r=".28"/><circle cx="7.4" cy="10" r=".28"/><circle cx="3.4" cy="11.3" r=".28"/><circle cx="5" cy="11.3" r=".28"/><circle cx="6.6" cy="11.3" r=".28"/><circle cx="8.2" cy="11.3" r=".28"/></g></g><rect x="2" y="5" width="20" height="14" rx="1.2" fill="none" stroke="rgba(28,26,23,.18)" stroke-width=".6"/></svg></div>
-        <div class="spec-v">California</div>
-        <div class="spec-k">Origin</div>
-        <div class="spec-m">Synthesised &amp; filled in-state</div>
-      </div>
-      <div class="spec reveal" data-d="3">
-        <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h4"/></svg></div>
-        <div class="spec-v">Every lot</div>
-        <div class="spec-k">Documentation</div>
-        <div class="spec-m">Certificate of Analysis</div>
+      <div class="docrow">
+        <h2>References</h2>
+        <p>Peer-reviewed sources for the research summarised above. Vivo summarises published, third-party science and does not conduct or sponsor this research.</p>
+        <ol class="refs">
+          <li><span class="ct">Gwyer D, Wragg NM, Wilson SL (2019). Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing. Cell Tissue Res;377(2):153-159.</span> <a class="vs" href="https://doi.org/10.1007/s00441-019-03016-8" target="_blank" rel="noopener nofollow">View source ↗</a></li>
+          <li><span class="ct">Brcic L, Brcic I, Staresinic M, Novinscak T, Sikiric P, Seiwerth S (2009). Modulatory effect of gastric pentadecapeptide BPC 157 on angiogenesis in muscle and tendon healing. J Physiol Pharmacol;60(Suppl 7):191-196.</span> <a class="vs" href="https://pubmed.ncbi.nlm.nih.gov/20388964/" target="_blank" rel="noopener nofollow">View source ↗</a></li>
+          <li><span class="ct">Chang CH, Tsai WC, Hsu YH, Pang JHS (2014). Pentadecapeptide BPC 157 enhances the growth hormone receptor expression in tendon fibroblasts. Molecules;19(11):19066-19077.</span> <a class="vs" href="https://doi.org/10.3390/molecules191119066" target="_blank" rel="noopener nofollow">View source ↗</a></li>
+          <li><span class="ct">Sikiric P, Seiwerth S, Rucman R, et al. (2014). Stable gastric pentadecapeptide BPC 157-NO-system relation. Curr Pharm Des;20(7):1126-1135.</span> <a class="vs" href="https://doi.org/10.2174/13816128113190990411" target="_blank" rel="noopener nofollow">View source ↗</a></li>
+          <li><span class="ct">Bajramagic S, Sever M, Rasic F, et al. (2024). Stable gastric pentadecapeptide BPC 157 and intestinal anastomoses therapy in rats: a review. Pharmaceuticals (Basel);17(8):1081.</span> <a class="vs" href="https://doi.org/10.3390/ph17081081" target="_blank" rel="noopener nofollow">View source ↗</a></li>
+        </ol>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section ab-steps">
-  <div class="wrap">
-    <div class="ab-head reveal">
-      <h2>How a Vivo peptide is made</h2>
+    <div class="backrow">
+      <a href="product.html?id=bpc157">Related compound: BPC-157 →</a>
+      <a href="index.html#research">All research →</a>
     </div>
-    <div class="proc">
-      <div class="proc-visual reveal">
-        <video autoplay muted loop playsinline preload="metadata" poster="clearliquid_card.jpg">
-          <source src="clearliquid_card.mp4" type="video/mp4">
-        </video>
-        <div class="proc-track" id="procTrack"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-        <div class="proc-overlay">
-          <div class="proc-num" id="procNum">01</div>
-          <div class="proc-name" id="procName">Synthesis</div>
-        </div>
-      </div>
-      <div class="proc-steps" id="procSteps">
-        <div class="pstep active" data-n="01" data-name="Synthesis"><div class="num">Step 01</div><h3>Synthesis</h3><p>Each peptide is built as a single defined sequence by solid-phase synthesis — the same chemistry used in clinical-grade production.</p></div>
-        <div class="pstep" data-n="02" data-name="Purification"><div class="num">Step 02</div><h3>Purification</h3><p>The crude peptide is purified by preparative HPLC to strip away synthesis by-products, TFA salts, and incomplete chains.</p></div>
-        <div class="pstep" data-n="03" data-name="Verification"><div class="num">Step 03</div><h3>Verification</h3><p>Independent HPLC confirms &ge;99% purity; LC-MS confirms identity and exact mass. Results are recorded per lot.</p></div>
-        <div class="pstep" data-n="04" data-name="Fill &amp; finish"><div class="num">Step 04</div><h3>Fill &amp; finish</h3><p>Verified compound is lyophilised and filled into vials in a controlled California facility — 5&ndash;10 mg of compound and nothing else.</p></div>
-        <div class="pstep" data-n="05" data-name="Documented"><div class="num">Step 05</div><h3>Documented</h3><p>Every lot ships with its Certificate of Analysis and temperature-aware, discreet packaging.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ab-madein">
-  <div class="midgrid">
-    <div class="midtext">
-      <h2 class="reveal">Made in California</h2>
-      <div class="midblocks">
-        <div class="midblock reveal" data-d="1"><div class="ml">Synthesised &amp; filled in-state</div><p>Every Vivo peptide is synthesised, tested, and filled in the United States, in California labs held to clinical-grade standards.</p></div>
-        <div class="midblock reveal" data-d="2"><div class="ml">No overseas guesswork</div><p>No overseas sourcing and no shortcuts — just transparent origins and a documented chain of custody, batch to vial.</p></div>
-      </div>
-      <div class="reveal" data-d="2" style="margin-top:clamp(28px,4vw,40px)">
-        <a href="coa.html" class="btn btn-dark">View Certificate of Analysis</a>
-      </div>
-    </div>
-    <div class="midmedia reveal"><img src="madeincali.jpg" alt="Vivo research peptides made in California"></div>
-  </div>
-</section>
-
-
-<section class="section ab-ruo">
-  <div class="wrap">
-    <div class="box reveal">
-      <h2 style="font-size:clamp(1.5rem,2.6vw,2rem);color:var(--ink);letter-spacing:-.5px">For Research Use Only</h2>
-      <p>Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory and research purposes and are not intended to diagnose, treat, cure, or prevent any disease. We label that plainly, because honest sourcing starts with honest labelling.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section ab-cta">
-  <div class="wrap">
-    <h2 class="reveal">Research you can build on.</h2>
-    <div class="row reveal" data-d="1">
-      <a href="shop.html" class="btn btn-dark">Explore the catalog</a>
-      <a href="coa.html" class="btn btn-dark">View Certificates</a>
-    </div>
+    <div class="docnote">For Research Use Only — Not for Human or Animal Consumption. Vivo summarises published, third-party research for educational purposes. These summaries are not medical advice and do not describe the effects of any Vivo product. Vivo products are sold strictly for laboratory research and are not intended to diagnose, treat, cure, or prevent any disease.</div>
   </div>
 </section>
 
@@ -963,31 +796,6 @@
     }, { threshold:0.12, rootMargin:'0px 0px -6% 0px' });
     reveals.forEach(el => io.observe(el));
   }
-
-  /* ---------- About: pinned process + parallax band ---------- */
-  (function(){
-    var psteps = Array.prototype.slice.call(document.querySelectorAll('.ab-steps .pstep'));
-    var sec = document.querySelector('.ab-steps');
-    var procNum = document.getElementById('procNum');
-    var procName = document.getElementById('procName');
-    var track = document.getElementById('procTrack');
-    var dots = track ? Array.prototype.slice.call(track.querySelectorAll('i')) : [];
-    if(sec && psteps.length && ('IntersectionObserver' in window)){
-      sec.classList.add('js-pinned');
-      var setActive = function(el){
-        var i = psteps.indexOf(el);
-        psteps.forEach(function(s){ s.classList.remove('active'); });
-        el.classList.add('active');
-        if(procNum) procNum.textContent = el.getAttribute('data-n');
-        if(procName) procName.textContent = el.getAttribute('data-name');
-        dots.forEach(function(d, di){ d.classList.toggle('on', di === i); });
-      };
-      var sio = new IntersectionObserver(function(ents){
-        ents.forEach(function(e){ if(e.isIntersecting) setActive(e.target); });
-      }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
-      psteps.forEach(function(s){ sio.observe(s); });
-    }
-  })();
 
 </script>
 

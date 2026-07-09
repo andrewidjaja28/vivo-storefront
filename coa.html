@@ -40,9 +40,9 @@
     --muted:#575049;
     --line:rgba(28,26,23,.12);
 
-    --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
-    --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-    --display:"Forum","Cormorant Garamond",Georgia,serif;
+    --sans:"Switzer","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
+    --serif:var(--sans);
+    --display:var(--sans);
     --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
 
     --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
@@ -60,8 +60,17 @@
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
   @font-face{ font-family:"Forum"; src:url('_source/fonts/Forum-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
 
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-MediumItalic.woff2') format('woff2'); font-weight:500; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-SemiboldItalic.woff2') format('woff2'); font-weight:600; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+  html{ font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
   body{ font-family:var(--sans); color:var(--ink); background:var(--white); line-height:1.6; overflow-x:hidden; }
   body.lock{ overflow:hidden; }
   a{ color:inherit; text-decoration:none; }
@@ -73,7 +82,7 @@
   .kicker{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
-  h1,h2,h3{ font-family:var(--display); font-weight:400; line-height:1.05; letter-spacing:-1.5px; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
 
   .section{ padding-block:clamp(96px, 13vw, 190px); }
   .sec-head{ max-width:26ch; margin-bottom:clamp(44px,6vw,76px); }
@@ -383,7 +392,7 @@
   .qty button{ width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:1rem; display:grid; place-items:center; transition:background-color 160ms ease; }
   .qty button:hover{ background:var(--sand); }
   .qty .qv{ min-width:26px; text-align:center; font-size:.82rem; font-weight:600; }
-  .ci .cp{ font-weight:700; font-size:.92rem; }
+  .ci .cp{ font-weight:700; font-size:1.1rem; color:var(--ink); }
   .ci .rm{ background:none; border:0; color:var(--muted); font-size:.7rem; text-decoration:underline; padding:0; margin-top:6px; transition:color 160ms ease; }
   .ci .rm:hover{ color:var(--clay); }
   .drawer .empty{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:40px; color:var(--muted); }
@@ -447,19 +456,44 @@
   .cert-chart-head{ display:flex; justify-content:space-between; align-items:baseline; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
   .cert-chart svg{ width:100%; height:auto; display:block; border:1px solid var(--line); background:#fffdf6; }
   .cert-chart-note{ font-family:var(--mono); font-size:.74rem; color:var(--muted); margin-top:9px; }
+  .cert-chart svg .cert-trace{ stroke-dasharray:1; stroke-dashoffset:1; animation:certDraw 1.2s var(--ease-out) forwards; }
+  .cert-chart svg .cert-fill{ opacity:0; animation:certFade .7s ease .3s forwards; }
+  .cert-chart svg .cert-mark{ opacity:0; animation:certFade .5s ease .9s forwards; }
+  @keyframes certDraw{ to{ stroke-dashoffset:0; } }
+  @keyframes certFade{ to{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){ .cert-chart svg .cert-trace{ animation:none; stroke-dashoffset:0; } .cert-chart svg .cert-fill, .cert-chart svg .cert-mark{ animation:none; opacity:1; } }
   .cert-table{ width:100%; border-collapse:collapse; margin-top:28px; font-size:.85rem; }
   .cert-table th{ text-align:left; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--ink); }
   .cert-table td{ padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink); vertical-align:top; }
   .cert-table td:last-child{ font-weight:600; text-align:right; white-space:nowrap; }
   .cert-table .pass{ color:var(--sage-deep); }
+  .cert-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+  .cert-actions .btn{ flex:1 1 auto; min-width:150px; min-height:auto; padding:1em 1.4em; font-size:.82rem; }
   .cert-foot{ margin-top:24px; padding-top:18px; border-top:1px solid var(--line); display:grid; gap:7px; font-size:.75rem; color:var(--muted); line-height:1.55; }
   .cert-foot .cert-ruo{ color:var(--ink); font-weight:600; }
   @media (max-width:820px){
-    .certview{ grid-template-columns:1fr; gap:20px; }
-    .certlist{ flex-direction:row; overflow-x:auto; border-top:0; scrollbar-width:none; gap:0; }
+    .certview{ grid-template-columns:minmax(0,1fr); gap:20px; }
+    .certlist{ flex-direction:row; overflow-x:auto; border-top:0; scrollbar-width:none; gap:0; min-width:0; }
     .certlist::-webkit-scrollbar{ display:none; }
     .certlist button{ flex:0 0 auto; border-bottom:0; border-right:1px solid var(--line); grid-template-columns:10px auto; padding:12px 16px; }
     .cert-headline .ch-v{ font-size:1.35rem; }
+  }
+  @media (max-width:560px){
+    .cert{ padding:22px 18px; }
+    .cert-top{ flex-direction:column; align-items:flex-start; gap:11px; }
+    .cert-meta{ text-align:left; flex-shrink:1; }
+    .cert-brand{ font-size:1.3rem; }
+    .cert-title h2{ font-size:1.6rem; }
+    .cert-headline{ grid-template-columns:1fr; }
+    .cert-chart-head{ flex-direction:column; align-items:flex-start; gap:3px; }
+    .cert-table{ font-size:.8rem; table-layout:fixed; width:100%; }
+    .cert-table th{ font-size:.58rem; letter-spacing:.05em; }
+    .cert-table th, .cert-table td{ padding-right:8px; overflow-wrap:break-word; }
+    .cert-table th:nth-child(1), .cert-table td:nth-child(1){ width:24%; }
+    .cert-table th:nth-child(2), .cert-table td:nth-child(2){ width:20%; }
+    .cert-table th:nth-child(3), .cert-table td:nth-child(3){ width:32%; }
+    .cert-table th:nth-child(4), .cert-table td:nth-child(4){ width:24%; }
+    .cert-actions{ flex-direction:column; }
   }
 </style>
 </head>
@@ -772,10 +806,10 @@
       return `<svg viewBox="0 0 ${W} 200" role="img" aria-label="RP-HPLC purity trace for ${p.name}">
         ${grid}
         <line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="rgba(28,26,23,.28)"/>
-        <path d="${fill}" fill="${p.ph}" fill-opacity=".13"/>
-        <path d="${line}" fill="none" stroke="#2e2c28" stroke-width="1.4" stroke-linejoin="round"/>
-        <line x1="${peakX.toFixed(0)}" y1="${base}" x2="${peakX.toFixed(0)}" y2="${top-4}" stroke="${p.ph}" stroke-width="1" stroke-dasharray="3 3"/>
-        <text x="${(peakX+7).toFixed(0)}" y="${top-1}" font-size="11" fill="#2e2c28" font-family="monospace">${s.purity}% area</text>
+        <path class="cert-fill" d="${fill}" fill="${p.ph}" fill-opacity=".13"/>
+        <path class="cert-trace" pathLength="1" d="${line}" fill="none" stroke="#2e2c28" stroke-width="1.4" stroke-linejoin="round"/>
+        <line class="cert-mark" x1="${peakX.toFixed(0)}" y1="${base}" x2="${peakX.toFixed(0)}" y2="${top-4}" stroke="${p.ph}" stroke-width="1" stroke-dasharray="3 3"/>
+        <text class="cert-mark" x="${(peakX+7).toFixed(0)}" y="${top-1}" font-size="11" fill="#2e2c28" font-family="monospace">${s.purity}% area</text>
         <text x="7" y="13" font-size="11" fill="#9a938a" font-family="monospace">mAU · UV 214 nm</text>
         <text x="${W-7}" y="${base+15}" font-size="11" fill="#9a938a" text-anchor="end" font-family="monospace">min</text>
       </svg>`;
@@ -788,7 +822,7 @@
           <div class="cert-meta"><div class="cm-t">Certificate of Analysis</div><div class="cm-b">Lot ${s.batch}</div></div>
         </header>
         <div class="cert-title">
-          <span class="ct-dot" style="background:${p.ph}"></span>
+          <span class="ct-dot" style="background:${(BENEFIT_BY_ID[p.benefit] || {}).color || p.ph}"></span>
           <div><h2>${p.name}</h2><div class="cert-sub">${p.cat} · ${p.dose} · lyophilised · Research Use Only</div></div>
         </div>
         <div class="cert-headline">
@@ -812,6 +846,10 @@
             <tr><td>Heavy metals</td><td>ICP-MS</td><td>&le; 10 ppm</td><td class="pass">Pass</td></tr>
           </tbody>
         </table>
+        <div class="cert-actions">
+          <a class="btn btn-primary" href="product.html?id=${p.id}">View product</a>
+          <a class="btn btn-dark" href="certificates/${s.batch}.pdf" target="_blank" rel="noopener">View PDF <span aria-hidden="true">↗</span></a>
+        </div>
         <div class="cert-foot">
           <div>Analysis performed by an independent third-party laboratory. Methods: RP-HPLC, LC-MS (ESI), ICP-MS, Karl Fischer titration.</div>
           <div>Released by Vivo QA/QC, California. Representative certificate; each lot ships with its own batch-specific results.</div>
@@ -821,7 +859,8 @@
     };
     certList.innerHTML = PRODUCTS.map((p,i) => {
       const s = specs(p);
-      return `<button type="button" class="cl${i===0?' active':''}" data-i="${i}"><span class="cl-dot" style="background:${p.ph}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
+      const catColor = (BENEFIT_BY_ID[p.benefit] || {}).color || p.ph;
+      return `<button type="button" class="cl${i===0?' active':''}" data-i="${i}"><span class="cl-dot" style="background:${catColor}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
     }).join('');
     certList.addEventListener('click', e => {
       const b = e.target.closest('button[data-i]'); if(!b) return;

@@ -35,9 +35,9 @@
     --muted:#575049;
     --line:rgba(28,26,23,.12);
 
-    --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
-    --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-    --display:"Forum","Cormorant Garamond",Georgia,serif;
+    --sans:"Switzer","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
+    --serif:var(--sans);
+    --display:var(--sans);
     --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
 
     --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
@@ -55,8 +55,17 @@
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
   @font-face{ font-family:"Forum"; src:url('_source/fonts/Forum-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
 
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-MediumItalic.woff2') format('woff2'); font-weight:500; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-SemiboldItalic.woff2') format('woff2'); font-weight:600; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+  html{ font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
   body{ font-family:var(--sans); color:var(--ink); background:var(--white); line-height:1.6; overflow-x:hidden; }
   body.lock{ overflow:hidden; }
   a{ color:inherit; text-decoration:none; }
@@ -68,7 +77,7 @@
   .kicker{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
-  h1,h2,h3{ font-family:var(--display); font-weight:400; line-height:1.05; letter-spacing:-1.5px; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
 
   .section{ padding-block:clamp(96px, 13vw, 190px); }
   .sec-head{ max-width:26ch; margin-bottom:clamp(44px,6vw,76px); }
@@ -378,7 +387,7 @@
   .qty button{ width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:1rem; display:grid; place-items:center; transition:background-color 160ms ease; }
   .qty button:hover{ background:var(--sand); }
   .qty .qv{ min-width:26px; text-align:center; font-size:.82rem; font-weight:600; }
-  .ci .cp{ font-weight:700; font-size:.92rem; }
+  .ci .cp{ font-weight:700; font-size:1.1rem; color:var(--ink); }
   .ci .rm{ background:none; border:0; color:var(--muted); font-size:.7rem; text-decoration:underline; padding:0; margin-top:6px; transition:color 160ms ease; }
   .ci .rm:hover{ color:var(--clay); }
   .drawer .empty{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:40px; color:var(--muted); }
@@ -426,19 +435,21 @@
   .coi{ display:flex; gap:12px; align-items:center; padding:12px 0; border-bottom:1px solid rgba(28,26,23,.1); }
   .coi img{ width:52px; height:52px; border-radius:0; object-fit:cover; background:var(--cc,var(--sage-tint)); flex-shrink:0; }
   .coi .nm{ font-size:.9rem; font-weight:600; color:var(--ink); }
-  .coi .meta{ font-size:.76rem; color:var(--muted); margin-top:2px; }
-  .coi .lp{ margin-left:auto; font-weight:600; font-size:.9rem; color:var(--ink); }
+  .coi .meta{ font-size:.85rem; color:var(--muted); margin-top:2px; }
+  .coi .lp{ margin-left:auto; font-weight:600; font-size:1.05rem; color:var(--ink); }
   .cototals{ margin-top:18px; }
-  .cototals .r{ display:flex; justify-content:space-between; padding:6px 0; font-size:.9rem; color:var(--muted); }
-  .cototals .r.total{ color:var(--ink); font-weight:700; font-size:1.12rem; border-top:1px solid var(--line); margin-top:8px; padding-top:14px; }
+  .cototals .r{ display:flex; justify-content:space-between; padding:7px 0; font-size:1rem; color:var(--muted); }
+  .cototals .r span:last-child{ font-size:1.08rem; color:var(--ink); }
+  .cototals .r.total{ color:var(--ink); font-weight:700; font-size:1.5rem; border-top:1px solid var(--line); margin-top:8px; padding-top:14px; }
+  .cototals .r.total span:last-child{ font-size:1.5rem; }
   .co-place{ width:100%; margin-top:18px; background:var(--sage-deep); color:#fff; border:0; border-radius:0; padding:1.1em; font-weight:600; font-size:.95rem; cursor:pointer; transition:transform 150ms var(--ease-out); }
   .co-place:hover{ transform:translateY(-1px); }
-  .co-secure{ margin-top:12px; font-size:.74rem; color:var(--muted); text-align:center; }
-  .co-note{ font-size:.82rem; color:var(--muted); margin:-4px 0 14px; line-height:1.5; }
-  .co-fine{ font-size:.74rem; color:var(--muted); opacity:.85; margin-top:6px; line-height:1.5; }
+  .co-secure{ margin-top:12px; font-size:.84rem; color:var(--muted); text-align:center; }
+  .co-note{ font-size:.92rem; color:var(--muted); margin:-4px 0 14px; line-height:1.5; }
+  .co-fine{ font-size:.84rem; color:var(--muted); opacity:.85; margin-top:6px; line-height:1.5; }
   .field select{ font-family:var(--sans); font-size:.95rem; color:var(--ink); background:var(--white); border:1px solid var(--line); border-radius:0; padding:.8em 1em; width:100%; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236b6760' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1em center; }
   .field select:focus{ outline:none; border-color:var(--sage-deep); }
-  .co-check{ display:flex; gap:11px; align-items:flex-start; font-size:.85rem; color:var(--ink); line-height:1.5; margin-bottom:14px; cursor:pointer; }
+  .co-check{ display:flex; gap:11px; align-items:flex-start; font-size:.92rem; color:var(--ink); line-height:1.5; margin-bottom:14px; cursor:pointer; }
   .co-check input{ margin-top:2px; width:17px; height:17px; flex-shrink:0; accent-color:var(--sage-deep); }
   .co-check a{ color:var(--sage-deep); text-decoration:underline; }
   .tmodal{ position:fixed; inset:0; z-index:9998; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(20,15,11,.7); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }

@@ -51,9 +51,9 @@
     --muted:#575049;
     --line:rgba(28,26,23,.12);
 
-    --sans:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
-    --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-    --display:"Forum","Cormorant Garamond",Georgia,serif;
+    --sans:"Switzer","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Liberation Sans",Arial,sans-serif;
+    --serif:var(--sans);
+    --display:var(--sans);
     --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
 
     --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
@@ -71,8 +71,17 @@
   @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
   @font-face{ font-family:"Forum"; src:url('_source/fonts/Forum-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
 
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-MediumItalic.woff2') format('woff2'); font-weight:500; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-SemiboldItalic.woff2') format('woff2'); font-weight:600; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+  html{ font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
   body{ font-family:var(--sans); color:var(--ink); background:var(--white); line-height:1.6; overflow-x:hidden; }
   body.lock{ overflow:hidden; }
   a{ color:inherit; text-decoration:none; }
@@ -84,7 +93,7 @@
   .kicker{ font-family:var(--sans); font-weight:600; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#7E560F; }
   .kicker.sage{ color:var(--sage-deep); }
   .kicker.champ{ color:var(--champagne); }
-  h1,h2,h3{ font-family:var(--display); font-weight:400; line-height:1.05; letter-spacing:-1.5px; }
+  h1,h2,h3{ font-family:var(--display); font-weight:500; line-height:1.08; letter-spacing:-0.02em; }
 
   .section{ padding-block:clamp(72px, 9vw, 130px); }
   /* light "explore" zone continuous with the hero's cream surface */
@@ -252,18 +261,20 @@
   @keyframes cardin{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
   .prodgrid .card{ animation:cardin .5s var(--ease-out) both; }
   .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; margin-bottom:-14%; }
+  .card .medialink{ display:block; width:100%; height:100%; }
   .card .media img{ width:100%; height:100%; object-fit:cover; object-position:64% 36%; transition:transform 700ms var(--ease-out); }
   .card:hover .media img{ transform:scale(1.04); }
-  .card .body{ padding-top:8px; }
+  .card .body{ padding-top:8px; display:flex; flex-direction:column; flex:1 1 auto; }
   .card .namelink{ display:inline-block; }
   .card .name{ font-family:var(--sans); font-weight:500; font-size:1.55rem; color:var(--ink); line-height:1; letter-spacing:-1px; transition:color 200ms ease; }
   .card .namelink:hover .name{ color:var(--sage-deep); }
   .card .titlerow{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .card .catl{ font-size:.82rem; color:var(--muted); margin-top:8px; line-height:1.4; }
+  .card .catl{ font-size:.9rem; color:var(--muted); margin-top:8px; line-height:1.4; flex:1 1 auto; }
   .card .price{ font-family:var(--sans); font-size:1.25rem; font-weight:400; color:var(--ink); letter-spacing:-.2px; white-space:nowrap; flex-shrink:0; }
   .card .price .from{ font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-right:.25em; vertical-align:middle; }
   .card .add{ margin-top:16px; width:100%; min-height:auto; padding:.9em 1.4em; font-size:.84rem; }  /* size only; style from .btn.btn-dark */
   .card .add.added, .card .add.added:hover{ background:var(--sage-deep); color:var(--white); border-color:var(--sage-deep); }
+  .card .add-mini{ display:none; }
   @media (max-width:1000px){ .prodgrid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
   @media (max-width:720px){
     .prodgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -274,7 +285,28 @@
     .card .price .from{ font-size:.52rem; margin-right:.15em; }
     .card .add{ margin-top:12px; }
   }
-  @media (max-width:440px){ .prodgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(20px,5vw,30px) 12px; } .card .name{ font-size:1.08rem; } .card .price{ font-size:.88rem; } }
+  /* ---- mobile: minimal card, quick-add floats on the vial; text = clean name + price ---- */
+  @media (max-width:560px){
+    .prodgrid{ align-items:start; }
+    .card{ position:relative; }
+    .card .media{ overflow:visible; }
+    .card .body{ padding-top:12px; flex:0 0 auto; }
+    .card .catl{ display:none; }
+    .card .add{ display:none; }
+    .card .titlerow{ flex-direction:column; align-items:flex-start; gap:5px; }
+    .card .name{ font-size:1.24rem; line-height:1.1; letter-spacing:-.4px; }
+    .card .price{ font-size:1rem; }
+    .card .add-mini{ display:flex; align-items:center; justify-content:center; position:absolute; z-index:3;
+      right:8px; bottom:13%; width:44px; height:44px; border-radius:50%;
+      background:var(--white); color:var(--black); border:1px solid rgba(28,26,23,.14);
+      box-shadow:0 6px 18px -8px rgba(40,28,20,.5);
+      transition:transform .12s ease, background-color .2s ease, color .2s ease; }
+    .card .add-mini svg{ width:20px; height:20px; }
+    .card .add-mini:active{ transform:scale(.92); background:var(--black); color:var(--white); }
+    .card .namelink::after{ content:""; position:absolute; inset:0; z-index:1; }
+    .card .medialink{ position:relative; z-index:0; }
+  }
+  @media (max-width:440px){ .prodgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(20px,5vw,30px) 12px; } .card .name{ font-size:1.12rem; } .card .price{ font-size:.92rem; } .card .add-mini{ width:40px; height:40px; right:6px; } }
 
 
   /* ===== EXPLORE BY RESEARCH AREA — dark cards that flow out of the hero ===== */
@@ -413,7 +445,7 @@
   .qty button{ width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:1rem; display:grid; place-items:center; transition:background-color 160ms ease; }
   .qty button:hover{ background:var(--sand); }
   .qty .qv{ min-width:26px; text-align:center; font-size:.82rem; font-weight:600; }
-  .ci .cp{ font-weight:700; font-size:.92rem; }
+  .ci .cp{ font-weight:700; font-size:1.1rem; color:var(--ink); }
   .ci .rm{ background:none; border:0; color:var(--muted); font-size:.7rem; text-decoration:underline; padding:0; margin-top:6px; transition:color 160ms ease; }
   .ci .rm:hover{ color:var(--clay); }
   .drawer .empty{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:40px; color:var(--muted); }
@@ -650,52 +682,51 @@
 </section>
 
 <!-- ===================== RESEARCH ===================== -->
-<section class="section research-sec">
+<section class="section research-sec" id="research">
   <div class="wrap">
     <div class="sec-head center reveal" style="max-width:none">
       <h2>The research</h2>
     </div>
-    <!-- NOTE: placeholder/illustrative citations — replace with real, verified references before launch -->
     <div class="rslist">
-      <a class="rsrow reveal" href="#">
+      <a class="rsrow reveal" href="research-ghk-cu.html">
         <div class="rsmain">
           <div class="rstitle">Copper tripeptide GHK-Cu and collagen remodelling in dermal fibroblasts</div>
-          <div class="rssource">Journal of Investigative Dermatology &middot; 2021</div>
+          <div class="rssource">International Journal of Molecular Sciences &middot; 2018</div>
         </div>
         <span class="rsarrow">→</span>
       </a>
-      <a class="rsrow reveal" data-d="1" href="#">
+      <a class="rsrow reveal" data-d="1" href="research-bpc157.html">
         <div class="rsmain">
           <div class="rstitle">Cytoprotective signalling of BPC-157 in connective and gut tissue repair</div>
-          <div class="rssource">Journal of Physiology and Pharmacology &middot; 2020</div>
+          <div class="rssource">Cell and Tissue Research &middot; 2019</div>
         </div>
         <span class="rsarrow">→</span>
       </a>
-      <a class="rsrow reveal" data-d="2" href="#">
+      <a class="rsrow reveal" data-d="2" href="research-selank.html">
         <div class="rsmain">
           <div class="rstitle">Selank modulation of GABAergic tone and stress-related behaviour</div>
-          <div class="rssource">Neuropeptides &middot; 2019</div>
+          <div class="rssource">Frontiers in Pharmacology &middot; 2017</div>
         </div>
         <span class="rsarrow">→</span>
       </a>
-      <a class="rsrow rsrow--more" href="#">
+      <a class="rsrow rsrow--more" href="research-nad.html">
         <div class="rsmain">
           <div class="rstitle">NAD+ precursors and mitochondrial bioenergetics in aged tissue</div>
-          <div class="rssource">Cell Metabolism &middot; 2022</div>
+          <div class="rssource">Cell Metabolism &middot; 2018</div>
         </div>
         <span class="rsarrow">→</span>
       </a>
-      <a class="rsrow rsrow--more" href="#">
+      <a class="rsrow rsrow--more" href="research-glutathione.html">
         <div class="rsmain">
           <div class="rstitle">Glutathione homeostasis and the regulation of oxidative stress</div>
-          <div class="rssource">Antioxidants &amp; Redox Signaling &middot; 2021</div>
+          <div class="rssource">Seminars in Cell &amp; Developmental Biology &middot; 2012</div>
         </div>
         <span class="rsarrow">→</span>
       </a>
-      <a class="rsrow rsrow--more" href="#">
+      <a class="rsrow rsrow--more" href="research-aod9604.html">
         <div class="rsmain">
           <div class="rstitle">AOD-9604, the lipolytic fragment of human growth hormone, in adipocyte metabolism</div>
-          <div class="rssource">Molecular and Cellular Endocrinology &middot; 2018</div>
+          <div class="rssource">Endocrinology &middot; 2001</div>
         </div>
         <span class="rsarrow">→</span>
       </a>
@@ -778,9 +809,14 @@
   /* ---------- product card ---------- */
   const cardHTML = (p,i) => `
     <article class="card" style="--ph:${p.ph}; animation-delay:${Math.min(i,6)*40}ms">
-      <a class="media" href="product.html?id=${p.id}" aria-label="${p.name}">
-        <img src="${p.img}" alt="Vivo ${p.name} peptide vial" loading="lazy">
-      </a>
+      <div class="media">
+        <a class="medialink" href="product.html?id=${p.id}" aria-label="${p.name}">
+          <img src="${p.img}" alt="Vivo ${p.name} peptide vial" loading="lazy">
+        </a>
+        <button class="add-mini" data-id="${p.id}" aria-label="Add ${p.name} to cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
       <div class="body">
         <div class="titlerow">
           <a class="namelink" href="product.html?id=${p.id}"><div class="name">${p.name}</div></a>
@@ -882,7 +918,7 @@
 
   /* ---------- events (delegated) ---------- */
   document.addEventListener('click', e => {
-    const add = e.target.closest('.add, .add-feature');
+    const add = e.target.closest('.add, .add-feature, .add-mini');
     if(add){ addToCart(add.dataset.id); openCart();
       if(add.classList.contains('add')){
         const label = add.innerHTML; add.classList.add('added'); add.textContent = 'Added ✓';
