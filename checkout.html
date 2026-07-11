@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Checkout — Vivo</title>
-<meta name="description" content="Secure checkout — Vivo research-grade peptides.">
+<title>Checkout · Vivo</title>
+<meta name="description" content="Secure checkout. Vivo research-grade peptides.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" href="vivo-favicon.png">
 <link rel="apple-touch-icon" href="vivo-favicon.png">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
-<meta property="og:title" content="Checkout — Vivo">
-<meta property="og:description" content="Secure checkout — Vivo research-grade peptides.">
+<meta property="og:title" content="Checkout · Vivo">
+<meta property="og:description" content="Secure checkout. Vivo research-grade peptides.">
 <meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
@@ -482,7 +482,7 @@
     <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
     <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
     <div class="agegate-actions">
-      <button type="button" id="ageYes" class="btn btn-dark agegate-yes">I am 21 or older — Enter</button>
+      <button type="button" id="ageYes" class="btn btn-dark agegate-yes">I am 21 or older</button>
       <button type="button" id="ageNo" class="btn agegate-no">Exit</button>
     </div>
     <p class="agegate-fine">By entering, you confirm you are acquiring these materials for laboratory research purposes only.</p>
@@ -519,7 +519,7 @@
 
 <!-- ===================== NAV ===================== -->
 <header class="nav scrolled" id="nav">
-  <a href="index.html" class="brand" aria-label="Vivo — home">
+  <a href="index.html" class="brand" aria-label="Vivo home">
     <img class="logo-white" src="logo_white.png" alt="Vivo">
     <img class="logo-black" src="logo_black.png" alt="" aria-hidden="true">
   </a>
@@ -552,7 +552,7 @@
         <form class="coform reveal" id="coForm" novalidate>
           <div class="cosection">
             <h3>Account</h3>
-            <p class="co-note">An account is required to purchase — guest checkout is not available.</p>
+            <p class="co-note">An account is required to purchase; guest checkout is not available.</p>
             <div class="field"><label for="co-email">Email</label><input id="co-email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
             <div class="co-row2">
               <div class="field"><label for="co-pw">Create password</label><input id="co-pw" type="password" autocomplete="new-password" minlength="8" required></div>
@@ -572,7 +572,7 @@
               <div class="field"><label for="co-state">State</label><input id="co-state" autocomplete="address-level1" required></div>
               <div class="field"><label for="co-zip">ZIP</label><input id="co-zip" inputmode="numeric" autocomplete="postal-code" required></div>
             </div>
-            <p class="co-note">We ship to physical U.S. addresses only — P.O. boxes cannot be accepted.</p>
+            <p class="co-note">We ship to physical U.S. addresses only. P.O. boxes cannot be accepted.</p>
           </div>
           <div class="cosection">
             <h3>Research details</h3>
@@ -609,11 +609,11 @@
           <div id="coItems"></div>
           <div class="cototals">
             <div class="r"><span>Subtotal</span><span id="coSub">$0.00</span></div>
-            <div class="r"><span>Shipping</span><span id="coShip">—</span></div>
+            <div class="r"><span>Shipping</span><span id="coShip">Free</span></div>
             <div class="r total"><span>Total</span><span id="coTotal">$0.00</span></div>
           </div>
           <button class="co-place" type="submit" form="coForm">Place order</button>
-          <div class="co-secure">Demo checkout — no real payment is processed.</div>
+          <div class="co-secure">Demo checkout. No real payment is processed.</div>
         </aside>
       </div>
     </div>
@@ -622,7 +622,7 @@
 
 <div class="tmodal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
   <div class="tmodal-card">
-    <h3 id="termsTitle">Terms &amp; Conditions — Research Use Only</h3>
+    <h3 id="termsTitle">Terms &amp; Conditions · Research Use Only</h3>
     <p>By placing an order you acknowledge and agree to the following:</p>
     <h4>Research-only use</h4>
     <p>All products are sold strictly for in-vitro laboratory research and are not for human or animal consumption.</p>
@@ -659,7 +659,7 @@
     <div class="top">
       <div class="brandcol">
         <img class="brand-logo" src="logo_white.png" alt="Vivo">
-        <p>Research-grade peptides, organised by research area and made in California — independently tested and documented, batch by batch.</p>
+        <p>Research-grade peptides, organised by research area and made in California, independently tested and documented, batch by batch.</p>
       </div>
       <div>
         <h4>Shop</h4>
@@ -680,7 +680,7 @@
       </div>
     </div>
     <div class="bottom">
-      <div class="disclaimer">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
+      <div class="disclaimer">For Research Use Only. Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
       <div class="pay"><span>Visa</span><span>MC</span><span>Amex</span><span>Pay</span></div>
     </div>
   </div>
@@ -864,11 +864,11 @@
       const pw = document.getElementById('co-pw'), pw2 = document.getElementById('co-pw2');
       if(pw && pw2) pw2.setCustomValidity(pw.value === pw2.value ? '' : 'Passwords do not match.');
       const addr = document.getElementById('co-addr');
-      if(addr) addr.setCustomValidity(/\bp\.?\s*o\.?\s*box\b|post\s*office\s*box/i.test(addr.value) ? 'We cannot ship to P.O. boxes — please enter a physical address.' : '');
+      if(addr) addr.setCustomValidity(/\bp\.?\s*o\.?\s*box\b|post\s*office\s*box/i.test(addr.value) ? 'We cannot ship to P.O. boxes. Please enter a physical address.' : '');
       if(!coForm.checkValidity()){ coForm.reportValidity(); return; }
       const order = 'VV' + String(Date.now()).slice(-8);
       cart = {}; save(); renderCart();
-      coWrap.innerHTML = `<div class="co-confirm"><div class="chk">✓</div><h2>Thank you — your order is confirmed.</h2><p>Order <strong>${order}</strong>. A confirmation has been sent to your email.<br>(Demo only — no payment was processed and nothing ships.)</p><a class="btn btn-dark" href="shop.html">Continue shopping</a></div>`;
+      coWrap.innerHTML = `<div class="co-confirm"><div class="chk">✓</div><h2>Thank you. Your order is confirmed.</h2><p>Order <strong>${order}</strong>. A confirmation has been sent to your email.<br>(Demo only. No payment was processed and nothing ships.)</p><a class="btn btn-dark" href="shop.html">Continue shopping</a></div>`;
       window.scrollTo({ top:0, behavior:'smooth' });
     });
   }

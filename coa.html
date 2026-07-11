@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Certificates of Analysis — Vivo</title>
+<title>Certificates of Analysis · Vivo</title>
 <meta name="description" content="Every Vivo batch is independently tested by HPLC and LC-MS. Browse Certificates of Analysis for purity, identity, and batch verification.">
 <link rel="canonical" href="https://vivo-storefront.netlify.app/coa.html">
 <link rel="icon" type="image/png" href="vivo-favicon.png">
@@ -11,14 +11,14 @@
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vivo">
-<meta property="og:title" content="Certificates of Analysis — Vivo">
+<meta property="og:title" content="Certificates of Analysis · Vivo">
 <meta property="og:description" content="Every Vivo batch is independently tested by HPLC and LC-MS. Browse Certificates of Analysis for purity, identity, and batch verification.">
 <meta property="og:url" content="https://vivo-storefront.netlify.app/coa.html">
 <meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Certificates of Analysis — Vivo">
+<meta name="twitter:title" content="Certificates of Analysis · Vivo">
 <meta name="twitter:description" content="Every Vivo batch is independently tested by HPLC and LC-MS. Browse Certificates of Analysis for purity, identity, and batch verification.">
 <meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <style>
@@ -425,7 +425,7 @@
 
   /* ===== CERTIFICATES OF ANALYSIS (coa.html) ===== */
   .coa{ padding:128px 0 clamp(80px,12vw,150px); }
-  .coahead{ max-width:720px; }
+  .coahead{ max-width:960px; }
   .coahead h1{ font-size:clamp(2.2rem,4.8vw,3.4rem); color:var(--ink); margin-top:14px; }
   .coahead p{ margin-top:16px; color:var(--muted); font-size:1.05rem; max-width:56ch; line-height:1.7; }
   /* ---------- certificate viewer ---------- */
@@ -518,6 +518,36 @@
     .cert-table th:nth-child(4), .cert-table td:nth-child(4){ width:24%; }
     .cert-actions{ flex-direction:column; }
   }
+
+  /* ===== COA INDEX (card grid) ===== */
+  .coa-filter{ display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,3vw,40px); }
+  .coa-filter button{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:0; padding:.72em 1.05em; cursor:pointer; display:inline-flex; align-items:center; transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
+  .coa-filter button:hover{ border-color:var(--ink); color:var(--ink); }
+  .coa-filter button.active{ background:var(--sage-deep); border-color:var(--sage-deep); color:var(--white); }
+  .coa-filter .fdot{ width:8px; height:8px; border-radius:50%; margin-right:7px; }
+  .coa-filter button.active .fdot{ box-shadow:0 0 0 1.5px rgba(255,255,255,.7); }
+  .coa-grid{ margin-top:clamp(24px,2.8vw,38px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(14px,1.5vw,22px); }
+  .coacard{ display:flex; flex-direction:column; background:var(--white); border:1px solid var(--line); transition:border-color .25s ease, transform .3s var(--ease-out), box-shadow .3s ease; }
+  .coacard:hover{ border-color:var(--muted); transform:translateY(-2px); box-shadow:0 14px 26px -24px rgba(60,40,30,.3); }
+  .coacard-media{ position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--white); border-bottom:1px solid var(--line); padding-top:16px; }
+  .coacard-media img{ width:100%; height:100%; object-fit:contain; object-position:center; transform:scale(1.06); transition:transform .5s var(--ease-out); }
+  .coacard:hover .coacard-media img{ transform:scale(1.09); }
+  .coacard-batch{ position:absolute; left:10px; bottom:10px; background:rgba(28,26,23,.82); color:var(--white); font-family:var(--mono); font-size:.52rem; letter-spacing:.04em; padding:4px 7px; }
+  .coacard-body{ padding:13px 15px 15px; display:flex; flex-direction:column; flex:1; }
+  .coacard-cat{ display:flex; align-items:center; gap:7px; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--muted); }
+  .coacard-cat .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .coacard-name{ font-family:var(--display); font-weight:500; font-size:1.2rem; letter-spacing:-.3px; color:var(--ink); margin-top:6px; line-height:1; }
+  .coacard-specs{ margin-top:10px; padding-top:10px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; flex:1; }
+  .coacard-specs .row{ display:flex; align-items:center; gap:7px; font-size:.74rem; color:var(--muted); }
+  .coacard-specs .row b{ color:var(--ink); font-weight:600; }
+  .coacard-specs svg{ width:12px; height:12px; color:var(--sage-deep); flex-shrink:0; }
+  .coacard-cta{ margin-top:12px; display:inline-flex; align-items:center; gap:.5em; font-size:.74rem; font-weight:600; color:var(--sage-deep); }
+  .coacard-cta .arrow{ transition:transform .25s var(--ease-out); }
+  .coacard:hover .coacard-cta .arrow{ transform:translateX(4px); }
+  @media (max-width:1100px){ .coa-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media (max-width:760px){ .coa-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:560px){ .coa-grid{ gap:12px; } .coacard-body{ padding:12px 13px 14px; } .coacard-specs .row{ font-size:.72rem; } }
+  @media (max-width:380px){ .coa-grid{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -530,7 +560,7 @@
     <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
     <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
     <div class="agegate-actions">
-      <button type="button" id="ageYes" class="btn btn-dark agegate-yes">I am 21 or older — Enter</button>
+      <button type="button" id="ageYes" class="btn btn-dark agegate-yes">I am 21 or older</button>
       <button type="button" id="ageNo" class="btn agegate-no">Exit</button>
     </div>
     <p class="agegate-fine">By entering, you confirm you are acquiring these materials for laboratory research purposes only.</p>
@@ -567,7 +597,7 @@
 
 <!-- ===================== NAV ===================== -->
 <header class="nav scrolled" id="nav">
-  <a href="index.html" class="brand" aria-label="Vivo — home">
+  <a href="index.html" class="brand" aria-label="Vivo home">
     <img class="logo-white" src="logo_white.png" alt="Vivo">
     <img class="logo-black" src="logo_black.png" alt="" aria-hidden="true">
   </a>
@@ -588,32 +618,17 @@
   </div>
 </header>
 
-<!-- ===================== CERTIFICATES OF ANALYSIS ===================== -->
+<!-- ===================== CERTIFICATES INDEX ===================== -->
 <section class="coa">
   <div class="wrap">
     <div class="coahead">
       <div class="kicker reveal">Transparency</div>
       <h1 class="reveal" data-d="1">Certificates of Analysis</h1>
-      <p class="reveal" data-d="2">Every batch is independently tested for purity and identity by HPLC and LC-MS. Select a compound to view its certificate; each lot ships with its own batch-specific results.</p>
+      <p class="reveal" data-d="2">Every Vivo compound is independently tested for purity and identity by HPLC and LC-MS. Choose a compound to view its full certificate; each lot ships with its own batch-specific results.</p>
+      <a class="reveal" data-d="3" href="coa-guide.html" style="display:inline-flex;align-items:center;gap:.4em;margin-top:18px;font-size:.9rem;font-weight:600;color:var(--sage-deep)">New here? How to read a certificate <span aria-hidden="true">&rarr;</span></a>
     </div>
-    <div class="certview reveal" data-d="2">
-      <div class="cert-nav">
-        <button type="button" class="cert-picker" id="certPicker" aria-expanded="false" aria-controls="certIndex" aria-label="Choose a compound">
-          <span class="cp-dot" id="cpDot"></span>
-          <span class="cp-txt"><span class="cp-name" id="cpName">Select a compound</span><span class="cp-batch" id="cpBatch"></span></span>
-          <svg class="cp-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="cert-index" id="certIndex">
-          <div class="cert-search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5 17 17"/></svg>
-            <input type="search" id="certSearch" placeholder="Search compound or lot" aria-label="Search certificates" autocomplete="off">
-          </div>
-          <div class="certlist" id="certList" role="listbox" aria-label="Compounds"></div>
-          <div class="cert-empty" id="certEmpty" hidden>No compounds match that search.</div>
-        </div>
-      </div>
-      <div class="certdoc" id="certDoc"></div>
-    </div>
+    <div class="coa-filter reveal" data-d="2" id="coaFilter" aria-label="Filter by research area"></div>
+    <div class="coa-grid reveal" data-d="2" id="coaGrid"></div>
   </div>
 </section>
 
@@ -638,7 +653,7 @@
     <div class="top">
       <div class="brandcol">
         <img class="brand-logo" src="logo_white.png" alt="Vivo">
-        <p>Research-grade peptides, organised by research area and made in California — independently tested and documented, batch by batch.</p>
+        <p>Research-grade peptides, organised by research area and made in California, independently tested and documented, batch by batch.</p>
       </div>
       <div>
         <h4>Shop</h4>
@@ -659,7 +674,7 @@
       </div>
     </div>
     <div class="bottom">
-      <div class="disclaimer">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
+      <div class="disclaimer">For Research Use Only. Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
       <div class="pay"><span>Visa</span><span>MC</span><span>Amex</span><span>Pay</span></div>
     </div>
   </div>
@@ -802,179 +817,46 @@
 
   renderCart();
 
-  /* ---------- certificate viewer (designed COA + HPLC chromatogram) ---------- */
-  const certList = document.getElementById('certList');
-  const certDoc  = document.getElementById('certDoc');
-  if(certList && certDoc){
+  /* ---------- certificates index (SKU cards -> certificate.html?id=) ---------- */
+  const coaGrid = document.getElementById('coaGrid');
+  const coaFilter = document.getElementById('coaFilter');
+  if(coaGrid){
     const hash = s => { let h = 5381; for(let i=0;i<s.length;i++) h = ((h*33) ^ s.charCodeAt(i)) >>> 0; return h; };
     const specs = p => {
       const h = hash(p.id);
-      return {
-        purity: (99.1 + (h % 60)/100).toFixed(1),
-        tfa:    (0.2 + (h % 5)/10).toFixed(1),
-        water:  (2.4 + (h % 38)/10).toFixed(1),
-        rt:     (4.6 + (h % 42)/10).toFixed(1),
-        batch:  'VV-' + p.id.toUpperCase().replace('+','') + '-2406'
-      };
+      return { purity:(99.1 + (h % 60)/100).toFixed(1), batch:'VV-' + p.id.toUpperCase().replace('+','') + '-2406' };
     };
-    const chromo = (p, s) => {
-      const W = 620, base = 176, top = 30, N = 260, xmax = 12, A = base - top;
-      const rt = parseFloat(s.rt);
-      const peaks = [
-        { mu: rt,       amp: A,        sig: 0.16 },
-        { mu: 1.15,     amp: A*0.045,  sig: 0.22 },
-        { mu: rt - 1.7, amp: A*0.02,   sig: 0.12 },
-        { mu: rt + 2.3, amp: A*0.017,  sig: 0.13 }
-      ];
-      let line = '';
-      for(let i=0;i<=N;i++){
-        const t = xmax*i/N;
-        let y = 0; peaks.forEach(pk => { y += pk.amp*Math.exp(-Math.pow(t-pk.mu,2)/(2*pk.sig*pk.sig)); });
-        line += (i===0?'M':'L') + ((i/N)*W).toFixed(1) + ',' + (base - y).toFixed(1) + ' ';
-      }
-      const fill = line + 'L'+W+','+base+' L0,'+base+' Z';
-      let grid = '';
-      for(let g=0;g<=6;g++){
-        const gx = (g/6)*W;
-        grid += `<line x1="${gx.toFixed(0)}" y1="16" x2="${gx.toFixed(0)}" y2="${base}" stroke="rgba(28,26,23,.06)"/>`;
-        grid += `<text x="${gx.toFixed(0)}" y="${base+15}" font-size="11" fill="#9a938a" text-anchor="middle" font-family="monospace">${g*2}</text>`;
-      }
-      const peakX = (rt/xmax)*W;
-      return `<svg viewBox="0 0 ${W} 200" role="img" aria-label="RP-HPLC purity trace for ${p.name}">
-        ${grid}
-        <line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="rgba(28,26,23,.28)"/>
-        <path class="cert-fill" d="${fill}" fill="${p.ph}" fill-opacity=".13"/>
-        <path class="cert-trace" pathLength="1" d="${line}" fill="none" stroke="#2e2c28" stroke-width="1.4" stroke-linejoin="round"/>
-        <line class="cert-mark" x1="${peakX.toFixed(0)}" y1="${base}" x2="${peakX.toFixed(0)}" y2="${top-4}" stroke="${p.ph}" stroke-width="1" stroke-dasharray="3 3"/>
-        <text class="cert-mark" x="${(peakX+7).toFixed(0)}" y="${top-1}" font-size="11" fill="#2e2c28" font-family="monospace">${s.purity}% area</text>
-        <text x="7" y="13" font-size="11" fill="#9a938a" font-family="monospace">mAU · UV 214 nm</text>
-        <text x="${W-7}" y="${base+15}" font-size="11" fill="#9a938a" text-anchor="end" font-family="monospace">min</text>
-      </svg>`;
+    const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+    const card = p => {
+      const s = specs(p); const b = BENEFIT_BY_ID[p.benefit] || {}; const color = b.color || p.ph;
+      return `<a class="coacard" href="certificate.html?id=${p.id}" style="--ph:${p.ph}" aria-label="${p.name} certificate of analysis">
+        <div class="coacard-media"><img src="${p.img}" alt="${p.name}" loading="lazy"><span class="coacard-batch">Lot ${s.batch}</span></div>
+        <div class="coacard-body">
+          <div class="coacard-cat"><span class="dot" style="background:${color}"></span>${b.name || ''}</div>
+          <div class="coacard-name">${p.name}</div>
+          <div class="coacard-specs">
+            <span class="row">${check}<span><b>${s.purity}%</b> HPLC purity</span></span>
+            <span class="row">${check}<span>Identity confirmed by LC-MS</span></span>
+          </div>
+          <span class="coacard-cta">View certificate <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>`;
     };
-    const render = p => {
-      const s = specs(p);
-      certDoc.innerHTML = `<article class="cert">
-        <header class="cert-top">
-          <div class="cert-brand">Vivo<span>Analytical</span></div>
-          <div class="cert-meta"><div class="cm-t">Certificate of Analysis</div><div class="cm-b">Lot ${s.batch}</div></div>
-        </header>
-        <div class="cert-title">
-          <span class="ct-dot" style="background:${(BENEFIT_BY_ID[p.benefit] || {}).color || p.ph}"></span>
-          <div><h2>${p.name}</h2><div class="cert-sub">${p.cat} · ${p.dose} · lyophilised · Research Use Only</div></div>
-        </div>
-        <div class="cert-headline">
-          <div class="ch"><div class="ch-k">Purity, HPLC</div><div class="ch-v">${s.purity}%</div></div>
-          <div class="ch"><div class="ch-k">Identity, LC-MS</div><div class="ch-v">Confirmed</div></div>
-          <div class="ch"><div class="ch-k">Released</div><div class="ch-v" style="font-size:1.15rem">Apr 2026</div></div>
-        </div>
-        <div class="cert-chart">
-          <div class="cert-chart-head"><span>RP-HPLC purity trace</span><span>Single dominant species</span></div>
-          ${chromo(p, s)}
-          <div class="cert-chart-note">Main peak ${s.purity}% area at retention ${s.rt} min.</div>
-        </div>
-        <table class="cert-table">
-          <thead><tr><th>Parameter</th><th>Method</th><th>Specification</th><th>Result</th></tr></thead>
-          <tbody>
-            <tr><td>Appearance</td><td>Visual</td><td>White to off-white powder</td><td class="pass">Conforms</td></tr>
-            <tr><td>Purity</td><td>RP-HPLC</td><td>&ge; 99.0%</td><td>${s.purity}%</td></tr>
-            <tr><td>Identity / mass</td><td>LC-MS (ESI)</td><td>Consistent with theoretical</td><td class="pass">Confirmed</td></tr>
-            <tr><td>TFA content</td><td>RP-HPLC</td><td>&le; 1.0%</td><td>${s.tfa}%</td></tr>
-            <tr><td>Water content</td><td>Karl Fischer</td><td>&le; 8.0%</td><td>${s.water}%</td></tr>
-            <tr><td>Heavy metals</td><td>ICP-MS</td><td>&le; 10 ppm</td><td class="pass">Pass</td></tr>
-          </tbody>
-        </table>
-        <div class="cert-actions">
-          <a class="btn btn-primary" href="product.html?id=${p.id}">View product</a>
-          <a class="btn btn-dark" href="certificates/${s.batch}.pdf" target="_blank" rel="noopener">View PDF <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="cert-foot">
-          <div>Analysis performed by an independent third-party laboratory. Methods: RP-HPLC, LC-MS (ESI), ICP-MS, Karl Fischer titration.</div>
-          <div>Released by Vivo QA/QC, California. Representative certificate; each lot ships with its own batch-specific results.</div>
-          <div class="cert-ruo">For Research Use Only. Not for human or animal consumption.</div>
-        </div>
-      </article>`;
+    const renderGrid = f => {
+      const items = PRODUCTS.filter(p => !f || f === 'all' || p.benefit === f);
+      coaGrid.innerHTML = items.map(card).join('');
     };
-    /* ---- grouped, searchable index + mobile picker ---- */
-    const certSearch = document.getElementById('certSearch');
-    const certEmpty  = document.getElementById('certEmpty');
-    const certIndex  = document.getElementById('certIndex');
-    const certPicker = document.getElementById('certPicker');
-    const cpDot   = document.getElementById('cpDot');
-    const cpName  = document.getElementById('cpName');
-    const cpBatch = document.getElementById('cpBatch');
-    let currentIndex = 0;
-
-    const catColorOf = p => (BENEFIT_BY_ID[p.benefit] || {}).color || p.ph;
-    const matchesSearch = (p, q) => {
-      if(!q) return true;
-      const s = specs(p);
-      return p.name.toLowerCase().includes(q)
-        || (p.cat || '').toLowerCase().includes(q)
-        || s.batch.toLowerCase().includes(q);
-    };
-    const buttonHTML = (p, i) => {
-      const s = specs(p);
-      return `<button type="button" class="cl${i===currentIndex?' active':''}" role="option" aria-selected="${i===currentIndex}" data-i="${i}"><span class="cl-dot" style="background:${catColorOf(p)}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
-    };
-
-    function buildIndex(){
-      const q = (certSearch && certSearch.value || '').trim().toLowerCase();
-      const known = new Set(BENEFITS.map(b => b.id));
-      const groups = BENEFITS.map(b => ({ name:b.name, color:b.color, test:p => p.benefit === b.id }));
-      groups.push({ name:'Other', color:'var(--muted)', test:p => !known.has(p.benefit) });
-      let html = '', anyVisible = false;
-      groups.forEach(g => {
-        const items = PRODUCTS.map((p,i) => ({p,i})).filter(({p}) => g.test(p) && matchesSearch(p, q));
-        if(!items.length) return;
-        anyVisible = true;
-        html += `<div class="cert-group"><div class="cg-head"><span class="cg-dot" style="background:${g.color}"></span>${g.name}<span class="cg-n">${items.length}</span></div>`
-          + items.map(({p,i}) => buttonHTML(p, i)).join('')
-          + `</div>`;
+    if(coaFilter){
+      const filters = [{id:'all', name:'All'}].concat(BENEFITS.map(b => ({ id:b.id, name:b.name, color:b.color })));
+      coaFilter.innerHTML = filters.map((f,i) => `<button type="button" data-f="${f.id}" class="${i===0?'active':''}">${f.color?`<span class="fdot" style="background:${f.color}"></span>`:''}${f.name}</button>`).join('');
+      coaFilter.addEventListener('click', e => {
+        const b = e.target.closest('button'); if(!b) return;
+        coaFilter.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        renderGrid(b.dataset.f);
       });
-      certList.innerHTML = html;
-      if(certEmpty) certEmpty.hidden = anyVisible;
     }
-
-    function updatePicker(p){
-      const s = specs(p);
-      if(cpDot)   cpDot.style.background = catColorOf(p);
-      if(cpName)  cpName.textContent = p.name;
-      if(cpBatch) cpBatch.textContent = 'Lot ' + s.batch;
-    }
-
-    function select(i, fromClick){
-      currentIndex = i;
-      const p = PRODUCTS[i];
-      render(p);
-      updatePicker(p);
-      certList.querySelectorAll('button[data-i]').forEach(x => {
-        const on = +x.dataset.i === i;
-        x.classList.toggle('active', on);
-        x.setAttribute('aria-selected', on);
-      });
-      if(fromClick) closeIndex();
-    }
-
-    function openIndex(){ certIndex.classList.add('open'); certPicker.setAttribute('aria-expanded','true'); }
-    function closeIndex(){ certIndex.classList.remove('open'); certPicker.setAttribute('aria-expanded','false'); }
-
-    certPicker.addEventListener('click', () => {
-      certIndex.classList.contains('open') ? closeIndex() : openIndex();
-    });
-    certList.addEventListener('click', e => {
-      const b = e.target.closest('button[data-i]'); if(!b) return;
-      select(+b.dataset.i, true);
-    });
-    if(certSearch) certSearch.addEventListener('input', buildIndex);
-    document.addEventListener('click', e => {
-      if(!certIndex.classList.contains('open')) return;
-      if(certIndex.contains(e.target) || certPicker.contains(e.target)) return;
-      closeIndex();
-    });
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeIndex(); });
-
-    buildIndex();
-    select(0, false);
+    renderGrid('all');
   }
 
   /* ============================================================

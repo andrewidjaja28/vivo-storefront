@@ -5,7 +5,7 @@
    each page's inline logic, so PRODUCTS, BENEFITS and
    BENEFIT_BY_ID are available as globals.
 
-   Prices are placeholders — confirm before launch.
+   Prices are placeholders; confirm before launch.
    ============================================================ */
 
 /* Benefit taxonomy — products reference these by id.

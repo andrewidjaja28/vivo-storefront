@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vivo — Product</title>
+<title>Vivo · Product</title>
 <meta name="description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
 <link rel="canonical" href="https://vivo-storefront.netlify.app/product.html">
 <link rel="icon" type="image/png" href="vivo-favicon.png">
@@ -11,14 +11,14 @@
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="Vivo">
-<meta property="og:title" content="Research-grade peptides — Vivo">
+<meta property="og:title" content="Research-grade peptides · Vivo">
 <meta property="og:description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
 <meta property="og:url" content="https://vivo-storefront.netlify.app/product.html">
 <meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Research-grade peptides — Vivo">
+<meta name="twitter:title" content="Research-grade peptides · Vivo">
 <meta name="twitter:description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
 <meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
 <style>
@@ -249,7 +249,7 @@
 
   /* QUALITY & STANDARDS */
   .quality{ padding-block:clamp(56px,8vw,100px); }
-  .quality .qhead{ max-width:30ch; margin-bottom:clamp(34px,5vw,56px); }
+  .quality .qhead{ max-width:600px; margin-bottom:clamp(34px,5vw,56px); }
   .quality .qhead h2{ font-size:clamp(1.8rem,3.6vw,2.6rem); color:var(--ink); margin-top:14px; }
   .qgrid{ display:grid; grid-template-columns:2fr 1fr; gap:clamp(14px,1.6vw,26px); align-items:stretch; }
   .qside{ display:flex; flex-direction:column; gap:clamp(14px,1.6vw,26px); min-height:0; }
@@ -358,7 +358,7 @@
     <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
     <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
     <div class="agegate-actions">
-      <button type="button" id="ageYes" class="btn btn-dark agegate-yes">I am 21 or older — Enter</button>
+      <button type="button" id="ageYes" class="btn btn-dark agegate-yes">I am 21 or older</button>
       <button type="button" id="ageNo" class="btn agegate-no">Exit</button>
     </div>
     <p class="agegate-fine">By entering, you confirm you are acquiring these materials for laboratory research purposes only.</p>
@@ -395,7 +395,7 @@
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <a href="index.html" class="brand" aria-label="Vivo — home"><img src="logo_black.png" alt="Vivo"></a>
+  <a href="index.html" class="brand" aria-label="Vivo home"><img src="logo_black.png" alt="Vivo"></a>
   <nav class="nav-links">
     <a href="index.html#shop" class="link">Products</a>
     <a href="about.html" class="link">About</a>
@@ -446,7 +446,7 @@
     <div class="top">
       <div class="brandcol">
         <img class="brand-logo" src="logo_white.png" alt="Vivo">
-        <p>Research-grade peptides, organised by research area and made in California — independently tested and documented, batch by batch.</p>
+        <p>Research-grade peptides, organised by research area and made in California, independently tested and documented, batch by batch.</p>
       </div>
       <div>
         <h4>Shop</h4>
@@ -466,7 +466,7 @@
       </div>
     </div>
     <div class="bottom">
-      <div class="disclaimer">For Research Use Only — Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
+      <div class="disclaimer">For Research Use Only. Not for Human or Animal Consumption. Vivo products are sold strictly for laboratory research purposes and are not intended to diagnose, treat, cure, or prevent any disease. © 2026 Vivo. Made in California.</div>
       <div class="pay"><span>Visa</span><span>MC</span><span>Amex</span><span>Pay</span></div>
     </div>
   </div>
@@ -509,7 +509,7 @@
   const product = byId(params.get('id')) || PRODUCTS[0];
   const benefit = BENEFIT_BY_ID[product.benefit];
 
-  document.title = product.name + ' — Vivo';
+  document.title = product.name + ' · Vivo';
   document.getElementById('crumbName').textContent = product.name;
 
   const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" opacity=".25"/><path d="m8 12 3 3 5-6"/></svg>';
@@ -555,7 +555,7 @@
             <h1 class="reveal">${esc(product.name)}</h1>
             <p class="overview reveal">${esc(product.overview)}</p>
             <div class="specrow reveal">
-              <a class="s spurity" href="coa.html" aria-label="Purity — view Certificate of Analysis">Purity<b>&ge; 99%<svg class="sck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></b></a>
+              <a class="s spurity" href="certificate.html?id=${product.id}" aria-label="Purity, view Certificate of Analysis">Purity<b>&ge; 99%<svg class="sck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></b></a>
               <div class="s">Strength<b>${esc(product.dose)}</b></div>
               <div class="s">Form<b>Lyophilised</b></div>
               <div class="s">Origin<b>California</b></div>
@@ -643,7 +643,7 @@
           <div class="faqlead reveal">
             <h2>Proof in every batch</h2>
             <p>Every Vivo peptide ships with a third-party Certificate of Analysis. The exact purity and identity data behind every vial.</p>
-            <a href="coa.html" class="btn btn-dark">View Certificate of Analysis</a>
+            <a href="certificate.html?id=${product.id}" class="btn btn-dark">View Certificate of Analysis</a>
           </div>
           <div class="faqcol reveal">
             <h3 class="faqh">Common questions</h3>
