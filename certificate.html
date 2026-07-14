@@ -444,13 +444,13 @@
   .cert-group + .cert-group{ margin-top:4px; }
   .cg-head{ display:flex; align-items:center; gap:9px; font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); padding:15px 4px 8px; position:sticky; top:0; background:var(--white); z-index:1; }
   .cg-head .cg-dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-  .cg-head .cg-n{ margin-left:auto; font-family:var(--mono); font-weight:600; letter-spacing:.05em; opacity:.6; }
-  .certlist button{ display:grid; grid-template-columns:12px 1fr; gap:12px; align-items:center; width:100%; text-align:left; background:transparent; border:0; border-bottom:1px solid var(--line); padding:13px 8px; cursor:pointer; color:var(--ink); transition:background-color .18s ease; }
-  .certlist button:hover{ background:var(--sand); }
-  .certlist button.active{ background:var(--sage-tint); }
-  .certlist .cl-dot{ width:12px; height:12px; border-radius:50%; }
-  .certlist .cl-name{ display:block; font-weight:600; font-size:.95rem; letter-spacing:-.2px; }
-  .certlist .cl-batch{ display:block; font-family:var(--mono); font-size:.66rem; color:var(--muted); margin-top:3px; letter-spacing:.03em; }
+  .cg-head .cg-n{ margin-left:auto; font-weight:600; letter-spacing:.02em; opacity:.6; }
+  .certlist button{ display:grid; grid-template-columns:11px 1fr; gap:12px; align-items:center; width:100%; text-align:left; background:transparent; border:0; border-bottom:1px solid var(--line); padding:12px 8px; cursor:pointer; color:var(--ink); transition:background-color .18s ease; }
+  .certlist button:hover{ background:rgba(28,26,23,.035); }
+  .certlist button.active{ background:rgba(28,26,23,.07); }
+  .certlist button.active .cl-name{ font-weight:700; }
+  .certlist .cl-dot{ width:11px; height:11px; border-radius:50%; }
+  .certlist .cl-name{ display:block; font-weight:600; font-size:.96rem; letter-spacing:-.2px; }
   .cert-empty{ padding:22px 8px; font-size:.86rem; color:var(--muted); }
   .certdoc{ background:var(--white); border:1px solid var(--line); box-shadow:0 44px 90px -60px rgba(40,28,20,.45); }
   .cert{ position:relative; padding:clamp(24px,3vw,44px); }
@@ -494,7 +494,7 @@
     .cert-picker .cp-dot{ width:12px; height:12px; border-radius:50%; flex-shrink:0; }
     .cert-picker .cp-txt{ min-width:0; flex:1; }
     .cert-picker .cp-name{ display:block; font-weight:600; font-size:.98rem; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .cert-picker .cp-batch{ display:block; font-family:var(--mono); font-size:.64rem; color:var(--muted); margin-top:2px; }
+    .cert-picker .cp-batch{ display:block; font-size:.72rem; color:var(--muted); margin-top:2px; }
     .cert-picker .cp-chev{ width:18px; height:18px; color:var(--muted); flex-shrink:0; transition:transform .25s ease; }
     .cert-picker[aria-expanded="true"] .cp-chev{ transform:rotate(180deg); }
     .cert-index{ position:absolute; top:calc(100% + 6px); left:0; right:0; background:var(--white); border:1px solid var(--line); box-shadow:0 30px 60px -30px rgba(40,28,20,.5); padding:12px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .2s ease, transform .2s ease, visibility .2s; }
@@ -598,7 +598,7 @@
       <div class="kicker reveal">Transparency</div>
       <h1 class="reveal" data-d="1">Certificate of Analysis</h1>
       <p class="reveal" data-d="2">Independently tested for purity and identity by HPLC and LC-MS. Switch compounds with the selector; each lot ships with its own batch-specific results.</p>
-      <a class="reveal" data-d="3" href="coa-guide.html" style="display:inline-flex;align-items:center;gap:.4em;margin-top:18px;font-size:.9rem;font-weight:600;color:var(--sage-deep)">New here? How to read a certificate <span aria-hidden="true">&rarr;</span></a>
+      <a class="reveal" data-d="3" href="coa-guide.html" style="display:inline-flex;align-items:center;gap:.4em;margin-top:18px;font-size:.9rem;font-weight:600;color:var(--sage-deep)">How to read a certificate <span aria-hidden="true">&rarr;</span></a>
     </div>
     <div class="certview reveal" data-d="2">
       <div class="cert-nav">
@@ -919,7 +919,7 @@
     };
     const buttonHTML = (p, i) => {
       const s = specs(p);
-      return `<button type="button" class="cl${i===currentIndex?' active':''}" role="option" aria-selected="${i===currentIndex}" data-i="${i}"><span class="cl-dot" style="background:${catColorOf(p)}"></span><span><span class="cl-name">${p.name}</span><span class="cl-batch">Lot ${s.batch}</span></span></button>`;
+      return `<button type="button" class="cl${i===currentIndex?' active':''}" role="option" aria-selected="${i===currentIndex}" data-i="${i}"><span class="cl-dot" style="background:${catColorOf(p)}"></span><span class="cl-name">${p.name}</span></button>`;
     };
 
     function buildIndex(){

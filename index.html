@@ -157,10 +157,10 @@
   }
   /* once scrolled, drop the sand and use the translucent treatment */
   header.nav.scrolled{
-    background:rgba(247,240,223,.82);
+    background:rgba(250,248,244,.86);
     backdrop-filter:saturate(150%) blur(16px); -webkit-backdrop-filter:saturate(150%) blur(16px);
     color:var(--ink); padding-block:10px;
-    box-shadow:none;
+    box-shadow:0 1px 0 var(--line);
   }
   body.bar-hidden header.nav{ top:var(--bar-h); }
   .nav .brand{ display:inline-flex; align-items:center; height:20px; }
@@ -199,8 +199,8 @@
   /* scroll-scrub mode (desktop): tall track + pinned viewport, scroll drives the video */
   .hero.scrub{ height:200vh; }
   .hero.scrub .hero-pin{ position:sticky; top:0; height:100svh; }
-  /* nudge the vial lower so it clears the headline/CTA above it */
-  .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:translateY(11%); z-index:0; }
+  /* fill the pin fully; object-position biases the framing so the vial sits lower (no top gap) */
+  .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 35%; z-index:0; }
   /* soft blend of the video's bottom edge into the continuous cream of the category section */
   .hero-pin::before{
     content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
@@ -311,7 +311,7 @@
 
 
   /* ===== EXPLORE BY RESEARCH AREA — dark cards that flow out of the hero ===== */
-  .bcards{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(12px,1.2vw,18px); }
+  .bcards{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(12px,1.2vw,18px); }
   .bcard{ position:relative; overflow:hidden; border-radius:0; aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:flex-end; padding:clamp(16px,1.5vw,24px); background:var(--sand); border:1px solid var(--line); transition:background-color 320ms var(--ease-out), border-color 320ms ease; }
   .bcard:hover, .bcard:focus-visible{ background:#E7DCC6; border-color:rgba(28,26,23,.2); }
   /* soft category-colored glow behind the vial */
@@ -546,7 +546,7 @@
 
 
 <!-- ===================== NAV ===================== -->
-<header class="nav" id="nav">
+<header class="nav scrolled" id="nav">
   <a href="#top" class="brand" aria-label="Vivo home">
     <img class="logo-white" src="logo_white.png" alt="Vivo">
     <img class="logo-black" src="logo_black.png" alt="" aria-hidden="true">
@@ -613,6 +613,11 @@
       <a class="bcard reveal" data-d="3" href="shop.html?benefit=vitality" style="--bc:#3D5C36">
         <img class="bvial" src="Products/Vials/clean/vial_nad+.png" alt="" loading="lazy">
         <h3>Neuroactive</h3>
+        <span class="blink">Browse <span class="arrow">→</span></span>
+      </a>
+      <a class="bcard reveal" data-d="4" href="shop.html?benefit=somatotropic" style="--bc:#3E6E73">
+        <img class="bvial" src="Products/Vials/placeholder.png" alt="" loading="lazy">
+        <h3>Somatotropic</h3>
         <span class="blink">Browse <span class="arrow">→</span></span>
       </a>
     </div>
@@ -823,7 +828,9 @@
       </div>
     </article>`;
 
-  grid.innerHTML = PRODUCTS.slice(0,4).map(cardHTML).join('');
+  // Feature products that have real vial art (skip placeholder images).
+  const featured = PRODUCTS.filter(p => !String(p.img).includes('placeholder'));
+  grid.innerHTML = (featured.length >= 4 ? featured : PRODUCTS).slice(0,4).map(cardHTML).join('');
 
   /* ============================================================
      CART
@@ -940,7 +947,7 @@
      ============================================================ */
   const nav = document.getElementById('nav');
   const onScroll = () => {
-    nav.classList.toggle('scrolled', window.scrollY > 30);
+    nav.classList.add('scrolled');
     document.body.classList.toggle('bar-hidden', window.scrollY > 40);
   };
   onScroll();

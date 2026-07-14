@@ -519,46 +519,38 @@
     .cert-actions{ flex-direction:column; }
   }
 
-  /* ===== COA GUIDE (coa-guide.html) ===== */
-  .cg-annot{ margin-top:clamp(30px,4vw,52px); display:grid; grid-template-columns:1fr 340px; gap:clamp(20px,2.5vw,40px); align-items:start; }
+  /* ===== COA GUIDE — numbered walkthrough (coa-guide.html) ===== */
+  .cg-walk{ margin-top:clamp(30px,4vw,52px); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(24px,3.5vw,64px); align-items:start; }
+  .cg-cert-col{ position:sticky; top:96px; }
   .cg-cert{ background:var(--white); border:1px solid var(--line); box-shadow:0 44px 90px -60px rgba(40,28,20,.45); }
-  .cg-explain{ position:sticky; top:96px; }
-  .cg-ex-intro, .cg-ex-card{ background:var(--sage-tint); border:1px solid rgba(61,92,54,.18); padding:clamp(22px,2.4vw,30px); }
-  .cg-ex-kicker{ font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--sage-deep); font-weight:600; }
-  .cg-explain h3{ font-family:var(--display); font-weight:500; font-size:1.5rem; color:var(--ink); letter-spacing:-.4px; margin-top:9px; line-height:1.1; }
-  .cg-ex-intro p{ font-size:.96rem; line-height:1.6; color:var(--ink); margin-top:12px; }
-  .cg-ex-card{ display:grid; grid-template-columns:auto 1fr; gap:15px; }
-  .cg-ex-n{ width:34px; height:34px; border-radius:50%; background:var(--sage-deep); color:var(--white); display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:.9rem; }
-  .cg-ex-card .cg-ex-kicker{ margin-bottom:1px; }
-  .cg-ex-what{ margin-top:9px; font-size:.94rem; line-height:1.6; color:var(--ink); }
-  .cg-ex-why{ margin-top:15px; padding-top:14px; border-top:1px solid rgba(61,92,54,.22); }
-  .cg-ex-why > span{ font-family:var(--mono); font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:var(--sage-deep); font-weight:600; }
-  .cg-ex-why p{ margin-top:6px; font-size:.9rem; line-height:1.55; color:var(--muted); }
-  .cg-hot{ display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; border-radius:50%; background:var(--sage-deep); color:var(--white); font-family:var(--mono); font-size:.6rem; font-weight:700; margin-right:7px; vertical-align:middle; flex-shrink:0; }
-  .cg-field{ cursor:pointer; position:relative; transition:background-color .18s ease; scroll-margin-top:100px; outline:none; }
-  .cg-field:hover{ background:var(--sage-tint); }
+  .cg-hot{ display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; border-radius:50%; background:var(--sage-deep); color:var(--white); font-family:var(--mono); font-size:.6rem; font-weight:700; margin-right:7px; vertical-align:middle; flex-shrink:0; transition:background-color .2s ease, transform .2s ease; }
+  .cg-field{ position:relative; transition:background-color .2s ease; }
   .ch.cg-field.cg-active, .cert-meta.cg-field.cg-active, .cert-chart-note.cg-field.cg-active{ background:var(--sage-tint); box-shadow:inset 0 0 0 2px var(--sage-deep); }
   tr.cg-field.cg-active{ outline:2px solid var(--sage-deep); outline-offset:-2px; background:var(--sage-tint); }
-  .cg-field.cg-active .cg-hot, tr.cg-field.cg-active .cg-hot{ background:var(--clay-deep); }
-  .cert-chart-head .cg-field{ display:inline-flex; align-items:center; margin:-4px -6px; padding:4px 6px; }
-  .cert-meta.cg-field{ padding:6px 8px; margin:-6px -8px; }
-  .cg-cert .cert-table td .cg-hot{ margin-right:6px; }
-  /* reference */
-  .cg-ref{ margin-top:clamp(60px,8vw,110px); display:grid; gap:clamp(46px,6vw,82px); }
-  .cg-ref-group h2{ font-size:clamp(1.8rem,3.4vw,2.6rem); color:var(--ink); }
-  .cg-ref-group > p.lead{ margin-top:12px; color:var(--muted); max-width:62ch; line-height:1.7; font-size:1.02rem; }
-  .cg-dl{ margin-top:clamp(22px,3vw,34px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
-  .cg-item{ background:var(--white); padding:clamp(20px,2vw,28px); }
-  .cg-item .cg-term{ display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; }
-  .cg-item .cg-term b{ font-family:var(--display); font-weight:500; font-size:1.18rem; color:var(--ink); letter-spacing:-.2px; }
-  .cg-item .cg-method{ font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sage-deep); border:1px solid rgba(61,92,54,.3); padding:3px 7px; }
-  .cg-item > p{ margin-top:11px; font-size:.93rem; line-height:1.62; color:var(--ink); }
-  .cg-item .cg-why{ margin-top:11px; font-size:.88rem; color:var(--muted); line-height:1.55; }
-  .cg-item .cg-why b{ color:var(--sage-deep); font-weight:600; font-family:var(--sans); }
+  .cg-field.cg-active .cg-hot, tr.cg-field.cg-active .cg-hot{ background:var(--clay-deep); transform:scale(1.1); }
+  .cert-chart-head .cg-field{ display:inline-flex; align-items:center; }
+  .cert-meta.cg-field{ padding:4px 6px; margin:-4px -6px; }
+  .cg-steps{ list-style:none; display:flex; flex-direction:column; }
+  .cg-step{ display:grid; grid-template-columns:auto 1fr; gap:16px; padding:clamp(20px,2.2vw,28px) 0; border-top:1px solid var(--line); scroll-margin-top:100px; }
+  .cg-step:first-child{ border-top:0; padding-top:0; }
+  .cg-step-n{ width:34px; height:34px; border-radius:50%; background:var(--white); border:1.5px solid var(--sage-deep); color:var(--sage-deep); display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:.9rem; transition:background-color .25s ease, color .25s ease; }
+  .cg-step.cg-on .cg-step-n{ background:var(--sage-deep); color:var(--white); }
+  .cg-step-head{ display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; }
+  .cg-step-head b{ font-family:var(--display); font-weight:500; font-size:1.3rem; letter-spacing:-.3px; color:var(--ink); }
+  .cg-step-head .method{ font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sage-deep); border:1px solid rgba(61,92,54,.3); padding:3px 7px; }
+  .cg-step p{ margin-top:9px; font-size:.96rem; line-height:1.62; color:var(--ink); }
+  .cg-step .why{ margin-top:9px; font-size:.9rem; line-height:1.55; color:var(--muted); }
+  .cg-step .why span{ font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage-deep); font-weight:600; margin-right:7px; }
+  .cg-terms{ margin-top:clamp(56px,7vw,96px); }
+  .cg-terms h2{ font-size:clamp(1.6rem,3vw,2.2rem); color:var(--ink); }
+  .cg-terms-grid{ margin-top:clamp(20px,2.5vw,32px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .cg-terms-grid .item{ background:var(--white); padding:clamp(18px,1.8vw,24px); }
+  .cg-terms-grid b{ font-family:var(--display); font-weight:500; font-size:1.08rem; color:var(--ink); }
+  .cg-terms-grid p{ margin-top:8px; font-size:.86rem; line-height:1.55; color:var(--muted); }
   .cg-guidelink{ display:inline-flex; align-items:center; gap:.4em; margin-top:20px; font-size:.9rem; font-weight:600; color:var(--sage-deep); }
   .cg-guidelink:hover{ text-decoration:underline; text-underline-offset:3px; }
-  @media (max-width:900px){ .cg-annot{ grid-template-columns:1fr; } .cg-explain{ position:static; } }
-  @media (max-width:620px){ .cg-dl{ grid-template-columns:1fr; } }
+  @media (max-width:900px){ .cg-walk{ grid-template-columns:1fr; gap:24px; } .cg-cert-col{ position:static; } .cg-terms-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:520px){ .cg-terms-grid{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -629,74 +621,30 @@
   </div>
 </header>
 
-<!-- ===================== COA GUIDE ===================== -->
+<!-- ===================== COA GUIDE — walkthrough ===================== -->
 <section class="coa">
   <div class="wrap">
     <div class="coahead">
       <div class="kicker reveal">Transparency</div>
       <h1 class="reveal" data-d="1">How to read a Certificate of Analysis</h1>
-      <p class="reveal" data-d="2">Every Vivo batch ships with a Certificate of Analysis: the independent test data behind the vial. This guide decodes each figure and explains why it matters for reproducible research.</p>
+      <p class="reveal" data-d="2">Every Vivo batch ships with a Certificate of Analysis: the independent test data behind the vial. Below is a sample certificate with every figure explained, top to bottom.</p>
       <a class="cg-guidelink reveal" data-d="3" href="coa.html">Browse live certificates <span aria-hidden="true">&rarr;</span></a>
     </div>
 
-    <div class="cg-annot reveal" data-d="2">
-      <div class="cg-cert" id="cgCert"></div>
-      <aside class="cg-explain">
-        <div id="cgExplain" aria-live="polite">
-          <div class="cg-ex-intro">
-            <div class="cg-ex-kicker">Interactive</div>
-            <h3>Tap any highlighted figure</h3>
-            <p>Select a numbered field on the certificate to see what it measures, how it is tested, and why it matters for research.</p>
-          </div>
-        </div>
-      </aside>
+    <div class="cg-walk reveal" data-d="2">
+      <div class="cg-cert-col">
+        <div class="cg-cert" id="cgCert"></div>
+      </div>
+      <ol class="cg-steps" id="cgSteps"></ol>
     </div>
 
-    <div class="cg-ref">
-      <div class="cg-ref-group reveal">
-        <h2>The methods</h2>
-        <p class="lead">The instruments and techniques behind every figure on the certificate.</p>
-        <div class="cg-dl">
-          <div class="cg-item"><div class="cg-term"><b>RP-HPLC</b><span class="cg-method">Purity</span></div><p>Reverse-phase high-performance liquid chromatography pushes the dissolved sample through a column so its parts separate by how strongly each holds to the packing.</p><div class="cg-why"><b>Reads:</b> purity, residual TFA, and the shape of the trace.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>LC-MS (ESI)</b><span class="cg-method">Identity</span></div><p>Liquid chromatography feeds the separated sample into a mass spectrometer, which weighs each molecule with high precision.</p><div class="cg-why"><b>Reads:</b> identity, by matching measured mass to the expected mass.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>ICP-MS</b><span class="cg-method">Metals</span></div><p>Inductively coupled plasma mass spectrometry ionises the sample in a super-hot plasma and counts metal atoms down to parts per million.</p><div class="cg-why"><b>Reads:</b> trace heavy-metal contamination.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Karl Fischer titration</b><span class="cg-method">Water</span></div><p>A chemical titration that reacts specifically with water, measuring moisture accurately even in trace amounts.</p><div class="cg-why"><b>Reads:</b> residual water held in the powder.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Visual inspection</b><span class="cg-method">Appearance</span></div><p>A trained check of colour and physical form before any instrument is run.</p><div class="cg-why"><b>Reads:</b> gross defects such as discolouration or clumping.</div></div>
-        </div>
-      </div>
-
-      <div class="cg-ref-group reveal">
-        <h2>The measurements</h2>
-        <p class="lead">What each result on the table certifies, and why it matters for research.</p>
-        <div class="cg-dl">
-          <div class="cg-item"><div class="cg-term"><b>Purity</b><span class="cg-method">&ge; 99%</span></div><p>The share of the sample that is the target peptide, measured as its percentage of the total peak area.</p><div class="cg-why"><b>Why it matters:</b> the higher the purity, the fewer stray compounds there are to confound an experiment, so results are cleaner and more reproducible.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Identity / mass</b><span class="cg-method">Confirmed</span></div><p>A measurement of the molecule&rsquo;s exact mass, checked against the theoretical mass of the intended sequence.</p><div class="cg-why"><b>Why it matters:</b> confirms the vial holds the precise peptide named on the label, not a wrong or mislabelled sequence.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>TFA content</b><span class="cg-method">&le; 1%</span></div><p>Residual trifluoroacetic acid, a counter-ion left behind by peptide synthesis and purification.</p><div class="cg-why"><b>Why it matters:</b> TFA can interfere with sensitive cell and binding assays, so it is held to a strict ceiling.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Water content</b><span class="cg-method">&le; 8%</span></div><p>The residual moisture held in the lyophilised (freeze-dried) powder.</p><div class="cg-why"><b>Why it matters:</b> water adds to the vial&rsquo;s weight, so measuring it lets researchers calculate the true amount of compound and its concentration.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Heavy metals</b><span class="cg-method">&le; 10 ppm</span></div><p>Trace metallic contaminants such as lead or arsenic, reported in parts per million.</p><div class="cg-why"><b>Why it matters:</b> metal traces can degrade a compound or distort assay readouts, so they are screened to a low limit.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Appearance</b><span class="cg-method">Visual</span></div><p>The physical form and colour, expected to be a white to off-white powder.</p><div class="cg-why"><b>Why it matters:</b> a first-line check; discolouration or clumping can flag degradation or moisture before any instrument is run.</div></div>
-        </div>
-      </div>
-
-      <div class="cg-ref-group reveal">
-        <h2>Reading the chromatogram</h2>
-        <p class="lead">The trace is a simple picture of purity. Time runs left to right; detector signal runs bottom to top.</p>
-        <div class="cg-dl">
-          <div class="cg-item"><div class="cg-term"><b>Retention time</b><span class="cg-method">x-axis</span></div><p>The horizontal position, in minutes, where a compound leaves the column. The target peptide&rsquo;s retention is marked on the trace.</p><div class="cg-why"><b>Why it matters:</b> a consistent retention time from batch to batch is a fingerprint that the same compound was prepared the same way.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Signal (mAU)</b><span class="cg-method">y-axis</span></div><p>Height is the detector&rsquo;s response in milli-absorbance units at 214 nm, the wavelength peptide bonds absorb.</p><div class="cg-why"><b>Why it matters:</b> a taller peak means more of that compound passed the detector at that moment.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Main peak</b><span class="cg-method">Target</span></div><p>The single tall peak is the target peptide. A clean, well-resolved, dominant peak is the signature of a pure compound.</p><div class="cg-why"><b>Why it matters:</b> the clearer the main peak stands alone, the more confident the identity and purity.</div></div>
-          <div class="cg-item"><div class="cg-term"><b>Area %</b><span class="cg-method">Purity</span></div><p>Purity is the main peak&rsquo;s area as a percentage of every peak combined, not simply its height.</p><div class="cg-why"><b>Why it matters:</b> using area captures how much total material is the target versus everything else.</div></div>
-        </div>
-      </div>
-
-      <div class="cg-ref-group reveal">
-        <h2>Key terms</h2>
-        <div class="cg-dl">
-          <div class="cg-item"><div class="cg-term"><b>Lyophilised</b></div><p>Freeze-dried to a stable powder, so the compound keeps for long-term storage and is reconstituted only when a protocol calls for it.</p></div>
-          <div class="cg-item"><div class="cg-term"><b>Lot / batch</b></div><p>One production run with one set of test results. Every certificate belongs to a single lot, so its figures describe the exact vial you receive.</p></div>
-          <div class="cg-item"><div class="cg-term"><b>Research grade</b></div><p>Prepared and documented for laboratory research use, with purity and identity independently verified and recorded.</p></div>
-          <div class="cg-item"><div class="cg-term"><b>Specification vs result</b></div><p>The specification is the limit a batch must meet; the result is what this lot actually measured. Results meet or beat the specification.</p></div>
-        </div>
+    <div class="cg-terms reveal">
+      <h2>Key terms</h2>
+      <div class="cg-terms-grid">
+        <div class="item"><b>Lyophilised</b><p>Freeze-dried to a stable powder for long-term storage, reconstituted only when a protocol calls for it.</p></div>
+        <div class="item"><b>Lot / batch</b><p>One production run with one set of results. Every certificate describes a single lot.</p></div>
+        <div class="item"><b>Research grade</b><p>Prepared and documented for laboratory research, with purity and identity independently verified.</p></div>
+        <div class="item"><b>Spec vs result</b><p>The specification is the limit a batch must meet; the result is what this lot actually measured.</p></div>
       </div>
     </div>
   </div>
@@ -887,32 +835,22 @@
 
   renderCart();
 
-  /* ---------- COA guide: annotated certificate + explanations ---------- */
+  /* ---------- COA guide: numbered walkthrough ---------- */
   const cgCert = document.getElementById('cgCert');
-  const cgExplain = document.getElementById('cgExplain');
-  if(cgCert && cgExplain){
+  const cgSteps = document.getElementById('cgSteps');
+  if(cgCert && cgSteps){
     const chromo = (p, s) => {
       const W = 620, base = 176, top = 30, N = 260, xmax = 12, A = base - top;
       const rt = parseFloat(s.rt);
       const peaks = [
-        { mu: rt,       amp: A,        sig: 0.16 },
-        { mu: 1.15,     amp: A*0.045,  sig: 0.22 },
-        { mu: rt - 1.7, amp: A*0.02,   sig: 0.12 },
-        { mu: rt + 2.3, amp: A*0.017,  sig: 0.13 }
+        { mu: rt, amp: A, sig: 0.16 }, { mu: 1.15, amp: A*0.045, sig: 0.22 },
+        { mu: rt - 1.7, amp: A*0.02, sig: 0.12 }, { mu: rt + 2.3, amp: A*0.017, sig: 0.13 }
       ];
       let line = '';
-      for(let i=0;i<=N;i++){
-        const t = xmax*i/N;
-        let y = 0; peaks.forEach(pk => { y += pk.amp*Math.exp(-Math.pow(t-pk.mu,2)/(2*pk.sig*pk.sig)); });
-        line += (i===0?'M':'L') + ((i/N)*W).toFixed(1) + ',' + (base - y).toFixed(1) + ' ';
-      }
+      for(let i=0;i<=N;i++){ const t = xmax*i/N; let y=0; peaks.forEach(pk => { y += pk.amp*Math.exp(-Math.pow(t-pk.mu,2)/(2*pk.sig*pk.sig)); }); line += (i===0?'M':'L') + ((i/N)*W).toFixed(1) + ',' + (base - y).toFixed(1) + ' '; }
       const fill = line + 'L'+W+','+base+' L0,'+base+' Z';
       let grid = '';
-      for(let g=0;g<=6;g++){
-        const gx = (g/6)*W;
-        grid += `<line x1="${gx.toFixed(0)}" y1="16" x2="${gx.toFixed(0)}" y2="${base}" stroke="rgba(28,26,23,.06)"/>`;
-        grid += `<text x="${gx.toFixed(0)}" y="${base+15}" font-size="11" fill="#9a938a" text-anchor="middle" font-family="monospace">${g*2}</text>`;
-      }
+      for(let g=0;g<=6;g++){ const gx=(g/6)*W; grid += `<line x1="${gx.toFixed(0)}" y1="16" x2="${gx.toFixed(0)}" y2="${base}" stroke="rgba(28,26,23,.06)"/>`; grid += `<text x="${gx.toFixed(0)}" y="${base+15}" font-size="11" fill="#9a938a" text-anchor="middle" font-family="monospace">${g*2}</text>`; }
       const peakX = (rt/xmax)*W;
       return `<svg viewBox="0 0 ${W} 200" role="img" aria-label="RP-HPLC purity trace for ${p.name}">
         ${grid}
@@ -929,48 +867,49 @@
     const SAMPLE = { name:'Sample compound', cat:'Reference example', dose:'5 mg', ph:'#3D5C36' };
     const S = { purity:'99.4', tfa:'0.3', water:'3.1', rt:'6.2', batch:'VV-SAMPLE-2406' };
 
+    const ORDER = ['released','purity','identity','peak','retention','appearance','tfa','water','heavy'];
     const TERMS = {
-      purity:    { n:1, name:'Purity', method:'RP-HPLC', what:'The share of the sample that is the target peptide, measured as its percentage of the total peak area.', why:'The higher the purity, the fewer stray compounds there are to confound an experiment. Vivo specifies at least 99%, so research runs cleaner and more reproducible.' },
-      identity:  { n:2, name:'Identity / mass', method:'LC-MS (ESI)', what:'A measurement of the molecule&rsquo;s exact mass, checked against the theoretical mass of the intended sequence.', why:'Confirms the vial holds the precise peptide named on the label, not a wrong or mislabelled sequence.' },
-      released:  { n:3, name:'Lot &amp; release', method:'QA/QC review', what:'The unique batch (lot) number and the date Vivo&rsquo;s quality team approved it for release.', why:'Every figure on the certificate belongs to one specific lot, so the data applies to the exact vial you receive, never an average.' },
-      peak:      { n:4, name:'Main peak', method:'RP-HPLC &middot; UV 214 nm', what:'The tall dominant peak is the target peptide; its area relative to everything else defines the purity percentage.', why:'A single, well-resolved peak signals a clean compound. Smaller peaks are impurities, and you can see exactly how little there is.' },
-      retention: { n:5, name:'Retention time', method:'RP-HPLC', what:'The time in minutes at which the compound leaves the column, marked on the horizontal axis.', why:'A consistent retention time from batch to batch is a fingerprint that the same compound was prepared the same way.' },
-      tfa:       { n:6, name:'TFA content', method:'RP-HPLC', what:'Residual trifluoroacetic acid, a counter-ion left behind by peptide synthesis and purification.', why:'TFA can interfere with sensitive cell and binding assays, so it is held to no more than 1%.' },
-      water:     { n:7, name:'Water content', method:'Karl Fischer', what:'The residual moisture held in the lyophilised (freeze-dried) powder.', why:'Water adds to the vial&rsquo;s weight, so measuring it lets researchers calculate the true amount of compound and its concentration.' },
-      heavy:     { n:8, name:'Heavy metals', method:'ICP-MS', what:'Trace metallic contaminants such as lead or arsenic.', why:'Metal traces can degrade a compound or distort assay readouts, so they are screened to no more than 10 ppm.' },
-      appearance:{ n:9, name:'Appearance', method:'Visual', what:'The physical form and colour, expected to be a white to off-white powder.', why:'A first-line check: discolouration or clumping can flag degradation or moisture before any instrument is run.' }
+      released:  { name:'Lot &amp; release', method:'QA/QC review', what:"The unique batch (lot) number and the date Vivo&rsquo;s quality team approved it for release.", why:"Every figure on the certificate belongs to this one lot, so the data describes the exact vial you receive, never an average." },
+      purity:    { name:'Purity', method:'RP-HPLC', what:"The share of the sample that is the target peptide, measured as its percentage of the total peak area.", why:"The higher the purity, the fewer stray compounds there are to confound an experiment. Vivo specifies at least 99%." },
+      identity:  { name:'Identity / mass', method:'LC-MS (ESI)', what:"A measurement of the molecule&rsquo;s exact mass, checked against the theoretical mass of the intended sequence.", why:"Confirms the vial holds the precise peptide named on the label, not a wrong or mislabelled sequence." },
+      peak:      { name:'Main peak', method:'RP-HPLC &middot; UV 214 nm', what:"On the trace, the tall dominant peak is the target peptide; its area versus everything else sets the purity percentage.", why:"A single, well-resolved peak is the signature of a clean compound. Smaller peaks are impurities, shown to scale." },
+      retention: { name:'Retention time', method:'RP-HPLC', what:"The time in minutes at which the compound leaves the column, marked along the horizontal axis.", why:"A consistent retention time across batches is a fingerprint that the same compound was prepared the same way." },
+      appearance:{ name:'Appearance', method:'Visual', what:"The physical form and colour, expected to be a white to off-white powder.", why:"A first-line check: discolouration or clumping can flag degradation or moisture before any instrument is run." },
+      tfa:       { name:'TFA content', method:'RP-HPLC', what:"Residual trifluoroacetic acid, a counter-ion left behind by peptide synthesis and purification.", why:"TFA can interfere with sensitive cell and binding assays, so it is held to no more than 1%." },
+      water:     { name:'Water content', method:'Karl Fischer', what:"The residual moisture held in the lyophilised (freeze-dried) powder.", why:"Water adds to the vial&rsquo;s weight, so measuring it lets researchers calculate the true amount of compound and its concentration." },
+      heavy:     { name:'Heavy metals', method:'ICP-MS', what:"Trace metallic contaminants such as lead or arsenic, reported in parts per million.", why:"Metal traces can degrade a compound or distort assay readouts, so they are screened to no more than 10 ppm." }
     };
-
+    ORDER.forEach((k,i) => TERMS[k].n = i+1);
     const badge = id => `<span class="cg-hot" aria-hidden="true">${TERMS[id].n}</span>`;
 
     cgCert.innerHTML = `<article class="cert">
       <header class="cert-top">
         <div class="cert-brand">Vivo<span>Analytical</span></div>
-        <div class="cert-meta cg-field" data-term="released" tabindex="0" role="button"><div class="cm-t">${badge('released')}Certificate of Analysis</div><div class="cm-b">Lot ${S.batch}</div></div>
+        <div class="cert-meta cg-field" data-term="released"><div class="cm-t">${badge('released')}Certificate of Analysis</div><div class="cm-b">Lot ${S.batch}</div></div>
       </header>
       <div class="cert-title">
         <span class="ct-dot" style="background:${SAMPLE.ph}"></span>
         <div><h2>${SAMPLE.name}</h2><div class="cert-sub">${SAMPLE.cat} &middot; ${SAMPLE.dose} &middot; lyophilised &middot; Research Use Only</div></div>
       </div>
       <div class="cert-headline">
-        <div class="ch cg-field" data-term="purity" tabindex="0" role="button"><div class="ch-k">${badge('purity')}Purity, HPLC</div><div class="ch-v">${S.purity}%</div></div>
-        <div class="ch cg-field" data-term="identity" tabindex="0" role="button"><div class="ch-k">${badge('identity')}Identity, LC-MS</div><div class="ch-v">Confirmed</div></div>
+        <div class="ch cg-field" data-term="purity"><div class="ch-k">${badge('purity')}Purity, HPLC</div><div class="ch-v">${S.purity}%</div></div>
+        <div class="ch cg-field" data-term="identity"><div class="ch-k">${badge('identity')}Identity, LC-MS</div><div class="ch-v">Confirmed</div></div>
         <div class="ch"><div class="ch-k">Released</div><div class="ch-v" style="font-size:1.15rem">Apr 2026</div></div>
       </div>
       <div class="cert-chart">
-        <div class="cert-chart-head"><span class="cg-field" data-term="peak" tabindex="0" role="button">${badge('peak')}RP-HPLC purity trace</span><span>Single dominant species</span></div>
+        <div class="cert-chart-head"><span class="cg-field" data-term="peak">${badge('peak')}RP-HPLC purity trace</span><span>Single dominant species</span></div>
         ${chromo(SAMPLE, S)}
-        <div class="cert-chart-note cg-field" data-term="retention" tabindex="0" role="button">${badge('retention')}Main peak ${S.purity}% area at retention ${S.rt} min.</div>
+        <div class="cert-chart-note cg-field" data-term="retention">${badge('retention')}Main peak ${S.purity}% area at retention ${S.rt} min.</div>
       </div>
       <table class="cert-table">
         <thead><tr><th>Parameter</th><th>Method</th><th>Specification</th><th>Result</th></tr></thead>
         <tbody>
-          <tr class="cg-field" data-term="appearance" tabindex="0" role="button"><td>${badge('appearance')}Appearance</td><td>Visual</td><td>White to off-white powder</td><td class="pass">Conforms</td></tr>
+          <tr class="cg-field" data-term="appearance"><td>${badge('appearance')}Appearance</td><td>Visual</td><td>White to off-white powder</td><td class="pass">Conforms</td></tr>
           <tr><td>Purity</td><td>RP-HPLC</td><td>&ge; 99.0%</td><td>${S.purity}%</td></tr>
           <tr><td>Identity / mass</td><td>LC-MS (ESI)</td><td>Consistent with theoretical</td><td class="pass">Confirmed</td></tr>
-          <tr class="cg-field" data-term="tfa" tabindex="0" role="button"><td>${badge('tfa')}TFA content</td><td>RP-HPLC</td><td>&le; 1.0%</td><td>${S.tfa}%</td></tr>
-          <tr class="cg-field" data-term="water" tabindex="0" role="button"><td>${badge('water')}Water content</td><td>Karl Fischer</td><td>&le; 8.0%</td><td>${S.water}%</td></tr>
-          <tr class="cg-field" data-term="heavy" tabindex="0" role="button"><td>${badge('heavy')}Heavy metals</td><td>ICP-MS</td><td>&le; 10 ppm</td><td class="pass">Pass</td></tr>
+          <tr class="cg-field" data-term="tfa"><td>${badge('tfa')}TFA content</td><td>RP-HPLC</td><td>&le; 1.0%</td><td>${S.tfa}%</td></tr>
+          <tr class="cg-field" data-term="water"><td>${badge('water')}Water content</td><td>Karl Fischer</td><td>&le; 8.0%</td><td>${S.water}%</td></tr>
+          <tr class="cg-field" data-term="heavy"><td>${badge('heavy')}Heavy metals</td><td>ICP-MS</td><td>&le; 10 ppm</td><td class="pass">Pass</td></tr>
         </tbody>
       </table>
       <div class="cert-foot">
@@ -979,28 +918,32 @@
       </div>
     </article>`;
 
-    function showTerm(id, user){
-      const t = TERMS[id]; if(!t) return;
-      cgExplain.innerHTML = `<div class="cg-ex-card">
-        <div class="cg-ex-n">${t.n}</div>
-        <div class="cg-ex-body">
-          <div class="cg-ex-kicker">${t.method}</div>
-          <h3>${t.name}</h3>
-          <p class="cg-ex-what">${t.what}</p>
-          <div class="cg-ex-why"><span>Why it matters</span><p>${t.why}</p></div>
+    cgSteps.innerHTML = ORDER.map(id => {
+      const t = TERMS[id];
+      return `<li class="cg-step" id="step-${id}" data-term="${id}">
+        <div class="cg-step-n">${t.n}</div>
+        <div>
+          <div class="cg-step-head"><b>${t.name}</b><span class="method">${t.method}</span></div>
+          <p>${t.what}</p>
+          <p class="why"><span>Why it matters</span>${t.why}</p>
         </div>
-      </div>`;
+      </li>`;
+    }).join('');
+
+    function setActive(id){
       cgCert.querySelectorAll('[data-term]').forEach(el => el.classList.toggle('cg-active', el.dataset.term===id));
-      if(user && window.matchMedia('(max-width:900px)').matches){
-        cgExplain.scrollIntoView({ behavior:'smooth', block:'center' });
-      }
+      cgSteps.querySelectorAll('.cg-step').forEach(el => el.classList.toggle('cg-on', el.dataset.term===id));
     }
-    cgCert.addEventListener('click', e => { const f=e.target.closest('[data-term]'); if(f) showTerm(f.dataset.term, true); });
-    cgCert.addEventListener('keydown', e => {
-      const f=e.target.closest('[data-term]');
-      if(f && (e.key==='Enter' || e.key===' ')){ e.preventDefault(); showTerm(f.dataset.term, true); }
-    });
-    showTerm('purity', false);
+    cgSteps.addEventListener('mouseover', e => { const li = e.target.closest('.cg-step'); if(li) setActive(li.dataset.term); });
+    cgCert.addEventListener('mouseover', e => { const f = e.target.closest('[data-term]'); if(f) setActive(f.dataset.term); });
+    cgCert.addEventListener('click', e => { const f = e.target.closest('[data-term]'); if(f){ const st = document.getElementById('step-'+f.dataset.term); if(st) st.scrollIntoView({ behavior:'smooth', block:'center' }); } });
+    cgCert.style.cursor = 'default';
+
+    if('IntersectionObserver' in window && window.matchMedia('(min-width:901px)').matches){
+      const io = new IntersectionObserver(ents => { ents.forEach(e => { if(e.isIntersecting) setActive(e.target.dataset.term); }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+      cgSteps.querySelectorAll('.cg-step').forEach(li => io.observe(li));
+    }
+    setActive('released');
   }
 
   /* ============================================================

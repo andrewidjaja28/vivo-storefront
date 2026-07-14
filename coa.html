@@ -520,7 +520,14 @@
   }
 
   /* ===== COA INDEX (card grid) ===== */
-  .coa-filter{ display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,3vw,40px); }
+  .coa-search{ position:relative; display:flex; align-items:center; max-width:440px; margin-top:clamp(24px,3vw,36px); }
+  .coa-search svg{ position:absolute; left:14px; width:17px; height:17px; color:var(--muted); pointer-events:none; }
+  .coa-search input{ width:100%; background:var(--white); border:1px solid var(--line); border-radius:0; color:var(--ink); font:inherit; font-size:.95rem; padding:.82em 1em .82em 2.55em; outline:none; transition:border-color .2s ease; }
+  .coa-search input::placeholder{ color:var(--muted); }
+  .coa-search input:focus{ border-color:var(--sage-deep); }
+  .coa-search input::-webkit-search-cancel-button{ -webkit-appearance:none; }
+  .coa-empty{ grid-column:1 / -1; padding:44px 4px; color:var(--muted); font-size:1rem; }
+  .coa-filter{ display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(16px,2vw,22px); }
   .coa-filter button{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:0; padding:.72em 1.05em; cursor:pointer; display:inline-flex; align-items:center; transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
   .coa-filter button:hover{ border-color:var(--ink); color:var(--ink); }
   .coa-filter button.active{ background:var(--sage-deep); border-color:var(--sage-deep); color:var(--white); }
@@ -537,11 +544,10 @@
   .coacard-cat{ display:flex; align-items:center; gap:7px; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--muted); }
   .coacard-cat .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
   .coacard-name{ font-family:var(--display); font-weight:500; font-size:1.2rem; letter-spacing:-.3px; color:var(--ink); margin-top:6px; line-height:1; }
-  .coacard-specs{ margin-top:10px; padding-top:10px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; flex:1; }
-  .coacard-specs .row{ display:flex; align-items:center; gap:7px; font-size:.74rem; color:var(--muted); }
-  .coacard-specs .row b{ color:var(--ink); font-weight:600; }
-  .coacard-specs svg{ width:12px; height:12px; color:var(--sage-deep); flex-shrink:0; }
-  .coacard-cta{ margin-top:12px; display:inline-flex; align-items:center; gap:.5em; font-size:.74rem; font-weight:600; color:var(--sage-deep); }
+  .coacard-specs{ margin-top:auto; padding-top:14px; display:flex; align-items:center; gap:10px 12px; flex-wrap:wrap; }
+  .coacard-purity{ display:inline-flex; align-items:baseline; gap:6px; color:var(--muted); font-family:var(--sans); font-size:.74rem; font-weight:600; }
+  .coacard-purity b{ color:var(--ink); font-size:1.05rem; font-weight:700; letter-spacing:-.01em; }
+  .coacard-cta{ margin-left:auto; display:inline-flex; align-items:center; gap:.5em; font-size:.74rem; font-weight:600; color:var(--sage-deep); white-space:nowrap; }
   .coacard-cta .arrow{ transition:transform .25s var(--ease-out); }
   .coacard:hover .coacard-cta .arrow{ transform:translateX(4px); }
   @media (max-width:1100px){ .coa-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
@@ -625,10 +631,14 @@
       <div class="kicker reveal">Transparency</div>
       <h1 class="reveal" data-d="1">Certificates of Analysis</h1>
       <p class="reveal" data-d="2">Every Vivo compound is independently tested for purity and identity by HPLC and LC-MS. Choose a compound to view its full certificate; each lot ships with its own batch-specific results.</p>
-      <a class="reveal" data-d="3" href="coa-guide.html" style="display:inline-flex;align-items:center;gap:.4em;margin-top:18px;font-size:.9rem;font-weight:600;color:var(--sage-deep)">New here? How to read a certificate <span aria-hidden="true">&rarr;</span></a>
+      <a class="reveal" data-d="3" href="coa-guide.html" style="display:inline-flex;align-items:center;gap:.4em;margin-top:18px;font-size:.9rem;font-weight:600;color:var(--sage-deep)">How to read a certificate <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="coa-search reveal" data-d="2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5 17 17"/></svg>
+      <input type="search" id="coaSearch" placeholder="Search compound or lot" aria-label="Search certificates" autocomplete="off">
     </div>
     <div class="coa-filter reveal" data-d="2" id="coaFilter" aria-label="Filter by research area"></div>
-    <div class="coa-grid reveal" data-d="2" id="coaGrid"></div>
+    <div class="coa-grid" id="coaGrid"></div>
   </div>
 </section>
 
@@ -835,28 +845,41 @@
           <div class="coacard-cat"><span class="dot" style="background:${color}"></span>${b.name || ''}</div>
           <div class="coacard-name">${p.name}</div>
           <div class="coacard-specs">
-            <span class="row">${check}<span><b>${s.purity}%</b> HPLC purity</span></span>
-            <span class="row">${check}<span>Identity confirmed by LC-MS</span></span>
+            <span class="coacard-purity"><b>${s.purity}%</b> HPLC purity</span>
+            <span class="coacard-cta">View certificate <span class="arrow" aria-hidden="true">&rarr;</span></span>
           </div>
-          <span class="coacard-cta">View certificate <span class="arrow" aria-hidden="true">&rarr;</span></span>
         </div>
       </a>`;
     };
-    const renderGrid = f => {
-      const items = PRODUCTS.filter(p => !f || f === 'all' || p.benefit === f);
-      coaGrid.innerHTML = items.map(card).join('');
+    const coaSearch = document.getElementById('coaSearch');
+    let curF = 'all', curQ = '';
+    const matchQ = (p, q) => {
+      if(!q) return true;
+      const s = specs(p);
+      return p.name.toLowerCase().includes(q)
+        || (p.cat || '').toLowerCase().includes(q)
+        || (p.blurb || '').toLowerCase().includes(q)
+        || s.batch.toLowerCase().includes(q);
+    };
+    const renderGrid = () => {
+      const items = PRODUCTS.filter(p => (curF === 'all' || p.benefit === curF) && matchQ(p, curQ));
+      coaGrid.innerHTML = items.length
+        ? items.map(card).join('')
+        : `<div class="coa-empty">No compounds match that search.</div>`;
     };
     if(coaFilter){
       const filters = [{id:'all', name:'All'}].concat(BENEFITS.map(b => ({ id:b.id, name:b.name, color:b.color })));
       coaFilter.innerHTML = filters.map((f,i) => `<button type="button" data-f="${f.id}" class="${i===0?'active':''}">${f.color?`<span class="fdot" style="background:${f.color}"></span>`:''}${f.name}</button>`).join('');
       coaFilter.addEventListener('click', e => {
         const b = e.target.closest('button'); if(!b) return;
+        curF = b.dataset.f;
         coaFilter.querySelectorAll('button').forEach(x => x.classList.remove('active'));
         b.classList.add('active');
-        renderGrid(b.dataset.f);
+        renderGrid();
       });
     }
-    renderGrid('all');
+    if(coaSearch) coaSearch.addEventListener('input', () => { curQ = coaSearch.value.trim().toLowerCase(); renderGrid(); });
+    renderGrid();
   }
 
   /* ============================================================
