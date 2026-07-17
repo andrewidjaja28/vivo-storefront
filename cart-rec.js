@@ -46,19 +46,20 @@
     + '.cart-ship-label{ margin-top:6px; text-align:right; font-size:.72rem; color:var(--muted); }'
     + '.cart-eta{ margin:12px 22px 18px; text-align:center; }'
     + '.cart-eta[hidden]{ display:none; }'
-    + '.cart-eta-pill{ display:inline-flex; align-items:center; gap:7px; background:var(--sage-tint); color:var(--sage-deep); padding:7px 15px; border-radius:999px; font-size:.8rem; font-weight:600; }'
+    + '.cart-eta-pill{ display:inline-flex; align-items:center; gap:7px; background:color-mix(in srgb, var(--slate) 13%, var(--white)); color:var(--slate); padding:7px 15px; border-radius:999px; font-size:.8rem; font-weight:600; }'
     + '.cart-eta-pill svg{ width:15px; height:15px; flex-shrink:0; }'
     + '.cart-eta-arrive{ display:flex; align-items:center; justify-content:center; gap:7px; margin-top:9px; font-size:.82rem; color:var(--ink); }'
-    + '.cart-eta-arrive svg{ width:15px; height:15px; color:var(--sage-deep); flex-shrink:0; }'
-    + '.cart-rec{ display:flex; align-items:center; gap:11px; margin:0 22px; padding:13px 0; border-top:1px solid var(--line); }'
+    + '.cart-eta-arrive svg{ width:15px; height:15px; color:var(--slate); flex-shrink:0; }'
+    + '#cartFoot{ border-top:0 !important; }'   /* no hairline under the delivery estimate */
+    + '#cartItems .ci:last-child{ border-bottom:0; }'   /* rec divider becomes the single separator */
+    + '.cart-rec{ margin:0 22px; padding-top:18px; border-top:1px solid var(--line); }'
     + '.cart-rec[hidden]{ display:none; }'
-    + '.cart-rec-link{ display:flex; align-items:center; gap:11px; flex:1; min-width:0; color:inherit; }'
-    + '.cart-rec-link img{ width:30px; height:38px; object-fit:contain; flex-shrink:0; opacity:.9; }'
-    + '.cart-rec-body{ min-width:0; }'
-    + '.cart-rec-name{ display:block; font-size:.85rem; font-weight:600; color:var(--ink); }'
-    + '.cart-rec-link:hover .cart-rec-name{ text-decoration:underline; text-underline-offset:2px; }'
-    + '.cart-rec-desc{ display:block; font-size:.72rem; color:var(--muted); margin-top:1px; }'
-    + '.cart-rec-add{ flex-shrink:0; align-self:center; background:none; border:1px solid var(--line); color:var(--ink); padding:.5em .95em; font-size:.72rem; font-weight:600; cursor:pointer; white-space:nowrap; transition:border-color .2s ease, background-color .2s ease; }'
+    + '.cart-rec-lead{ margin-bottom:4px; font-size:.75rem; color:var(--muted); }'
+    + '.cart-rec .ci{ border-bottom:0; padding-top:8px; }'
+    + '.cart-rec .cimg{ display:block; }'
+    + '.cart-rec-namelink{ color:inherit; }'
+    + '.cart-rec-namelink:hover .cn{ text-decoration:underline; text-underline-offset:2px; }'
+    + '.cart-rec-add{ margin-top:9px; background:none; border:1px solid var(--line); color:var(--ink); padding:.5em 1em; font-size:.74rem; font-weight:600; cursor:pointer; transition:border-color .2s ease, background-color .2s ease; }'
     + '.cart-rec-add:hover{ border-color:var(--ink); background:var(--sand); }';
   var style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
 
@@ -81,11 +82,14 @@
   var rec = document.createElement('div');
   rec.className = 'cart-rec'; rec.hidden = true;
   if(water){
-    rec.innerHTML = '<a class="cart-rec-link" href="product.html?id=' + REC_ID + '">'
-      + '<img src="' + water.img + '" alt="' + water.name + '">'
-      + '<span class="cart-rec-body"><span class="cart-rec-name">' + water.name + '</span>'
-      + '<span class="cart-rec-desc">Reconstitutes your compounds &middot; ' + money(water.price) + '</span></span></a>'
-      + '<button type="button" class="cart-rec-add">Add</button>';
+    rec.innerHTML = '<div class="cart-rec-lead">You might want to add this</div>'
+      + '<div class="ci" style="--ph:' + (water.ph || '#b4bcc0') + '">'
+      + '<a class="cimg" href="product.html?id=' + REC_ID + '"><img src="' + water.img + '" alt="' + water.name + '"></a>'
+      + '<div class="cinfo">'
+      + '<a class="cart-rec-namelink" href="product.html?id=' + REC_ID + '"><div class="cn">' + water.name + '</div></a>'
+      + '<div class="cd">' + water.cat + ' &middot; ' + water.dose + '</div>'
+      + '<button type="button" class="cart-rec-add">Add &middot; ' + money(water.price) + '</button>'
+      + '</div></div>';
     foot.parentNode.insertBefore(rec, foot);
     rec.querySelector('.cart-rec-add').addEventListener('click', function(){
       if(typeof addToCart === 'function'){ addToCart(REC_ID); }
