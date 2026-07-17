@@ -438,6 +438,17 @@
   .coi .nm{ font-size:.9rem; font-weight:600; color:var(--ink); }
   .coi .meta{ font-size:.85rem; color:var(--muted); margin-top:2px; }
   .coi .lp{ margin-left:auto; font-weight:600; font-size:1.05rem; color:var(--ink); }
+  /* research-water recommendation — understated */
+  .co-rec{ display:flex; align-items:center; gap:11px; margin-top:14px; padding-top:14px; border-top:1px solid rgba(28,26,23,.12); }
+  .co-rec[hidden]{ display:none; }
+  .co-rec-link{ display:flex; align-items:center; gap:11px; flex:1; min-width:0; color:inherit; }
+  .co-rec-link img{ width:34px; height:42px; object-fit:contain; flex-shrink:0; opacity:.9; }
+  .co-rec-body{ min-width:0; }
+  .co-rec-name{ display:block; font-weight:600; font-size:.9rem; color:var(--ink); letter-spacing:-.2px; }
+  .co-rec-link:hover .co-rec-name{ text-decoration:underline; text-underline-offset:2px; }
+  .co-rec-desc{ display:block; font-size:.75rem; color:var(--muted); margin-top:1px; }
+  .co-rec-add{ flex-shrink:0; align-self:center; background:none; border:1px solid var(--line); color:var(--ink); padding:.55em 1em; font-size:.76rem; font-weight:600; cursor:pointer; white-space:nowrap; transition:border-color .2s ease, background-color .2s ease; }
+  .co-rec-add:hover{ border-color:var(--ink); background:var(--white); }
   .cototals{ margin-top:18px; }
   .cototals .r{ display:flex; justify-content:space-between; padding:7px 0; font-size:1rem; color:var(--muted); }
   .cototals .r span:last-child{ font-size:1.08rem; color:var(--ink); }
@@ -607,6 +618,16 @@
         <aside class="co-summary reveal" data-d="1">
           <h3>Order summary</h3>
           <div id="coItems"></div>
+          <div class="co-rec" id="coRec" hidden>
+            <a class="co-rec-link" id="coRecLink" href="product.html?id=research-water">
+              <img id="coRecImg" src="" alt="">
+              <span class="co-rec-body">
+                <span class="co-rec-name" id="coRecName">Research Water</span>
+                <span class="co-rec-desc" id="coRecDesc">Reconstitutes your compounds</span>
+              </span>
+            </a>
+            <button type="button" class="co-rec-add" id="coRecAdd">Add</button>
+          </div>
           <div class="cototals">
             <div class="r"><span>Subtotal</span><span id="coSub">$0.00</span></div>
             <div class="r"><span>Shipping</span><span id="coShip">Free</span></div>
@@ -824,7 +845,7 @@
   renderCart();
 
   /* ---------- checkout (order summary + place order) ---------- */
-  const SHIP_FREE = 150, SHIP_FEE = 9.95;
+  const SHIP_FREE = 200, SHIP_FEE = 9.95;
   const money2 = n => '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
   const coWrap = document.getElementById('coWrap');
   const coForm = document.getElementById('coForm');
@@ -845,7 +866,27 @@
     document.getElementById('coSub').textContent = money2(sub);
     document.getElementById('coShip').textContent = ship === 0 ? 'Free' : money2(ship);
     document.getElementById('coTotal').textContent = money2(sub + ship);
+    renderRecommend(entries);
   }
+
+  /* Suggest Research Water (reconstitution solvent) if it's not already in the cart. */
+  const REC_ID = 'research-water';
+  function renderRecommend(entries){
+    const rec = document.getElementById('coRec'); if(!rec) return;
+    const water = byId(REC_ID);
+    const hasWater = entries.some(([key]) => { const p = cartLine(key); return p && p.id === REC_ID; });
+    if(!water || hasWater){ rec.hidden = true; return; }
+    document.getElementById('coRecImg').src = water.img;
+    document.getElementById('coRecImg').alt = water.name;
+    document.getElementById('coRecName').textContent = water.name;
+    document.getElementById('coRecDesc').textContent = 'Reconstitutes your compounds · ' + money(water.price);
+    document.getElementById('coRecLink').href = 'product.html?id=' + REC_ID;
+    document.getElementById('coRecAdd').textContent = 'Add';
+    rec.hidden = false;
+  }
+  const coRecAdd = document.getElementById('coRecAdd');
+  if(coRecAdd) coRecAdd.addEventListener('click', () => { addToCart(REC_ID); renderCheckout(); });
+
   renderCheckout();
 
   (function setupTerms(){
@@ -943,5 +984,6 @@
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') shut(); });
 })();
 </script>
+<script src="cart-rec.js"></script>
 </body>
 </html>

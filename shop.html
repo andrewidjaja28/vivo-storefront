@@ -227,7 +227,7 @@
      ============================================================ */
   .shop .filterbar{ margin-bottom:clamp(40px,5vw,64px); }
   .shop .filterlabel{ display:block; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--muted); margin-bottom:20px; }
-  .catgrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,1.8vw,30px); width:100%; min-width:0; }
+  .catgrid{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:clamp(12px,1.4vw,24px); width:100%; min-width:0; }
   .cat{ display:flex; flex-direction:column; gap:13px; min-width:0; padding:24px 14px 18px; border-top:2px solid var(--cc, var(--line)); transition:border-width 200ms ease, padding 200ms ease, background-color 260ms cubic-bezier(.645,.045,.355,1); }
   .cat .cn{ font-family:var(--sans); font-weight:500; font-size:clamp(1.15rem,1.7vw,1.5rem); line-height:1.1; color:var(--ink); letter-spacing:-.5px; }
   .cat .cn::after{ content:""; display:block; height:2px; width:0; margin-top:9px; background:var(--cc, var(--sage-deep)); transition:width 240ms cubic-bezier(.645,.045,.355,1); }
@@ -879,5 +879,6 @@
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') shut(); });
 })();
 </script>
+<script src="cart-rec.js"></script>
 </body>
 </html>
