@@ -25,6 +25,13 @@ const BENEFITS = [
 /* Quick lookup by benefit id, e.g. BENEFIT_BY_ID.skin.name */
 const BENEFIT_BY_ID = Object.fromEntries(BENEFITS.map(b => [b.id, b]));
 
+/* Promo codes (demo). type 'pct' = fraction off subtotal, 'flat' = dollars off. */
+const PROMOS = {
+  'VIVO10':     { label:'10% off',  type:'pct',  value:0.10 },
+  'RESEARCH15': { label:'15% off',  type:'pct',  value:0.15 },
+  'WELCOME20':  { label:'$20 off',  type:'flat', value:20 }
+};
+
 const PH = 'Products/Vials/placeholder.png';
 
 /* Each product carries a `variants` array (dose / vial-size options).

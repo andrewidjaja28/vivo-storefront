@@ -452,8 +452,23 @@
   .cototals{ margin-top:18px; }
   .cototals .r{ display:flex; justify-content:space-between; padding:7px 0; font-size:1rem; color:var(--muted); }
   .cototals .r span:last-child{ font-size:1.08rem; color:var(--ink); }
+  .cototals .r.disc span{ color:var(--clay); }
   .cototals .r.total{ color:var(--ink); font-weight:700; font-size:1.5rem; border-top:1px solid var(--line); margin-top:8px; padding-top:14px; }
   .cototals .r.total span:last-child{ font-size:1.5rem; }
+  .co-promo{ margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
+  .co-promo-row{ display:flex; gap:8px; }
+  .co-promo-input{ flex:1; min-width:0; background:var(--white); border:1px solid var(--line); border-radius:0; padding:.75em .85em; font:inherit; font-size:.9rem; color:var(--ink); outline:none; text-transform:uppercase; }
+  .co-promo-input::placeholder{ color:var(--muted); text-transform:none; }
+  .co-promo-input:focus{ border-color:var(--sage-deep); }
+  .co-promo-apply{ background:none; border:1px solid var(--ink); color:var(--ink); padding:.75em 1.2em; font-size:.85rem; font-weight:600; cursor:pointer; white-space:nowrap; transition:background-color .2s ease, color .2s ease; }
+  .co-promo-apply:hover{ background:var(--ink); color:var(--white); }
+  .co-promo-msg{ margin-top:8px; font-size:.82rem; color:var(--muted); }
+  .co-promo-msg.err{ color:var(--clay); }
+  .co-promo-applied{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 13px; background:var(--white); border:1px solid var(--line); font-size:.88rem; color:var(--ink); }
+  .co-promo-applied .cp-code{ font-weight:700; }
+  .co-promo-applied .cp-off{ color:var(--muted); }
+  .co-promo-remove{ background:none; border:0; padding:0; color:var(--muted); font-size:.8rem; text-decoration:underline; text-underline-offset:2px; cursor:pointer; }
+  .co-promo-remove:hover{ color:var(--ink); }
   .co-place{ width:100%; margin-top:18px; background:var(--sage-deep); color:#fff; border:0; border-radius:0; padding:1.1em; font-weight:600; font-size:.95rem; cursor:pointer; transition:transform 150ms var(--ease-out); }
   .co-place:hover{ transform:translateY(-1px); }
   .co-secure{ margin-top:12px; font-size:.84rem; color:var(--muted); text-align:center; }
@@ -628,8 +643,10 @@
             </a>
             <button type="button" class="co-rec-add" id="coRecAdd">Add</button>
           </div>
+          <div class="co-promo" id="coPromo"></div>
           <div class="cototals">
             <div class="r"><span>Subtotal</span><span id="coSub">$0.00</span></div>
+            <div class="r disc" id="coDiscRow" hidden><span id="coDiscLabel">Discount</span><span id="coDisc">-$0.00</span></div>
             <div class="r"><span>Shipping</span><span id="coShip">Free</span></div>
             <div class="r total"><span>Total</span><span id="coTotal">$0.00</span></div>
           </div>
@@ -863,10 +880,51 @@
     }).join('');
     const sub = entries.reduce((t,[key,q]) => { const p=cartLine(key); return p ? t + p.price*q : t; }, 0);
     const ship = sub >= SHIP_FREE ? 0 : SHIP_FEE;
+    const code = validPromo(getPromo());
+    const disc = code ? discountFor(code, sub) : 0;
     document.getElementById('coSub').textContent = money2(sub);
+    const discRow = document.getElementById('coDiscRow');
+    if(disc > 0){
+      discRow.hidden = false;
+      document.getElementById('coDiscLabel').textContent = 'Discount (' + code + ')';
+      document.getElementById('coDisc').textContent = '-' + money2(disc);
+    } else { discRow.hidden = true; }
     document.getElementById('coShip').textContent = ship === 0 ? 'Free' : money2(ship);
-    document.getElementById('coTotal').textContent = money2(sub + ship);
+    document.getElementById('coTotal').textContent = money2(Math.max(0, sub - disc) + ship);
     renderRecommend(entries);
+    renderPromo();
+  }
+
+  /* ---------- promo code ---------- */
+  function getPromo(){ try { return (localStorage.getItem('vivo_promo') || '').toUpperCase(); } catch(e){ return ''; } }
+  function setPromo(code){ try { if(code) localStorage.setItem('vivo_promo', code); else localStorage.removeItem('vivo_promo'); } catch(e){} }
+  function validPromo(code){ code = (code || '').toUpperCase().trim(); return (typeof PROMOS !== 'undefined' && PROMOS[code]) ? code : ''; }
+  function discountFor(code, sub){ const p = (typeof PROMOS !== 'undefined') ? PROMOS[code] : null; if(!p) return 0; return p.type === 'pct' ? Math.round(sub * p.value) : Math.min(sub, p.value); }
+
+  function renderPromo(){
+    const box = document.getElementById('coPromo'); if(!box) return;
+    const code = validPromo(getPromo());
+    if(code){
+      const p = PROMOS[code];
+      box.innerHTML = '<div class="co-promo-applied">'
+        + '<span><span class="cp-code">' + code + '</span> <span class="cp-off">&middot; ' + p.label + '</span></span>'
+        + '<button type="button" class="co-promo-remove">Remove</button></div>';
+      box.querySelector('.co-promo-remove').addEventListener('click', () => { setPromo(''); renderCheckout(); });
+    } else {
+      box.innerHTML = '<div class="co-promo-row">'
+        + '<input type="text" class="co-promo-input" placeholder="Promo code" autocomplete="off" spellcheck="false">'
+        + '<button type="button" class="co-promo-apply">Apply</button></div>'
+        + '<div class="co-promo-msg"></div>';
+      const inp = box.querySelector('.co-promo-input');
+      const msg = box.querySelector('.co-promo-msg');
+      const apply = () => {
+        const v = validPromo(inp.value);
+        if(v){ setPromo(v); renderCheckout(); }
+        else { msg.textContent = 'That code isn’t valid.'; msg.className = 'co-promo-msg err'; }
+      };
+      box.querySelector('.co-promo-apply').addEventListener('click', apply);
+      inp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); apply(); } });
+    }
   }
 
   /* Suggest Research Water (reconstitution solvent) if it's not already in the cart. */
