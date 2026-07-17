@@ -437,7 +437,14 @@
   .coi img{ width:52px; height:52px; border-radius:0; object-fit:cover; background:var(--cc,var(--sage-tint)); flex-shrink:0; }
   .coi .nm{ font-size:.9rem; font-weight:600; color:var(--ink); }
   .coi .meta{ font-size:.85rem; color:var(--muted); margin-top:2px; }
-  .coi .lp{ margin-left:auto; font-weight:600; font-size:1.05rem; color:var(--ink); }
+  .coi .lp{ margin-left:auto; font-weight:600; font-size:1.05rem; color:var(--ink); text-align:right; }
+  .coi .lp-was{ font-weight:400; font-size:.85rem; color:var(--muted); text-decoration:line-through; margin-right:5px; }
+  .coi .lp-tag{ display:block; margin-top:2px; font-size:.62rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--clay); }
+  .cototals .r.save{ padding-bottom:0; }
+  .cototals .r.save span:last-child{ color:var(--clay); }
+  .co-points{ display:flex; align-items:center; gap:7px; padding:4px 0 10px; font-size:.85rem; color:var(--muted); }
+  .co-points svg{ width:15px; height:15px; flex-shrink:0; color:var(--amber); }
+  .co-points b{ color:var(--ink); font-weight:700; }
   /* research-water recommendation — understated */
   .co-rec{ display:flex; align-items:center; gap:11px; margin-top:14px; padding-top:14px; border-top:1px solid rgba(28,26,23,.12); }
   .co-rec[hidden]{ display:none; }
@@ -451,6 +458,7 @@
   .co-rec-add:hover{ border-color:var(--ink); background:var(--white); }
   .cototals{ margin-top:18px; }
   .cototals .r{ display:flex; justify-content:space-between; padding:7px 0; font-size:1rem; color:var(--muted); }
+  .cototals .r[hidden]{ display:none; }
   .cototals .r span:last-child{ font-size:1.08rem; color:var(--ink); }
   .cototals .r.disc span{ color:var(--clay); }
   .cototals .r.total{ color:var(--ink); font-weight:700; font-size:1.5rem; border-top:1px solid var(--line); margin-top:8px; padding-top:14px; }
@@ -645,6 +653,8 @@
           </div>
           <div class="co-promo" id="coPromo"></div>
           <div class="cototals">
+            <div class="co-points" id="coPoints" hidden></div>
+            <div class="r save" id="coSaveRow" hidden><span>Total savings</span><span id="coSave">-$0.00</span></div>
             <div class="r"><span>Subtotal</span><span id="coSub">$0.00</span></div>
             <div class="r disc" id="coDiscRow" hidden><span id="coDiscLabel">Discount</span><span id="coDisc">-$0.00</span></div>
             <div class="r"><span>Shipping</span><span id="coShip">Free</span></div>
@@ -876,12 +886,25 @@
     }
     document.getElementById('coItems').innerHTML = entries.map(([key,q]) => {
       const p = cartLine(key);
-      return `<div class="coi" style="--cc:${p.ph}"><img src="${p.img}" alt="${p.name}"><div><div class="nm">${p.name}</div><div class="meta">Qty ${q} · ${p.dose}</div></div><div class="lp">${money2(p.price * q)}</div></div>`;
+      const rate = qtyDiscountRate(q);
+      const lineOrig = p.price * q, lineDisc = Math.round(lineOrig * (1 - rate));
+      const lp = rate > 0
+        ? `<span class="lp-was">${money2(lineOrig)}</span> ${money2(lineDisc)}<span class="lp-tag">${Math.round(rate*100)}% off</span>`
+        : money2(lineOrig);
+      return `<div class="coi" style="--cc:${p.ph}"><img src="${p.img}" alt="${p.name}"><div><div class="nm">${p.name}</div><div class="meta">Qty ${q} · ${p.dose}</div></div><div class="lp">${lp}</div></div>`;
     }).join('');
-    const sub = entries.reduce((t,[key,q]) => { const p=cartLine(key); return p ? t + p.price*q : t; }, 0);
+    const sub = entries.reduce((t,[key,q]) => { const p=cartLine(key); return p ? t + Math.round(p.price*q*(1-qtyDiscountRate(q))) : t; }, 0);
+    const qtySavings = entries.reduce((t,[key,q]) => { const p=cartLine(key); if(!p) return t; const lo=p.price*q; return t + (lo - Math.round(lo*(1-qtyDiscountRate(q)))); }, 0);
     const ship = sub >= SHIP_FREE ? 0 : SHIP_FEE;
     const code = validPromo(getPromo());
     const disc = code ? discountFor(code, sub) : 0;
+    const saveRow = document.getElementById('coSaveRow');
+    if(qtySavings > 0){ saveRow.hidden = false; document.getElementById('coSave').textContent = '-' + money2(qtySavings); }
+    else { saveRow.hidden = true; }
+    const pts = Math.floor(sub);   /* $1 = 1 point */
+    const ptsEl = document.getElementById('coPoints');
+    if(pts > 0){ ptsEl.hidden = false; ptsEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.98l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z"/></svg><span>Earn <b>' + pts.toLocaleString('en-US') + '</b> points with this order</span>'; }
+    else { ptsEl.hidden = true; }
     document.getElementById('coSub').textContent = money2(sub);
     const discRow = document.getElementById('coDiscRow');
     if(disc > 0){

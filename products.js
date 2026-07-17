@@ -25,6 +25,9 @@ const BENEFITS = [
 /* Quick lookup by benefit id, e.g. BENEFIT_BY_ID.skin.name */
 const BENEFIT_BY_ID = Object.fromEntries(BENEFITS.map(b => [b.id, b]));
 
+/* Per-SKU quantity discount: 5% off at 3 units, 10% off at 6+ units. */
+function qtyDiscountRate(q){ return q >= 6 ? 0.10 : q >= 3 ? 0.05 : 0; }
+
 /* Promo codes (demo). type 'pct' = fraction off subtotal, 'flat' = dollars off. */
 const PROMOS = {
   'VIVO10':     { label:'10% off',  type:'pct',  value:0.10 },

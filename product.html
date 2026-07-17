@@ -812,7 +812,7 @@
         <div class="cimg"><img src="${p.img}" alt="${esc(p.name)}"></div>
         <div class="cinfo" style="flex:1">
           <div class="cn">${esc(p.name)}</div>
-          <div class="cd">${esc(p.cat)} · ${esc(p.dose)}${discountForQty(qy)>0?` · ${Math.round(discountForQty(qy)*100)}% off`:''}</div>
+          <div class="cd">${esc(p.cat)} · ${esc(p.dose)}</div>
           <div class="crow">
             <div class="qty">
               <button data-dec="${key}" aria-label="Decrease">−</button>
