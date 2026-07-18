@@ -31,6 +31,7 @@
   var truck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h13v9H1z"/><path d="M14 9h4l3 3v3h-7z"/><circle cx="5.5" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>';
   var cal = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="1.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4M16 2.5v4"/></svg>';
   var star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.98l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z"/></svg>';
+  var check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
 
   /* styles (scoped, injected once) */
   var css = ''
@@ -39,10 +40,17 @@
     + '.cart-ship{ margin:14px 22px; padding-bottom:15px; border-bottom:1px solid var(--line); }'   /* top banner */
     + '.cart-ship[hidden]{ display:none; }'
     + '.cart-ship-msg{ display:flex; align-items:center; gap:8px; font-size:.78rem; color:var(--ink); margin-bottom:8px; }'
+    + '.cart-ship-ic{ display:inline-flex; flex-shrink:0; }'
     + '.cart-ship-msg svg{ width:18px; height:18px; flex-shrink:0; }'
     + '.cart-ship-msg b{ font-weight:700; }'
     + '.cart-ship-track{ height:5px; background:var(--sand); overflow:hidden; }'
-    + '.cart-ship-fill{ height:100%; width:0; background:var(--ink); transition:width .45s var(--ease-out); }'
+    + '.cart-ship-fill{ position:relative; height:100%; width:0; background:var(--ink); overflow:hidden; transition:width .45s var(--ease-out); }'
+    /* one-time flourish when the bar first fills to free shipping */
+    + '.cart-ship.just-unlocked .cart-ship-fill::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); transform:translateX(-100%); animation:cartShipShimmer .85s ease-out .12s; }'
+    + '@keyframes cartShipShimmer{ from{ transform:translateX(-100%); } to{ transform:translateX(100%); } }'
+    + '.cart-ship.just-unlocked .cart-ship-ic{ animation:cartCheckPop .45s var(--ease-out); }'
+    + '@keyframes cartCheckPop{ 0%{ transform:scale(.5); } 60%{ transform:scale(1.15); } 100%{ transform:scale(1); } }'
+    + '@media (prefers-reduced-motion:reduce){ .cart-ship.just-unlocked .cart-ship-fill::after, .cart-ship.just-unlocked .cart-ship-ic{ animation:none; } }'
     + '.cart-eta{ margin:14px 22px 4px; text-align:left; }'
     + '.cart-eta[hidden]{ display:none; }'
     + '.cart-eta-line{ display:inline-flex; align-items:center; gap:7px; font-size:clamp(.72rem, 3vw, .82rem); color:var(--ink); white-space:nowrap; }'
@@ -50,7 +58,7 @@
     + '.cart-eta-line b{ font-weight:700; white-space:nowrap; }'
     + '#cartFoot{ border-top:0 !important; padding-top:6px; }'   /* no hairline; delivery line sits close to the points line */
     + '#cartItems .ci:last-child{ border-bottom:0; }'   /* last row in the list has no trailing rule */
-    + '.cart-rec{ padding-top:12px; }'   /* lives inside the items list; the last item’s rule is the divider */
+    + '.cart-rec{ padding-top:12px; margin-top:auto; flex-shrink:0; border-top:1px solid var(--line); }'   /* sticks to the bottom of the items list; divider above it */
     + '.cart-rec[hidden]{ display:none; }'
     + '.cart-rec-lead{ margin-bottom:4px; font-size:.75rem; color:var(--muted); }'
     + '.cart-rec .ci{ border-bottom:0; padding-top:8px; }'
@@ -62,7 +70,10 @@
     + '.cart-rec-add:hover{ border-color:var(--ink); background:var(--sand); }'
     /* compact cart items — fit more on screen without scrolling */
     + '.drawer .dhead{ padding:16px 22px; }'
-    + '.drawer .items{ padding:2px 22px; }'
+    + '.drawer .items{ padding:2px 22px; display:flex; flex-direction:column; }'
+    + '#cartItems > .ci{ flex-shrink:0; }'
+    + '#cartItems > .ci:has(+ .cart-rec){ border-bottom:0; }'   /* no stray rule under the last item when the suggestion floats down */
+    + '.drawer .empty .es{ color:var(--muted); }'   /* match the line beneath it */
     + '.ci{ position:relative; gap:12px; padding:13px 0; }'
     + '.ci .cimg{ width:62px; height:72px; }'   /* larger vial, still within the row content height */
     + '.ci .cn{ font-size:1.02rem; line-height:1.15; padding-right:22px; }'   /* room for the corner × */
@@ -71,8 +82,8 @@
     + '.ci .qty button{ width:25px; height:25px; font-size:.95rem; }'
     + '.ci .qty .qv{ min-width:24px; }'
     + '.ci .cp{ font-size:1.02rem; }'
-    /* corner × removes the whole line (reuses the existing data-rm handler) */
-    + '.ci .rm{ display:block; position:absolute; top:8px; right:0; margin:0; padding:2px 0 4px 10px; background:none; border:0; font-size:0; line-height:1; text-decoration:none; cursor:pointer; }'
+    /* corner × removes the whole line (reuses the existing data-rm handler); 40×40 tap target */
+    + '.ci .rm{ display:flex; align-items:flex-start; justify-content:flex-end; position:absolute; top:0; right:0; width:40px; height:40px; margin:0; padding:5px 1px 0 0; background:none; border:0; font-size:0; line-height:1; text-decoration:none; cursor:pointer; }'
     + '.ci .rm::before{ content:"\\00D7"; font-size:1.3rem; font-weight:400; color:var(--muted); transition:color .2s ease; }'
     + '.ci .rm:hover::before{ color:var(--ink); }'
     + '.cart-rec .cn{ padding-right:0; }'   /* the suggestion row has no × */
@@ -88,15 +99,19 @@
     + '.cart-points{ display:flex; align-items:center; gap:7px; margin-bottom:10px; font-size:.75rem; color:var(--muted); }'
     + '.cart-points[hidden]{ display:none; }'
     + '.cart-points svg{ width:14px; height:14px; flex-shrink:0; color:var(--amber); }'
-    + '.cart-points b{ color:var(--ink); font-weight:700; }';
+    + '.cart-points b{ color:var(--ink); font-weight:700; }'
+    + '.cart-rec-text{ min-width:0; }'   /* let the suggestion name shrink instead of pushing the Add button off */
+    /* small phones: let the delivery line wrap rather than clip (keep the date range intact) */
+    + '@media (max-width:360px){ .cart-eta-line{ white-space:normal; align-items:flex-start; } .cart-eta-line svg{ margin-top:2px; } }';
   var style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
 
   /* free-shipping bar, at the top of the drawer */
   var shipBar = document.createElement('div');
   shipBar.className = 'cart-ship'; shipBar.hidden = true;
-  shipBar.innerHTML = '<div class="cart-ship-msg">' + truck + '<span class="cart-ship-txt"></span></div>'
+  shipBar.innerHTML = '<div class="cart-ship-msg"><span class="cart-ship-ic">' + truck + '</span><span class="cart-ship-txt"></span></div>'
     + '<div class="cart-ship-track"><div class="cart-ship-fill"></div></div>';
-  var txtEl = shipBar.querySelector('.cart-ship-txt');
+  var icEl   = shipBar.querySelector('.cart-ship-ic');
+  var txtEl  = shipBar.querySelector('.cart-ship-txt');
   var fillEl = shipBar.querySelector('.cart-ship-fill');
 
   /* dynamic delivery estimate (replaces the old banner) */
@@ -154,12 +169,23 @@
     return { orig: orig, disc: disc, savings: orig - disc };
   }
 
+  var wasFull = false;
   function renderShip(sub){
-    if(sub <= 0){ shipBar.hidden = true; return; }
+    if(sub <= 0){ shipBar.hidden = true; wasFull = false; return; }
     shipBar.hidden = false;
+    var full = sub >= FREE;
     fillEl.style.width = Math.min(100, Math.round(sub / FREE * 100)) + '%';
-    if(sub >= FREE){ shipBar.classList.add('done'); txtEl.innerHTML = 'You’ve unlocked <b>free shipping</b>'; }
-    else { shipBar.classList.remove('done'); txtEl.innerHTML = 'Add <b>' + money(FREE - sub) + '</b> more for free shipping'; }
+    if(full){
+      shipBar.classList.add('done');
+      icEl.innerHTML = check;
+      txtEl.innerHTML = 'You’ve unlocked <b>free shipping</b>';
+      if(!wasFull){ shipBar.classList.remove('just-unlocked'); void shipBar.offsetWidth; shipBar.classList.add('just-unlocked'); }
+    } else {
+      shipBar.classList.remove('done', 'just-unlocked');
+      icEl.innerHTML = truck;
+      txtEl.innerHTML = 'Add <b>' + money(FREE - sub) + '</b> more for free shipping';
+    }
+    wasFull = full;
   }
 
   /* keep the suggestion as the last row inside the items list (survives re-renders) */
@@ -221,8 +247,9 @@
   function update(){
     var totals = cartTotals();
     var has = totals.orig > 0;
-    renderShip(totals.disc);
+    renderShip(totals.orig);   /* free-shipping progress on the pre-discount subtotal, so a discount never removes the perk */
     eta.hidden = !has;
+    shipWrap.hidden = !has;    /* hide the delivery wrapper (and its border-top) when the cart is empty */
     if(water) rec.hidden = !has || hasWater();
     placeRec();
     applyLineDiscounts();
