@@ -21,6 +21,37 @@
 <meta name="twitter:title" content="FAQ · Vivo">
 <meta name="twitter:description" content="Answers to common questions about Vivo research peptides: purity, testing, shipping, storage, payment, and returns.">
 <meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What are Vivo products intended for?","acceptedAnswer":{"@type":"Answer","text":"Vivo products are supplied strictly for laboratory research. They are not for human or animal consumption and are not intended to diagnose, treat, cure, or prevent any disease."}},
+    {"@type":"Question","name":"What purity standard does Vivo require?","acceptedAnswer":{"@type":"Answer","text":"99% or higher. If a production lot does not meet that threshold, we do not release it."}},
+    {"@type":"Question","name":"How is each production lot verified?","acceptedAnswer":{"@type":"Answer","text":"Every production lot undergoes independent third-party analytical verification before release, including identity confirmation, purity analysis, potency quantification, and endotoxin testing."}},
+    {"@type":"Question","name":"Does every vial have a batch-specific Certificate of Analysis?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every released lot is tied to its own Certificate of Analysis, so the documentation reflects the material in that production run, not a representative sample from another batch."}},
+    {"@type":"Question","name":"Where can I find a Certificate of Analysis?","acceptedAnswer":{"@type":"Answer","text":"Visit the Certificate of Analysis page and locate the report that matches the lot information on your vial. CoAs remain accessible outside your account, whenever you need them."}},
+    {"@type":"Question","name":"How do I read a Certificate of Analysis?","acceptedAnswer":{"@type":"Answer","text":"Start with the lot number, then review identity, purity, potency, and endotoxin results. The report also identifies the analytical methods and the independent laboratory responsible for verification."}},
+    {"@type":"Question","name":"How should unopened lyophilized products be stored?","acceptedAnswer":{"@type":"Answer","text":"Store unopened vials in a cool, dry place, protected from direct light, heat, and moisture. Refrigeration is not required while the product remains lyophilized."}},
+    {"@type":"Question","name":"Do you offer wholesale or bulk purchasing?","acceptedAnswer":{"@type":"Answer","text":"Yes. For larger research or institutional orders, visit our wholesale page to start a conversation."}},
+    {"@type":"Question","name":"When will my order ship?","acceptedAnswer":{"@type":"Answer","text":"Orders placed before 10:00 a.m. Pacific Time, Monday through Friday, are processed and dispatched the same business day. Orders placed after the cutoff are processed the following business day."}},
+    {"@type":"Question","name":"What shipping services does Vivo offer?","acceptedAnswer":{"@type":"Answer","text":"UPS 2nd Day Air is our standard service. UPS Next Day Air is available at checkout for an additional charge."}},
+    {"@type":"Question","name":"Do you offer free shipping?","acceptedAnswer":{"@type":"Answer","text":"Yes. Orders over $200 receive complimentary UPS 2nd Day Air shipping."}},
+    {"@type":"Question","name":"Why does Vivo ship with an ice pack?","acceptedAnswer":{"@type":"Answer","text":"Lyophilized products do not require refrigeration during transit. We still cold-pack every order as an added measure against excessive heat and humidity, especially during warmer months."}},
+    {"@type":"Question","name":"Do you hold Thursday or Friday orders?","acceptedAnswer":{"@type":"Answer","text":"No. Eligible orders continue through our normal dispatch schedule. Each shipment is cold-packed to add protection during transit."}},
+    {"@type":"Question","name":"Where does Vivo ship?","acceptedAnswer":{"@type":"Answer","text":"We ship throughout all 50 states and U.S. territories. We cannot deliver to PO boxes or APO/FPO addresses."}},
+    {"@type":"Question","name":"Do you ship internationally?","acceptedAnswer":{"@type":"Answer","text":"Not at this time. Vivo currently ships only within the United States and its territories."}},
+    {"@type":"Question","name":"How can I track my order?","acceptedAnswer":{"@type":"Answer","text":"Tracking is sent automatically by email when your order is processed. Carrier updates may begin after UPS receives and scans the shipment."}},
+    {"@type":"Question","name":"What payment methods do you accept?","acceptedAnswer":{"@type":"Answer","text":"Vivo accepts Visa, Mastercard, and American Express."}},
+    {"@type":"Question","name":"Can I change or cancel an order after checkout?","acceptedAnswer":{"@type":"Answer","text":"Contact support@vivotoday.com as soon as possible. We will do our best to help, but changes and cancellations are no longer possible once a shipping label has been created."}},
+    {"@type":"Question","name":"Can I return an order?","acceptedAnswer":{"@type":"Answer","text":"Unopened, unused products in their original packaging may be submitted for return within three days of delivery. Opened products cannot be returned. Contact support@vivotoday.com before sending anything back."}},
+    {"@type":"Question","name":"What if my order arrives damaged, incorrect, or incomplete?","acceptedAnswer":{"@type":"Answer","text":"Contact support@vivotoday.com within seven days of delivery and we will make it right."}},
+    {"@type":"Question","name":"Is there a restocking fee?","acceptedAnswer":{"@type":"Answer","text":"No. Approved returns are not subject to a restocking fee."}},
+    {"@type":"Question","name":"Where can I see my order history?","acceptedAnswer":{"@type":"Answer","text":"Your complete order history is available through your Vivo account."}},
+    {"@type":"Question","name":"How quickly will support respond?","acceptedAnswer":{"@type":"Answer","text":"Our team responds within one business day. Reach us at support@vivotoday.com."}}
+  ]
+}
+</script>
 <style>
   /* ============================================================
      VIVO — e-commerce home
@@ -540,6 +571,11 @@
   .faq details[open] summary .ic{ transform:rotate(45deg); }
   .faq .a{ padding:0 0 26px; color:var(--ink); opacity:.84; line-height:1.68; max-width:70ch; }
   .faq .a a{ color:var(--sage-deep); text-decoration:underline; text-underline-offset:3px; }
+  /* grouped FAQ sections */
+  .faqset{ max-width:840px; margin-top:clamp(44px,5vw,72px); display:grid; gap:clamp(58px,7vw,100px); }
+  .faqset .faq{ max-width:none; margin-top:clamp(18px,2.2vw,28px); }
+  .faqg-head h2{ font-size:clamp(1.8rem,3.2vw,2.6rem); color:var(--ink); letter-spacing:-1px; }
+  .faqg-head p{ margin-top:12px; font-family:var(--serif); font-style:italic; font-size:clamp(1.06rem,1.5vw,1.28rem); color:var(--muted); line-height:1.5; max-width:52ch; }
 </style>
 <!-- ===================== FAQ ===================== -->
 <section class="docpage">
@@ -549,39 +585,127 @@
       <h1 class="reveal" data-d="1">Frequently asked questions</h1>
       <p class="lead reveal" data-d="2">Everything you might want to know before ordering. Still stuck? Our team replies within one business day.</p>
     </div>
-    <div class="faq">
-      <details>
-        <summary>What exactly are Vivo products?<span class="ic">+</span></summary>
-        <div class="a">Vivo supplies research-grade peptides: single, well-characterised amino-acid sequences in lyophilised (freeze-dried) form. They are sold strictly <strong>For Research Use Only</strong> and are not for human or animal consumption.</div>
-      </details>
-      <details>
-        <summary>How do you verify purity?<span class="ic">+</span></summary>
-        <div class="a">Every batch is independently tested by HPLC (purity ≥99%) and LC-MS (identity and exact mass), and screened to be free of synthesis impurities, TFA salts, and heavy metals. Results for your exact lot are published as a <a href="coa.html">Certificate of Analysis</a>.</div>
-      </details>
-      <details>
-        <summary>Where are the peptides made?<span class="ic">+</span></summary>
-        <div class="a">Every Vivo peptide is synthesised, tested, and filled in California labs held to clinical-grade standards. No overseas sourcing.</div>
-      </details>
-      <details>
-        <summary>How are orders shipped?<span class="ic">+</span></summary>
-        <div class="a">Orders are processed in 1–2 business days and shipped discreetly with temperature-aware packaging. Shipping is free over $150, with a flat $9.95 rate below that. See <a href="shipping.html">shipping &amp; returns</a> for details.</div>
-      </details>
-      <details>
-        <summary>How should I store the peptides?<span class="ic">+</span></summary>
-        <div class="a">Lyophilised vials are stable short-term at room temperature; refrigerate or freeze for longer storage, and refrigerate after reconstitution. Full guidance is on our <a href="storage.html">storage &amp; handling</a> page.</div>
-      </details>
-      <details>
-        <summary>What payment methods do you accept?<span class="ic">+</span></summary>
-        <div class="a">We accept major cards (Visa, Mastercard, and American Express) through a secure checkout.</div>
-      </details>
-      <details>
-        <summary>Do you offer bulk or wholesale pricing?<span class="ic">+</span></summary>
-        <div class="a">Yes. Labs, institutions, and resellers can request volume pricing on our <a href="wholesale.html">wholesale</a> page.</div>
-      </details>
-      <details>
-        <summary>What is your returns policy?<span class="ic">+</span></summary>
-        <div class="a">Opened or reconstituted vials can’t be returned, but if an order arrives damaged, incorrect, or incomplete, contact us within 7 days and we’ll make it right.</div>
-      </details>
+    <div class="faqset">
+
+      <div class="faqgroup reveal">
+        <div class="faqg-head">
+          <h2>Products &amp; research</h2>
+          <p>The proof behind every vial, and the boundaries around its use.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>What are Vivo products intended for?<span class="ic">+</span></summary>
+            <div class="a">Vivo products are supplied strictly for laboratory research. They are not for human or animal consumption and are not intended to diagnose, treat, cure, or prevent any disease.</div>
+          </details>
+          <details>
+            <summary>What purity standard does Vivo require?<span class="ic">+</span></summary>
+            <div class="a">99% or higher. If a production lot does not meet that threshold, we do not release it.</div>
+          </details>
+          <details>
+            <summary>How is each production lot verified?<span class="ic">+</span></summary>
+            <div class="a">Every production lot undergoes independent third-party analytical verification before release, including identity confirmation, purity analysis, potency quantification, and endotoxin testing.</div>
+          </details>
+          <details>
+            <summary>Does every vial have a batch-specific Certificate of Analysis?<span class="ic">+</span></summary>
+            <div class="a">Yes. Every released lot is tied to its own Certificate of Analysis, so the documentation reflects the material in that production run, not a representative sample from another batch.</div>
+          </details>
+          <details>
+            <summary>Where can I find a Certificate of Analysis?<span class="ic">+</span></summary>
+            <div class="a">Visit the <a href="coa.html">Certificate of Analysis page</a> and locate the report that matches the lot information on your vial. CoAs remain accessible outside your account, whenever you need them.</div>
+          </details>
+          <details>
+            <summary>How do I read a Certificate of Analysis?<span class="ic">+</span></summary>
+            <div class="a">Start with the lot number, then review identity, purity, potency, and endotoxin results. The report also identifies the analytical methods and the independent laboratory responsible for verification.</div>
+          </details>
+          <details>
+            <summary>How should unopened lyophilized products be stored?<span class="ic">+</span></summary>
+            <div class="a">Store unopened vials in a cool, dry place, protected from direct light, heat, and moisture. Refrigeration is not required while the product remains lyophilized.</div>
+          </details>
+          <details>
+            <summary>Do you offer wholesale or bulk purchasing?<span class="ic">+</span></summary>
+            <div class="a">Yes. For larger research or institutional orders, visit our <a href="wholesale.html">wholesale page</a> to start a conversation.</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faqgroup reveal">
+        <div class="faqg-head">
+          <h2>Shipping &amp; delivery</h2>
+          <p>From California to the laboratory, with less time in between.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>When will my order ship?<span class="ic">+</span></summary>
+            <div class="a">Orders placed before 10:00 a.m. Pacific Time, Monday through Friday, are processed and dispatched the same business day. Orders placed after the cutoff are processed the following business day.</div>
+          </details>
+          <details>
+            <summary>What shipping services does Vivo offer?<span class="ic">+</span></summary>
+            <div class="a">UPS 2nd Day Air is our standard service. UPS Next Day Air is available at checkout for an additional charge.</div>
+          </details>
+          <details>
+            <summary>Do you offer free shipping?<span class="ic">+</span></summary>
+            <div class="a">Yes. Orders over $200 receive complimentary UPS 2nd Day Air shipping.</div>
+          </details>
+          <details>
+            <summary>Why does Vivo ship with an ice pack?<span class="ic">+</span></summary>
+            <div class="a">Lyophilized products do not require refrigeration during transit. We still cold-pack every order as an added measure against excessive heat and humidity, especially during warmer months.</div>
+          </details>
+          <details>
+            <summary>Do you hold Thursday or Friday orders?<span class="ic">+</span></summary>
+            <div class="a">No. Eligible orders continue through our normal dispatch schedule. Each shipment is cold-packed to add protection during transit.</div>
+          </details>
+          <details>
+            <summary>Where does Vivo ship?<span class="ic">+</span></summary>
+            <div class="a">We ship throughout all 50 states and U.S. territories. We cannot deliver to PO boxes or APO/FPO addresses.</div>
+          </details>
+          <details>
+            <summary>Do you ship internationally?<span class="ic">+</span></summary>
+            <div class="a">Not at this time. Vivo currently ships only within the United States and its territories.</div>
+          </details>
+          <details>
+            <summary>How can I track my order?<span class="ic">+</span></summary>
+            <div class="a">Tracking is sent automatically by email when your order is processed. Carrier updates may begin after UPS receives and scans the shipment.</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faqgroup reveal">
+        <div class="faqg-head">
+          <h2>Orders &amp; support</h2>
+          <p>Straight answers for checkout, changes, returns, and help.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>What payment methods do you accept?<span class="ic">+</span></summary>
+            <div class="a">Vivo accepts Visa, Mastercard, and American Express.</div>
+          </details>
+          <details>
+            <summary>Can I change or cancel an order after checkout?<span class="ic">+</span></summary>
+            <div class="a">Contact <a href="mailto:support@vivotoday.com">support@vivotoday.com</a> as soon as possible. We will do our best to help, but changes and cancellations are no longer possible once a shipping label has been created.</div>
+          </details>
+          <details>
+            <summary>Can I return an order?<span class="ic">+</span></summary>
+            <div class="a">Unopened, unused products in their original packaging may be submitted for return within three days of delivery. Opened products cannot be returned. Contact <a href="mailto:support@vivotoday.com">support@vivotoday.com</a> before sending anything back.</div>
+          </details>
+          <details>
+            <summary>What if my order arrives damaged, incorrect, or incomplete?<span class="ic">+</span></summary>
+            <div class="a">Contact <a href="mailto:support@vivotoday.com">support@vivotoday.com</a> within seven days of delivery and we’ll make it right.</div>
+          </details>
+          <details>
+            <summary>Is there a restocking fee?<span class="ic">+</span></summary>
+            <div class="a">No. Approved returns are not subject to a restocking fee.</div>
+          </details>
+          <details>
+            <summary>Where can I see my order history?<span class="ic">+</span></summary>
+            <div class="a">Your complete order history is available through your Vivo account.</div>
+          </details>
+          <details>
+            <summary>How quickly will support respond?<span class="ic">+</span></summary>
+            <div class="a">Our team responds within one business day. Reach us at <a href="mailto:support@vivotoday.com">support@vivotoday.com</a>.</div>
+          </details>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

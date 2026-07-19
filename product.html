@@ -120,6 +120,7 @@
   .pdp .gallery{ display:flex; flex-direction:column; gap:14px; }
   .pdp .gmain{ position:relative; aspect-ratio:1/1; overflow:hidden; background:transparent; touch-action:pan-y; }
   .pdp .gmain img{ width:100%; height:100%; object-fit:cover; object-position:64% 42%; }
+  .pdp .gmain img.is-vial{ object-fit:contain; object-position:center; padding:8%; box-sizing:border-box; }
   .pdp .gnav{ position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; display:flex; align-items:center; justify-content:center; padding:0; background:rgba(255,254,242,.3); border:1px solid rgba(255,254,242,.5); border-radius:50%; color:var(--ink); cursor:pointer; opacity:0; transition:opacity 220ms ease, background-color 180ms ease; backdrop-filter:blur(10px) saturate(120%); -webkit-backdrop-filter:blur(10px) saturate(120%); z-index:2; }
   .pdp .gmain:hover .gnav{ opacity:1; }
   .pdp .gnav:hover{ background:rgba(255,254,242,.5); }
@@ -130,6 +131,7 @@
   .pdp .gthumbs{ display:flex; gap:12px; }
   .pdp .gthumb{ width:74px; height:74px; flex:none; padding:0; overflow:hidden; background:transparent; border:1px solid var(--line); cursor:pointer; transition:border-color 180ms ease; }
   .pdp .gthumb img{ width:100%; height:100%; object-fit:cover; object-position:64% 42%; }
+  .pdp .gthumb img.thv{ object-fit:contain; object-position:center; }
   .pdp .gthumb:hover{ border-color:var(--muted); }
   .pdp .gthumb.active{ border-color:var(--ink); }
   .pdp .info{ position:sticky; top:clamp(88px,11vh,112px); align-self:start; }
@@ -199,7 +201,7 @@
   .pdp-sticky.show{ transform:translateY(0); opacity:1; pointer-events:auto; }
   .pdp-sticky .ps-inner{ max-width:var(--maxw); margin:0 auto; padding:11px var(--gutter); display:flex; align-items:center; justify-content:space-between; gap:24px; }
   .pdp-sticky .ps-info{ display:flex; align-items:center; gap:14px; min-width:0; }
-  .pdp-sticky .ps-img{ width:40px; height:46px; object-fit:cover; flex-shrink:0; background:var(--sand); }
+  .pdp-sticky .ps-img{ width:40px; height:46px; object-fit:contain; flex-shrink:0; background:transparent; }
   .pdp-sticky .ps-text{ display:flex; flex-direction:column; min-width:0; }
   .pdp-sticky .ps-name{ font-family:var(--sans); font-weight:500; font-size:1.02rem; color:var(--ink); letter-spacing:-.3px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .pdp-sticky .ps-desc{ font-size:.76rem; color:var(--muted); line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -263,9 +265,9 @@
   .related h2{ font-size:clamp(1.8rem,3.6vw,2.6rem); color:var(--ink); margin-bottom:clamp(30px,4vw,48px); }
   .relgrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(20px,2.6vw,34px); }
   .relgrid .card{ display:flex; flex-direction:column; min-width:0; }
-  .relgrid .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; margin-bottom:-14%; }
-  .relgrid .card .medialink{ display:block; width:100%; height:100%; }
-  .relgrid .card .media img{ width:100%; height:100%; object-fit:cover; object-position:64% 36%; transition:transform 700ms var(--ease-out); }
+  .relgrid .card .media{ display:block; position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:0; background:transparent; }
+  .relgrid .card .medialink{ display:grid; place-items:center; width:100%; height:100%; }
+  .relgrid .card .media img{ width:80%; height:80%; object-fit:contain; object-position:center; transition:transform 700ms var(--ease-out); }
   .relgrid .card .add-mini{ display:none; }
   .relgrid .card:hover .media img{ transform:scale(1.04); }
   .relgrid .card .body{ padding-top:8px; }
@@ -379,7 +381,7 @@
   .drawer .items{ flex:1; overflow-y:auto; padding:6px 22px; }
   .ci{ display:flex; gap:14px; padding:18px 0; border-bottom:1px solid var(--line); }
   .ci .cimg{ width:64px; height:74px; border-radius:0; overflow:hidden; flex-shrink:0; background:transparent; }
-  .ci .cimg img{ width:100%; height:100%; object-fit:cover; object-position:64% 36%; }
+  .ci .cimg img{ width:100%; height:100%; object-fit:contain; object-position:center; }
   .ci .cn{ font-family:var(--sans); font-weight:500; font-size:1.15rem; color:var(--black); letter-spacing:-.4px; }
   .ci .cd{ font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
   .ci .crow{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
@@ -590,15 +592,22 @@
   const variants = product.variants || [{ dose: product.dose, vial: '', price: product.price }];
   const vlabel = v => v.dose + (v.vial ? ' · ' + v.vial : '');
 
+  // For multi-peptide blends, the Size spec shows the combined milligram total
+  // (the composition accordion breaks it down per peptide). Non-blends show the dose as-is.
+  const parseMg = d => { const m = String(d).match(/([\d.]+)\s*(mg|mcg|µg|ug)/i); if(!m) return 0; const v = parseFloat(m[1]); return m[2].toLowerCase() === 'mg' ? v : v/1000; };
+  const totalMg = blend => Math.round(blend.reduce((s,c)=> s + parseMg(c.dose), 0) * 1000) / 1000;
+  const sizeText = v => product.blend ? `${totalMg(product.blend)} mg${v.vial ? ' · ' + v.vial : ''}` : vlabel(v);
+
   // gallery: per-product `gallery` array if present, else the vial + supporting brand visuals
   const galleryImgs = (product.gallery && product.gallery.length)
     ? product.gallery
     : [product.img, 'peptideliquid.jpg', 'clearliquid_card.jpg'];
+  const isVialImg = src => /Products\/Vials\//.test(String(src));
   let galIndex = 0;
   function setGallery(i){
     galIndex = (i % galleryImgs.length + galleryImgs.length) % galleryImgs.length;
     const m = document.getElementById('galleryMain');
-    if(m) m.src = galleryImgs[galIndex];
+    if(m){ m.src = galleryImgs[galIndex]; m.classList.toggle('is-vial', isVialImg(galleryImgs[galIndex])); }
     document.querySelectorAll('.gthumb').forEach((t,idx)=> t.classList.toggle('active', idx===galIndex));
   }
 
@@ -608,11 +617,11 @@
         <div class="grid">
           <div class="gallery reveal" style="--ph:${product.ph}">
             <div class="gmain">
-              <img id="galleryMain" src="${galleryImgs[0]}" alt="Vivo ${esc(product.name)} peptide vial">
+              <img id="galleryMain" class="${isVialImg(galleryImgs[0])?'is-vial':''}" src="${galleryImgs[0]}" alt="Vivo ${esc(product.name)} peptide vial">
               ${galleryImgs.length>1?`<button type="button" class="gnav prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button type="button" class="gnav next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>`:''}
             </div>
             <div class="gthumbs">
-              ${galleryImgs.map((src,i)=>`<button type="button" class="gthumb${i===0?' active':''}" data-i="${i}" data-src="${src}" aria-label="View image ${i+1}"><img src="${src}" alt="" loading="lazy"></button>`).join('')}
+              ${galleryImgs.map((src,i)=>`<button type="button" class="gthumb${i===0?' active':''}" data-i="${i}" data-src="${src}" aria-label="View image ${i+1}"><img class="${isVialImg(src)?'thv':''}" src="${src}" alt="" loading="lazy"></button>`).join('')}
             </div>
           </div>
           <div class="info" style="--cc:${benefit.color}">
@@ -627,7 +636,7 @@
               <div class="s">Origin<b>California</b></div>
             </div>` : `
             <div class="specrow specrow-3 reveal">
-              <div class="s">Size<b id="specStrength">${esc(product.dose)}</b></div>
+              <div class="s">Size<b id="specStrength">${esc(sizeText(variants[0]))}</b></div>
               <a class="s spurity" href="certificate.html?id=${product.id}" aria-label="View Certificate of Analysis">Certificate<b>View COA<svg class="sck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg></b></a>
               <div class="s">Origin<b>California</b></div>
             </div>`}
@@ -723,7 +732,7 @@
         <div class="faqgrid">
           <div class="faqlead reveal">
             <h2>Proof in every batch</h2>
-            <p>Every Vivo peptide ships with a third-party Certificate of Analysis. The exact purity and identity data behind every vial.</p>
+            <p>Every released lot ships with its own batch-specific Certificate of Analysis from an independent laboratory: the identity, purity, and potency data behind that exact vial.</p>
             <a href="certificate.html?id=${product.id}" class="btn btn-dark">View Certificate of Analysis</a>
           </div>
           <div class="faqcol reveal">
@@ -731,23 +740,23 @@
             <div class="list">
           <details>
             <summary>What purity level are your peptides and how is it verified?</summary>
-            <p>Vivo mandates a minimum of 99% optical purity for all compounds. Every batch is subjected to rigorous independent HPLC and LC-MS analysis. Certificates of Analysis (CoA) are available for cross-referencing in our portal.</p>
+            <p>Vivo requires a minimum purity of 99%. If a production lot does not meet that threshold, we do not release it. Every lot undergoes independent third-party verification before release, including identity confirmation, purity analysis, potency quantification, and endotoxin testing.</p>
           </details>
           <details>
             <summary>What is a Certificate of Analysis (CoA) and how do I read it?</summary>
-            <p>A CoA is a verified document from an independent testing facility detailing the exact purity and mass of the synthesized compound. It ensures the product is free from synthesis impurities, trifluoroacetic acid (TFA) salts, and heavy metals.</p>
+            <p>A CoA is a verified report from an independent laboratory documenting the material in one specific production lot. Start with the lot number, then review the identity, purity, potency, and endotoxin results. The report also lists the analytical methods and the laboratory responsible for verification.</p>
           </details>
           <details>
-            <summary>Where are your peptides manufactured?</summary>
-            <p>Our peptides are synthesized and tested in the United States, in facilities operating to ISO, HACCP and GMP standards.</p>
+            <summary>Where are your peptides made?</summary>
+            <p>Every Vivo peptide is synthesized, tested, and filled in California, and each released lot is tied to its own batch-specific Certificate of Analysis.</p>
           </details>
           <details>
             <summary>How should I store peptides?</summary>
-            <p>Lyophilized (freeze-dried) peptides should be stored in a freezer at -20°C for long-term stability. Once reconstituted with bacteriostatic water, they must be kept refrigerated at 2°C to 8°C and are typically stable for 2–6 weeks.</p>
+            <p>Store unopened vials in a cool, dry place, protected from direct light, heat, and moisture. Refrigeration is not required while the product remains lyophilized. After reconstitution, keep vials refrigerated.</p>
           </details>
           <details>
             <summary>How fast do you ship and is cold shipping required?</summary>
-            <p>Molecular stability demands protection. Every dispatch is packed in insulated cold-boxes with specialized ice packs to prevent thermal degradation during transit. We use expedited shipping networks to ensure rapid, temperature-controlled delivery.</p>
+            <p>Orders placed before 10:00 a.m. Pacific Time on business days are dispatched the same day, by UPS 2nd Day Air as standard, with UPS Next Day Air available at checkout. Shipping is complimentary on orders over $200. Lyophilized products do not require refrigeration in transit, but we cold-pack every order as an added measure against heat and humidity.</p>
           </details>
             </div>
           </div>
@@ -802,7 +811,7 @@
       if(ppriceEl) ppriceEl.textContent = priceNow();
       addBtn.dataset.id = `${product.id}::${vlabel(variants[curVar])}::${unit()}`;
       addBtn.dataset.qty = curQty;
-      if(strengthEl) strengthEl.textContent = vlabel(variants[curVar]);
+      if(strengthEl) strengthEl.textContent = sizeText(variants[curVar]);
       const ps = document.querySelector('.pdp-sticky');
       if(ps){
         ps.querySelector('.ps-price').textContent = priceNow();
