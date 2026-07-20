@@ -1,4 +1,100 @@
 /* ============================================================
+   VIVO — front-end account gate (shared across every page)
+   Purchasing requires a signed-in account. Account state is
+   stored locally (localStorage 'vivo_account'); this is a
+   front-end gate only, not real authentication.
+   ============================================================ */
+(function(){
+  var AKEY = 'vivo_account';
+  function acct(){ try { return JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch(e){ return null; } }
+  function signedIn(){ return !!acct(); }
+  window.VivoAuth = { account: acct, signedIn: signedIn, signOut: function(){ try{ localStorage.removeItem(AKEY); }catch(e){} } };
+
+  /* Gate the cart "Checkout" action everywhere. Capture phase runs before the
+     page's own #checkout handler, so stopImmediatePropagation blocks it. */
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    var el = t && t.closest ? t.closest('#checkout, .js-checkout, a[href$="checkout.html"]') : null;
+    if(!el || signedIn()) return;
+    e.preventDefault();
+    if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+    location.href = 'signin.html?next=checkout.html';
+  }, true);
+
+  /* Nav account icon:
+       signed out -> sign-in page
+       signed in  -> dropdown menu (email + Sign out), with a sage dot.
+     cart-rec.js loads at end of <body>, so the nav is already parsed. */
+  var abtn = document.querySelector('button[aria-label="Account"], a[aria-label="Account"]');
+  if(abtn && !abtn.dataset.vivoAuth){
+    abtn.dataset.vivoAuth = '1';
+
+    if(!signedIn()){
+      abtn.addEventListener('click', function(){ location.href = 'signin.html'; });
+    } else {
+      /* signed-in dot */
+      abtn.style.position = 'relative';
+      var dot = document.createElement('span');
+      dot.style.cssText = 'position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--sage-deep,#3D5C36);pointer-events:none;';
+      abtn.appendChild(dot);
+
+      /* menu styles (once) */
+      if(!document.getElementById('vivo-acct-style')){
+        var st = document.createElement('style'); st.id = 'vivo-acct-style';
+        st.textContent =
+          '.vivo-acct-menu{position:fixed;z-index:200;width:236px;background:var(--white,#fffef2);border:1px solid var(--line,rgba(28,26,23,.12));box-shadow:0 24px 50px -24px rgba(40,28,20,.45);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease,visibility .18s ease;}'+
+          '.vivo-acct-menu.open{opacity:1;visibility:visible;transform:none;}'+
+          '.vivo-acct-menu .who{padding:14px 16px;border-bottom:1px solid var(--line,rgba(28,26,23,.12));}'+
+          '.vivo-acct-menu .who .l{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#575049);font-weight:600;}'+
+          '.vivo-acct-menu .who .e{margin-top:4px;font-size:.9rem;color:var(--ink,#2e2c28);font-weight:500;word-break:break-all;line-height:1.25;}'+
+          '.vivo-acct-menu button.so{display:block;width:100%;text-align:left;background:none;border:0;padding:12px 16px;font:inherit;font-size:.9rem;color:var(--ink,#2e2c28);cursor:pointer;transition:background-color .15s ease;}'+
+          '.vivo-acct-menu button.so:hover{background:var(--sand,#EDE4D0);}';
+        document.head.appendChild(st);
+      }
+
+      /* menu element */
+      var a = acct();
+      var menu = document.createElement('div');
+      menu.className = 'vivo-acct-menu';
+      menu.innerHTML = '<div class="who"><div class="l">Signed in as</div><div class="e"></div></div><button type="button" class="so">Sign out</button>';
+      menu.querySelector('.e').textContent = (a && a.email) ? a.email : 'Google account';
+      document.body.appendChild(menu);
+
+      var place = function(){
+        var r = abtn.getBoundingClientRect(), w = 236;
+        menu.style.left = Math.max(10, Math.min(r.right - w, window.innerWidth - w - 10)) + 'px';
+        menu.style.top = (r.bottom + 8) + 'px';
+      };
+      var close = function(){
+        menu.classList.remove('open');
+        document.removeEventListener('click', outside, true);
+        document.removeEventListener('keydown', onKey);
+        window.removeEventListener('scroll', close, true);
+        window.removeEventListener('resize', close);
+      };
+      var outside = function(e){ if(!menu.contains(e.target) && !abtn.contains(e.target)) close(); };
+      var onKey = function(e){ if(e.key === 'Escape') close(); };
+      var open = function(){
+        place(); menu.classList.add('open');
+        document.addEventListener('click', outside, true);
+        document.addEventListener('keydown', onKey);
+        window.addEventListener('scroll', close, true);
+        window.addEventListener('resize', close);
+      };
+
+      abtn.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        menu.classList.contains('open') ? close() : open();
+      });
+      menu.querySelector('.so').addEventListener('click', function(){
+        try { localStorage.removeItem(AKEY); } catch(e){}
+        location.reload();
+      });
+    }
+  }
+})();
+
+/* ============================================================
    VIVO — cart enhancements (shared across every page)
    1) Free-shipping progress bar toward the $200 threshold.
    2) Dynamic delivery estimate (ships next business day +

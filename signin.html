@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in · Vivo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="vivo-favicon.png">
+<link rel="apple-touch-icon" href="vivo-favicon.png">
+<meta name="theme-color" content="#3D5C36">
+<style>
+  :root{
+    --sage-deep:#3D5C36; --sand:#EDE4D0; --black:#1C1A17; --white:#fffef2;
+    --ink:#2e2c28; --muted:#575049; --line:rgba(28,26,23,.12); --amber:#C4913A;
+    --sans:"Switzer","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:"Reddit Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  @font-face{ font-family:"Reddit Mono"; src:url('_source/fonts/reddit-mono/reddit-mono.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  body{ font-family:var(--sans); color:var(--ink); background:#F5F1E8; line-height:1.5; font-weight:450;
+    min-height:100svh; display:grid; place-items:center; padding:32px 22px; }
+  a{ color:inherit; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .auth{ width:min(444px,100%); text-align:center; }
+  .auth .logo{ height:24px; width:auto; margin:0 auto 30px; display:block; opacity:.92; }
+  .auth h1{ font-family:var(--sans); font-weight:600; font-size:clamp(1.7rem,4.6vw,2.1rem); letter-spacing:-.03em; color:var(--ink); line-height:1.08; }
+  .auth .sub{ margin:13px auto 0; font-size:.98rem; color:var(--muted); line-height:1.5; max-width:38ch; }
+
+  .gbtn{ margin-top:30px; width:100%; height:56px; display:flex; align-items:center; justify-content:center; gap:12px;
+    background:var(--white); color:var(--ink); border:1px solid var(--line); border-radius:0;
+    font-weight:600; font-size:.94rem; letter-spacing:.01em;
+    transition:border-color .2s ease, background-color .2s ease; }
+  .gbtn:hover{ border-color:rgba(28,26,23,.28); background:#fffdf5; }
+  .gbtn svg{ width:19px; height:19px; flex-shrink:0; }
+
+  .divider{ display:flex; align-items:center; gap:14px; margin:22px 0; }
+  .divider::before, .divider::after{ content:""; height:1px; flex:1; background:var(--line); }
+  .divider span{ font-family:var(--mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+
+  .field input{ width:100%; height:56px; background:var(--white); border:1px solid var(--line); border-radius:0;
+    padding:0 18px; font-family:var(--sans); font-size:.98rem; color:var(--ink); outline:none;
+    transition:border-color .2s ease; }
+  .field input::placeholder{ color:var(--muted); }
+  .field input:focus{ border-color:var(--sage-deep); }
+
+  .authbtn{ margin-top:12px; width:100%; height:56px; display:flex; align-items:center; justify-content:center; gap:.5em;
+    background:var(--black); color:var(--white); border:1px solid var(--black); border-radius:0;
+    font-weight:600; font-size:.94rem; letter-spacing:.01em;
+    transition:background-color .2s ease, border-color .2s ease; }
+  .authbtn:hover{ background:#36312a; border-color:#36312a; }
+  .authbtn .ar{ transition:transform .2s var(--ease-out); }
+  .authbtn:hover .ar{ transform:translateX(3px); }
+
+  .fine{ margin:24px auto 0; font-size:.78rem; line-height:1.55; color:var(--muted); max-width:44ch; }
+  .fine b{ color:var(--ink); font-weight:600; }
+
+  .linkbtn{ margin-top:16px; background:none; border:0; color:var(--muted); font-size:.84rem;
+    text-decoration:underline; text-underline-offset:3px; transition:color .18s ease; }
+  .linkbtn:hover{ color:var(--ink); }
+
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+  <main class="auth">
+    <img class="logo" src="logo_black.png" alt="Vivo">
+
+    <!-- choose a method -->
+    <section id="step1">
+      <h1>Sign in or sign up</h1>
+      <p class="sub">For verified researchers. Continue with Google, or use your email to create an account.</p>
+
+      <button type="button" class="gbtn" id="googleBtn">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Continue with Google
+      </button>
+
+      <div class="divider"><span>or continue with email</span></div>
+
+      <form class="field" id="emailForm" novalidate>
+        <input type="email" id="email" placeholder="Email address" autocomplete="email" inputmode="email" required>
+        <button type="submit" class="authbtn">Continue with email <span class="ar">→</span></button>
+      </form>
+
+      <p class="fine">By continuing, you confirm you are at least <b>21 years old</b> and that all products are purchased for <b>in-vitro laboratory research only</b>, not for human or veterinary use. These products have not been evaluated by the FDA.</p>
+    </section>
+
+    <!-- already signed in -->
+    <section id="stepIn" hidden>
+      <h1>You're signed in</h1>
+      <p class="sub" id="inWho"></p>
+      <button type="button" class="authbtn" id="continueBtn" style="margin-top:28px">Continue <span class="ar">→</span></button>
+      <button type="button" class="linkbtn" id="signOutBtn">Sign out</button>
+    </section>
+  </main>
+
+<script>
+(function(){
+  var AKEY = 'vivo_account';
+  function getNext(){
+    var n = new URLSearchParams(location.search).get('next') || 'index.html';
+    return /^[a-zA-Z0-9._-]+\.html$/.test(n) ? n : 'index.html';   /* same-site only */
+  }
+  var NEXT = getNext();
+  function acct(){ try { return JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch(e){ return null; } }
+  function signIn(method, email){
+    try { localStorage.setItem(AKEY, JSON.stringify({ method:method, email:(email||null), ts:Date.now() })); } catch(e){}
+    location.href = NEXT;
+  }
+
+  var a = acct();
+  if(a){
+    document.getElementById('step1').hidden = true;
+    document.getElementById('stepIn').hidden = false;
+    document.getElementById('inWho').textContent = a.email ? ('Signed in as ' + a.email) : 'Signed in with Google.';
+    document.getElementById('continueBtn').addEventListener('click', function(){ location.href = NEXT; });
+    document.getElementById('signOutBtn').addEventListener('click', function(){
+      try { localStorage.removeItem(AKEY); } catch(e){}
+      location.reload();
+    });
+  }
+
+  document.getElementById('googleBtn').addEventListener('click', function(){ signIn('google', null); });
+  document.getElementById('emailForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var input = document.getElementById('email');
+    var email = input.value.trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ input.focus(); input.style.borderColor = '#7B3B34'; return; }
+    signIn('email', email);
+  });
+})();
+</script>
+</body>
+</html>
