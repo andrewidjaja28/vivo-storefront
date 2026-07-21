@@ -6,21 +6,21 @@
 <title>Vivo · Product</title>
 <meta name="description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
 <link rel="canonical" href="https://vivo-storefront.netlify.app/product.html">
-<link rel="icon" type="image/png" href="vivo-favicon.png">
-<link rel="apple-touch-icon" href="vivo-favicon.png">
+<link rel="icon" type="image/png" href="assets/icons/vivo-favicon.png">
+<link rel="apple-touch-icon" href="assets/icons/vivo-favicon.png">
 <meta name="theme-color" content="#3D5C36">
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="Vivo">
 <meta property="og:title" content="Research-grade peptides · Vivo">
 <meta property="og:description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
 <meta property="og:url" content="https://vivo-storefront.netlify.app/product.html">
-<meta property="og:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
+<meta property="og:image" content="https://vivo-storefront.netlify.app/assets/img/hero-vials.jpg">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Research-grade peptides · Vivo">
 <meta name="twitter:description" content="Research-grade peptides from Vivo. Color-coded by research area, made in California.">
-<meta name="twitter:image" content="https://vivo-storefront.netlify.app/hero_vials.jpg">
+<meta name="twitter:image" content="https://vivo-storefront.netlify.app/assets/img/hero-vials.jpg">
 <style>
   :root{
     --sage-deep:#3D5C36; --sage-tint:#E4E9DE; --sand:#EDE4D0; --amber:#C4913A;
@@ -34,21 +34,21 @@
     --ease-drawer:cubic-bezier(0.32, 0.72, 0, 1);
     --bar-h:34px; --maxw:1600px; --gutter:clamp(18px, 4.5vw, 80px);
   }
-  @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
-  @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
-  @font-face{ font-family:"Cormorant Garamond"; src:url('_source/fonts/cormorant-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
-  @font-face{ font-family:"Forum"; src:url('_source/fonts/Forum-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Cormorant Garamond"; src:url('assets/fonts/cormorant-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Cormorant Garamond"; src:url('assets/fonts/cormorant-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Cormorant Garamond"; src:url('assets/fonts/cormorant-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Forum"; src:url('assets/fonts/Forum-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
 
-  @font-face{ font-family:"Reddit Mono"; src:url('_source/fonts/reddit-mono/reddit-mono.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-  @font-face{ font-family:"Reddit Mono"; src:url('_source/fonts/reddit-mono/reddit-mono-ext.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-MediumItalic.woff2') format('woff2'); font-weight:500; font-style:italic; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-SemiboldItalic.woff2') format('woff2'); font-weight:600; font-style:italic; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
-  @font-face{ font-family:"Switzer"; src:url('_source/fonts/switzer/Switzer-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Reddit Mono"; src:url('assets/fonts/reddit-mono/reddit-mono.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face{ font-family:"Reddit Mono"; src:url('assets/fonts/reddit-mono/reddit-mono-ext.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-Medium.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-MediumItalic.woff2') format('woff2'); font-weight:500; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-Semibold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-SemiboldItalic.woff2') format('woff2'); font-weight:600; font-style:italic; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face{ font-family:"Switzer"; src:url('assets/fonts/switzer/Switzer-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
@@ -414,7 +414,7 @@
 <!-- ===================== AGE GATE (21+) ===================== -->
 <div id="ageGate" class="agegate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" hidden>
   <div class="agegate-card">
-    <img src="logo_black.png" alt="Vivo" class="agegate-logo">
+    <img src="assets/icons/logo-black.png" alt="Vivo" class="agegate-logo">
     <h2 id="ageGateTitle">Research use only</h2>
     <p>The products on this site are sold strictly <strong>For Research Use Only</strong> and are <strong>not for human or animal consumption</strong>. You must be 21 years of age or older to enter.</p>
     <p class="agegate-q">Are you 21 or older and do you agree to these terms?</p>
@@ -457,8 +457,8 @@
 <!-- NAV -->
 <header class="nav scrolled" id="nav">
   <a href="index.html" class="brand" aria-label="Vivo home">
-    <img class="logo-white" src="logo_white.png" alt="Vivo">
-    <img class="logo-black" src="logo_black.png" alt="" aria-hidden="true">
+    <img class="logo-white" src="assets/icons/logo-white.png" alt="Vivo">
+    <img class="logo-black" src="assets/icons/logo-black.png" alt="" aria-hidden="true">
   </a>
   <nav class="nav-links">
     <a href="shop.html" class="link">Products</a>
@@ -512,7 +512,7 @@
     </div>
     <div class="top">
       <div class="brandcol">
-        <img class="brand-logo" src="logo_white.png" alt="Vivo">
+        <img class="brand-logo" src="assets/icons/logo-white.png" alt="Vivo">
         <p>Research-grade peptides, organised by research area and made in California, independently tested and documented, batch by batch.</p>
       </div>
       <div>
@@ -558,9 +558,9 @@
   </div>
 </aside>
 
-<script src="products.js"></script>
+<script src="js/products.js"></script>
 <script>
-  /* PRODUCTS + BENEFITS come from products.js (single source of truth). */
+  /* PRODUCTS + BENEFITS come from js/products.js (single source of truth). */
 
   const byId = id => PRODUCTS.find(p => p.id === id);
   const money = n => '$' + Number(n).toLocaleString('en-US');
@@ -588,7 +588,7 @@
     .sort((a,b) => (b.benefit === product.benefit) - (a.benefit === product.benefit))
     .slice(0,4);
 
-  // Dose / vial-size variants (from products.js). Label combines dose + vial.
+  // Dose / vial-size variants (from js/products.js). Label combines dose + vial.
   const variants = product.variants || [{ dose: product.dose, vial: '', price: product.price }];
   const vlabel = v => v.dose + (v.vial ? ' · ' + v.vial : '');
 
@@ -601,7 +601,7 @@
   // gallery: per-product `gallery` array if present, else the vial + supporting brand visuals
   const galleryImgs = (product.gallery && product.gallery.length)
     ? product.gallery
-    : [product.img, 'peptideliquid.jpg', 'clearliquid_card.jpg'];
+    : [product.img, 'assets/img/peptide-liquid.jpg', 'assets/video/clearliquid-card.jpg'];
   const isVialImg = src => /Products\/Vials\//.test(String(src));
   let galIndex = 0;
   function setGallery(i){
@@ -683,8 +683,8 @@
           </dl>
         </div>
         <div class="dmedia reveal">
-          <video autoplay muted loop playsinline preload="metadata" poster="${product.detailVideo ? product.detailVideo.replace('.mp4','.jpg') : 'clearliquid_card.jpg'}">
-            <source src="${product.detailVideo || 'clearliquid_card.mp4'}" type="video/mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="${product.detailVideo ? product.detailVideo.replace('.mp4','.jpg') : 'assets/video/clearliquid-card.jpg'}">
+            <source src="${product.detailVideo || 'assets/video/clearliquid-card.mp4'}" type="video/mp4">
           </video>
         </div>
       </div>
@@ -698,8 +698,8 @@
         <div class="qgrid">
           <article class="qcard qcard--hero reveal">
             <div class="qmedia">
-              <video autoplay muted loop playsinline preload="metadata" poster="clearliquid_card.jpg">
-                <source src="clearliquid_card.mp4" type="video/mp4">
+              <video autoplay muted loop playsinline preload="metadata" poster="assets/video/clearliquid-card.jpg">
+                <source src="assets/video/clearliquid-card.mp4" type="video/mp4">
               </video>
             </div>
             <div class="qbody">
@@ -709,14 +709,14 @@
           </article>
           <div class="qside">
             <article class="qcard reveal">
-              <div class="qmedia"><img src="peptideliquid.jpg" alt="Peptide in solution under analysis" loading="lazy"></div>
+              <div class="qmedia"><img src="assets/img/peptide-liquid.jpg" alt="Peptide in solution under analysis" loading="lazy"></div>
               <div class="qbody">
                 <h3>Third-party verified</h3>
                 <p>Mass-spectrometry and a Certificate of Analysis for every batch.</p>
               </div>
             </article>
             <article class="qcard reveal">
-              <div class="qmedia"><img src="madeincali.jpg" alt="Made in California" loading="lazy"></div>
+              <div class="qmedia"><img src="assets/video/made-in-cali.jpg" alt="Made in California" loading="lazy"></div>
               <div class="qbody">
                 <h3>Made in California</h3>
                 <p>Synthesized, tested, and filled within the United States.</p>
@@ -1092,6 +1092,6 @@
   document.querySelectorAll('.faq details, details.comp-acc').forEach(function(el){ new A(el); });
 })();
 </script>
-<script src="cart-rec.js"></script>
+<script src="js/cart-rec.js"></script>
 </body>
 </html>

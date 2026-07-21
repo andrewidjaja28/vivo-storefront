@@ -24,7 +24,7 @@
   /* Nav account icon:
        signed out -> sign-in page
        signed in  -> dropdown menu (email + Sign out), with a sage dot.
-     cart-rec.js loads at end of <body>, so the nav is already parsed. */
+     js/cart-rec.js loads at end of <body>, so the nav is already parsed. */
   var abtn = document.querySelector('button[aria-label="Account"], a[aria-label="Account"]');
   if(abtn && !abtn.dataset.vivoAuth){
     abtn.dataset.vivoAuth = '1';
