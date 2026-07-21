@@ -541,8 +541,9 @@
   .coacard-media{ position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--white); border-bottom:1px solid var(--line); padding-top:16px; }
   .coacard-media img{ width:100%; height:100%; object-fit:contain; object-position:center; transform:scale(1.06); transition:transform .5s var(--ease-out); }
   .coacard:hover .coacard-media img{ transform:scale(1.09); }
-  .coacard-batch{ position:absolute; left:10px; bottom:10px; background:rgba(28,26,23,.82); color:var(--white); font-family:var(--mono); font-size:.52rem; letter-spacing:.04em; padding:4px 7px; }
   .coacard-body{ padding:13px 15px 15px; display:flex; flex-direction:column; flex:1; }
+  .coacard-lot{ font-family:var(--mono); font-size:.62rem; letter-spacing:.05em; color:var(--ink); padding-bottom:11px; margin-bottom:12px; border-bottom:1px solid var(--line); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .coacard-lot span{ color:var(--muted); text-transform:uppercase; letter-spacing:.16em; margin-right:8px; }
   .coacard-cat{ display:flex; align-items:center; gap:7px; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--muted); }
   .coacard-cat .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
   .coacard-name{ font-family:var(--display); font-weight:500; font-size:1.2rem; letter-spacing:-.3px; color:var(--ink); margin-top:6px; line-height:1; }
@@ -842,8 +843,9 @@
     const card = p => {
       const s = specs(p); const b = BENEFIT_BY_ID[p.benefit] || {}; const color = b.color || p.ph;
       return `<a class="coacard" href="certificate.html?id=${p.id}" style="--ph:${p.ph}" aria-label="${p.name} certificate of analysis">
-        <div class="coacard-media"><img src="${p.img}" alt="${p.name}" loading="lazy"><span class="coacard-batch">Lot ${s.batch}</span></div>
+        <div class="coacard-media"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
         <div class="coacard-body">
+          <div class="coacard-lot"><span>Lot</span>${s.batch}</div>
           <div class="coacard-cat"><span class="dot" style="background:${color}"></span>${b.name || ''}</div>
           <div class="coacard-name">${p.name}</div>
           <div class="coacard-specs">
