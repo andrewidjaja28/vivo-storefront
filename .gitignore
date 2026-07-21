@@ -6,16 +6,14 @@ Vivo_deploy/
 Vivo_site/
 *.zip
 
-# Large source material not used by the live site
+# Design-source material — kept inside the repo folder for reference,
+# but not shipped or version-controlled (mood boards, brand PDFs, raw
+# mockups, and the superseded static prototype). Fonts used in
+# production now live in assets/fonts/ and ARE tracked.
+design-source/
 batchvideo.mp4
 *.pdf
 Vivo Mood Board Images/
-
-# _source: keep ONLY fonts (loaded in production); ignore heavy design mockups
-_source/*.png
-_source/*.jpg
-_source/*.jpeg
-_source/*.html
 
 # Node / Medusa (for when the backend dev adds tooling)
 node_modules/
