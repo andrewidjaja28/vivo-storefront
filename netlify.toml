@@ -1,0 +1,96 @@
+# =============================================================================
+# THIS SITE IS RETIRED.
+#
+# vivo-storefront (this static HTML prototype) has been superseded by the
+# production storefront at https://vivotoday.com (Next.js on Vercel). This
+# Netlify deploy is kept only as a 301 redirector so that:
+#   - it no longer competes with vivotoday.com for search rankings,
+#   - it no longer serves stale/duplicate content,
+#   - any existing links or bookmarks forward to the live site.
+#
+# Every request 301-redirects to vivotoday.com. The main pages map to their
+# live clean-URL equivalents; everything else falls through to the homepage.
+# (Prefer keeping this redirector over deleting the Netlify site — deleting it
+# would turn all old links into 404s and drop the redirect's SEO consolidation.)
+# =============================================================================
+
+[[redirects]]
+  from = "/shop.html"
+  to = "https://vivotoday.com/store"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product.html"
+  to = "https://vivotoday.com/store"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/coa.html"
+  to = "https://vivotoday.com/certificates"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/coa-guide.html"
+  to = "https://vivotoday.com/certificates/guide"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about.html"
+  to = "https://vivotoday.com/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/science.html"
+  to = "https://vivotoday.com/science"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/research.html"
+  to = "https://vivotoday.com/research"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "https://vivotoday.com/faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shipping.html"
+  to = "https://vivotoday.com/shipping"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/storage.html"
+  to = "https://vivotoday.com/storage"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wholesale.html"
+  to = "https://vivotoday.com/wholesale"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "https://vivotoday.com/contact"
+  status = 301
+  force = true
+
+# Everything else — the root, research-*.html articles, certificate detail
+# pages, signin/checkout, sitemap.xml, robots.txt, and all assets — forwards
+# to the live homepage.
+[[redirects]]
+  from = "/*"
+  to = "https://vivotoday.com/"
+  status = 301
+  force = true
